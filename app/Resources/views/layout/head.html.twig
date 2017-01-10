@@ -1,0 +1,33 @@
+<head>
+    <meta charset= "UTF-8"/>
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="openGameDB, the open game database, games, database, meta, metadata, api, video, youtube, trailers, wallpapers, fanart, cover art, box art, fan art, open, source, game, search, forum, directory" />
+    <meta name="language" content="en-US" />
+    <meta name="description" content="OpenGameDB is an open, online database for video game fans. We are driven by a strong community to provide the best place to find information, covers, backdrops screenshots and videos for games, both modern and classic." />
+
+    <title>OpenGameDB- An open, online database for video game fans</title>
+
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" />
+
+    <!-- CSS-->
+    {{ include('layout/css.html.twig') }}
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" />
+    
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
+    <!-- CSS END-->
+    <!-- Form theme -->
+    {% if form is defined %}
+        {% form_theme form 'bootstrap_3_layout.html.twig' %}
+    {% endif %}
+    {% if edit_form is defined %}
+        {% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
+    {% endif %}
+    <!-- Form theme END-->
+    {% block stylesheets %}
+    {% endblock %}
+    <!-- Javascript-->
+    <script src="{{ asset('js/jquery-3.1.0.min.js') }}"></script>
+    <!--Javascript END-->
+</head>

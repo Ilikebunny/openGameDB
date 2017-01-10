@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    {{ include('layout/head.html.twig') }}
+    <body>
+        {{ include('layout/header.html.twig') }}
+        <div id="main" class="container">
+            
+            <section class="panel row">
+                <header class="panel-heading col-md-12">
+                    <h2>{% block panel_head %}{% endblock %}</h2>
+                </header>
+                {% block menu_content %}
+                {% endblock %}
+                <div class="panel-body col-md-10">
+                    {{ include('layout/flash_message_block.html.twig') }}
+                    {% block body %}
+                    {% endblock %}
+                    {% if pagerHtml is defined %}
+                        {{ pagerHtml | raw}}
+                    {% endif %}
+                </div>
+                <div class="panel-body col-md-2">
+                    {% block aside %}
+                    {% endblock %}
+                    <hr>
+                    {{ include('layout/aside.html.twig') }} 
+                    {{ dump() }}
+                </div>
+            </section>
+                
+        </div>
+        <div id="footer" class="container-fluid">
+            {{ include('layout/footer.html.twig') }}
+        </div>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    </body>
+</html>
