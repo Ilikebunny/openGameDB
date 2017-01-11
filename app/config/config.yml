@@ -123,3 +123,21 @@ stof_doctrine_extensions:
             translatable: true
             tree: true
             uploadable: true
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\Users
+    group:
+        group_class: AppBundle\Entity\Group    
+    registration:
+        confirmation:
+            enabled: true
+    from_email:
+        address:        opengamedb@example.com
+        sender_name:    openGameDB
+    service:
+        mailer: fos_user.mailer.twig_swift
+    resetting:
+        email:
+#            template: email/password_resetting.email.twig  

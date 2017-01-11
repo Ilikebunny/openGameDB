@@ -1,0 +1,103 @@
+<?php
+
+// src/AppBundle/Entity/User.php
+
+namespace AppBundle\Entity;
+
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fos_user")
+ */
+class Users extends BaseUser {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", length=20, nullable=true)
+     */
+    private $role;
+
+    /**
+     * @var \DateTime
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created", type="datetime", nullable=true)
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="modified", type="datetime", nullable=true)
+     */
+    private $modified;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Group", fetch="EAGER")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="group_id", referencedColumnName="id")
+     * })
+     */
+    protected $group;
+
+    public function __construct() {
+        parent::__construct();
+        // your own logic
+    }
+    
+     /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId() {
+        return $this->id;
+    }
+    
+        /**
+     * Set group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return Users
+     */
+    public function setGroup(\AppBundle\Entity\Group $group = null) {
+        $this->group = $group;
+        $this->removeAllRoles();
+        foreach ($group->getRoles() as $role) {
+            $this->addRole($role);
+        }
+        return $this;
+    }
+
+    /**
+     * Get coordinateur
+     *
+     * @return \AppBundle\Entity\Group
+     */
+    public function getGroup() {
+        return $this->group;
+    }
+
+    /**
+     * Remove all roles
+     *
+     */
+    protected function removeAllRoles() {
+
+        $this->removeRole("ROLE_ADMIN");
+        $this->removeRole("ROLE_PUBLISHER");
+        $this->removeRole("ROLE_COORDINATEUR");
+    }
+
+}
