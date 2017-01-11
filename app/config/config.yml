@@ -115,7 +115,11 @@ stof_doctrine_extensions:
         default_file_info_class: Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo
     orm:
         default:
-            tree: true
-            timestampable: true
-            sluggable: true
             blameable: true
+            loggable: true
+            sluggable: true
+            softdeleteable: true
+            timestampable: true
+            translatable: true
+            tree: true
+            uploadable: true
