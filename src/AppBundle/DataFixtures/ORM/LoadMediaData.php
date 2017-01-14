@@ -8,9 +8,9 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use AppBundle\Entity\Company;
+use AppBundle\Entity\Media;
 
-class LoadCompanyData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface {
+class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface {
 
     /**
      * @var ContainerInterface
@@ -25,7 +25,7 @@ class LoadCompanyData extends AbstractFixture implements OrderedFixtureInterface
 
         $manager->getConnection()->getConfiguration()->setSQLLogger(null);
         $import = $this->container->get('AppBundle.importcsv');
-        $fileContent = $import->CSV_to_array('company.csv');
+        $fileContent = $import->CSV_to_array('media.csv');
 
         $batchSize = 20;
         $i = 1;
@@ -33,7 +33,7 @@ class LoadCompanyData extends AbstractFixture implements OrderedFixtureInterface
             if ($numRow != 1) {
                
                 $i = $i + 1 ;
-                $entity = new Company();
+                $entity = new Media();
 
                 $entity->setName($row[0]);
 
@@ -52,7 +52,7 @@ class LoadCompanyData extends AbstractFixture implements OrderedFixtureInterface
     public function getOrder() {
         // the order in which fixtures will be loaded
         // the lower the number, the sooner that this fixture is loaded
-        return 3;
+        return 4;
     }
 
 }
