@@ -13,9 +13,14 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        
+        $import = $this->container->get('AppBundle.importcsv');
+        $fileContent = $import->CSV_to_array('platform.csv');
+        
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+            'test' => $fileContent,
         ]);
     }
 }
