@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="company")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CompanyRepository")
  */
-class Company {
-
+class Company
+{
     /**
      * @var int
      *
@@ -35,37 +35,28 @@ class Company {
      */
     private $logo;
 
-    /**
+
+      /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Platform", mappedBy="developers")
      */
     private $platform_developed;
-
+    
     /**
      * To string
      */
     public function __toString() {
         return $this->name;
     }
-
-    /**
-     * Set id
-     *
-     * @param int $id
-     *
-     * @return Company
-     */
-    public function setId($id) {
-        $this->id = $id;
-    }
-
+    
     /**
      * Get id
      *
      * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -76,7 +67,8 @@ class Company {
      *
      * @return Company
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
 
         return $this;
@@ -87,7 +79,8 @@ class Company {
      *
      * @return string
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -98,7 +91,8 @@ class Company {
      *
      * @return Company
      */
-    public function setLogo($logo) {
+    public function setLogo($logo)
+    {
         $this->logo = $logo;
 
         return $this;
@@ -109,46 +103,9 @@ class Company {
      *
      * @return string
      */
-    public function getLogo() {
+    public function getLogo()
+    {
         return $this->logo;
     }
-
-    /**
-     * Constructor
-     */
-    public function __construct() {
-        $this->platform_developed = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add platformDeveloped
-     *
-     * @param \AppBundle\Entity\Platform $platformDeveloped
-     *
-     * @return Company
-     */
-    public function addPlatformDeveloped(\AppBundle\Entity\Platform $platformDeveloped) {
-        $this->platform_developed[] = $platformDeveloped;
-
-        return $this;
-    }
-
-    /**
-     * Remove platformDeveloped
-     *
-     * @param \AppBundle\Entity\Platform $platformDeveloped
-     */
-    public function removePlatformDeveloped(\AppBundle\Entity\Platform $platformDeveloped) {
-        $this->platform_developed->removeElement($platformDeveloped);
-    }
-
-    /**
-     * Get platformDeveloped
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPlatformDeveloped() {
-        return $this->platform_developed;
-    }
-
 }
+
