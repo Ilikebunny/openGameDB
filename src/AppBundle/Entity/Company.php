@@ -41,6 +41,13 @@ class Company {
      * @ORM\ManyToMany(targetEntity="Platform", mappedBy="developers")
      */
     private $platform_developed;
+    
+        /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Platform", mappedBy="manufacturers")
+     */
+    private $platform_manufactured;
 
     /**
      * To string
@@ -151,4 +158,38 @@ class Company {
         return $this->platform_developed;
     }
 
+
+    /**
+     * Add platformManufactured
+     *
+     * @param \AppBundle\Entity\Platform $platformManufactured
+     *
+     * @return Company
+     */
+    public function addPlatformManufactured(\AppBundle\Entity\Platform $platformManufactured)
+    {
+        $this->platform_manufactured[] = $platformManufactured;
+
+        return $this;
+    }
+
+    /**
+     * Remove platformManufactured
+     *
+     * @param \AppBundle\Entity\Platform $platformManufactured
+     */
+    public function removePlatformManufactured(\AppBundle\Entity\Platform $platformManufactured)
+    {
+        $this->platform_manufactured->removeElement($platformManufactured);
+    }
+
+    /**
+     * Get platformManufactured
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlatformManufactured()
+    {
+        return $this->platform_manufactured;
+    }
 }

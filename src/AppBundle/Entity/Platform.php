@@ -50,17 +50,7 @@ class Platform {
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
-
-    /**
-     * @var \Company
-     *
-     * @ORM\ManyToOne(targetEntity="Company")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="developer_id", referencedColumnName="id", nullable=true)
-     * })
-     */
-    private $developer;
-    
+   
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
@@ -77,14 +67,19 @@ class Platform {
     private $developers;
 
     /**
-     * @var \Company
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToOne(targetEntity="Company")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="manufacturer_id", referencedColumnName="id", nullable=true)
-     * })
+     * @ORM\ManyToMany(targetEntity="Company", inversedBy="platform_manufactured")
+     * @ORM\JoinTable(name="platform_manufacturers",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="platform_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="company_id", referencedColumnName="id")
+     *   }
+     * )
      */
-    private $manufacturer;
+    private $manufacturers;
 
     /**
      * @var string
@@ -396,29 +391,6 @@ class Platform {
     }
 
     /**
-     * Set manufacturer
-     *
-     * @param \AppBundle\Entity\Company $manufacturer
-     *
-     * @return Platform
-     */
-    public function setManufacturer(\AppBundle\Entity\Company $manufacturer = null)
-    {
-        $this->manufacturer = $manufacturer;
-
-        return $this;
-    }
-
-    /**
-     * Get manufacturer
-     *
-     * @return \AppBundle\Entity\Company
-     */
-    public function getManufacturer()
-    {
-        return $this->manufacturer;
-    }
-    /**
      * Constructor
      */
     public function __construct()
@@ -458,5 +430,39 @@ class Platform {
     public function getDevelopers()
     {
         return $this->developers;
+    }
+
+    /**
+     * Add manufacturer
+     *
+     * @param \AppBundle\Entity\Company $manufacturer
+     *
+     * @return Platform
+     */
+    public function addManufacturer(\AppBundle\Entity\Company $manufacturer)
+    {
+        $this->manufacturers[] = $manufacturer;
+
+        return $this;
+    }
+
+    /**
+     * Remove manufacturer
+     *
+     * @param \AppBundle\Entity\Company $manufacturer
+     */
+    public function removeManufacturer(\AppBundle\Entity\Company $manufacturer)
+    {
+        $this->manufacturers->removeElement($manufacturer);
+    }
+
+    /**
+     * Get manufacturers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getManufacturers()
+    {
+        return $this->manufacturers;
     }
 }
