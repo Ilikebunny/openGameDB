@@ -408,7 +408,7 @@ class Platform {
     public function addDeveloper(\AppBundle\Entity\Company $developer)
     {
         $this->developers[] = $developer;
-
+       
         return $this;
     }
 

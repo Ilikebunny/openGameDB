@@ -31,11 +31,11 @@ class LoadCompanyData extends AbstractFixture implements OrderedFixtureInterface
         $i = 1;
         foreach ($fileContent as $numRow => $row) {
             if ($numRow != 1) {
-               
-                $i = $i + 1 ;
+
+                $i = $i + 1;
                 $entity = new Company();
 
-                $entity->setName($row[0]);
+                $entity->setName(trim($row[0]));
 
                 $manager->persist($entity);
 
@@ -43,8 +43,8 @@ class LoadCompanyData extends AbstractFixture implements OrderedFixtureInterface
                     $manager->flush();
                     $manager->clear(); // Detaches all objects from Doctrine!
                 }
-                
-                $this->addReference($entity->getName(), $entity);
+
+                $this->addReference("Company " . $entity->getName(), $entity);
             }
         }
         $manager->flush(); //Persist objects that did not make up an entire batch

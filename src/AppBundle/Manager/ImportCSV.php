@@ -39,12 +39,12 @@ class ImportCSV {
         }
         return $csvContent;
     }
-    
+
     /**
      * Get file content to string
      *
      */
-    public function TXT_to_String($filename){
+    public function TXT_to_String($filename) {
         $csvDirectory = $this->getDirectoryData();
         $content = file_get_contents($csvDirectory . $filename);
         return $content;
