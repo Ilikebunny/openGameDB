@@ -122,6 +122,11 @@ class Platform {
      * @ORM\Column(name="maxcontrollers", type="integer", nullable=true)
      */
     private $maxcontrollers;
+    
+       /**
+     * @ORM\OneToMany(targetEntity="Game", mappedBy="platform")
+     */
+    protected $games;
 
      /**
      * Set id
@@ -408,7 +413,7 @@ class Platform {
     public function addDeveloper(\AppBundle\Entity\Company $developer)
     {
         $this->developers[] = $developer;
-
+       
         return $this;
     }
 
@@ -430,5 +435,39 @@ class Platform {
     public function getDevelopers()
     {
         return $this->developers;
+    }
+
+    /**
+     * Add manufacturer
+     *
+     * @param \AppBundle\Entity\Company $manufacturer
+     *
+     * @return Platform
+     */
+    public function addManufacturer(\AppBundle\Entity\Company $manufacturer)
+    {
+        $this->manufacturers[] = $manufacturer;
+
+        return $this;
+    }
+
+    /**
+     * Remove manufacturer
+     *
+     * @param \AppBundle\Entity\Company $manufacturer
+     */
+    public function removeManufacturer(\AppBundle\Entity\Company $manufacturer)
+    {
+        $this->manufacturers->removeElement($manufacturer);
+    }
+
+    /**
+     * Get manufacturers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getManufacturers()
+    {
+        return $this->manufacturers;
     }
 }

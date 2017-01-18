@@ -122,6 +122,11 @@ class Platform {
      * @ORM\Column(name="maxcontrollers", type="integer", nullable=true)
      */
     private $maxcontrollers;
+    
+       /**
+     * @ORM\OneToMany(targetEntity="Game", mappedBy="platform")
+     */
+    protected $games;
 
      /**
      * Set id
@@ -464,5 +469,39 @@ class Platform {
     public function getManufacturers()
     {
         return $this->manufacturers;
+    }
+
+    /**
+     * Add game
+     *
+     * @param \AppBundle\Entity\Game $game
+     *
+     * @return Platform
+     */
+    public function addGame(\AppBundle\Entity\Game $game)
+    {
+        $this->games[] = $game;
+
+        return $this;
+    }
+
+    /**
+     * Remove game
+     *
+     * @param \AppBundle\Entity\Game $game
+     */
+    public function removeGame(\AppBundle\Entity\Game $game)
+    {
+        $this->games->removeElement($game);
+    }
+
+    /**
+     * Get games
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGames()
+    {
+        return $this->games;
     }
 }

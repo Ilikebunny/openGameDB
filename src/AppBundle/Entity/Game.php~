@@ -227,28 +227,5 @@ class Game
     {
         return $this->coop;
     }
-
-    /**
-     * Set platform
-     *
-     * @param \AppBundle\Entity\Platform $platform
-     *
-     * @return Game
-     */
-    public function setPlatform(\AppBundle\Entity\Platform $platform = null)
-    {
-        $this->platform = $platform;
-
-        return $this;
-    }
-
-    /**
-     * Get platform
-     *
-     * @return \AppBundle\Entity\Platform
-     */
-    public function getPlatform()
-    {
-        return $this->platform;
-    }
 }
+
