@@ -35,16 +35,17 @@ class LoadCompanyData extends AbstractFixture implements OrderedFixtureInterface
                 $i = $i + 1;
                 $entity = new Company();
 
-                $entity->setName(trim($row[0]));
+                $entity->setName($row[0]);
 
                 $manager->persist($entity);
 
+                $this->addReference("Company_" . $entity->getName(), $entity);
+                
                 if (($i % $batchSize) === 0) {
                     $manager->flush();
                     $manager->clear(); // Detaches all objects from Doctrine!
                 }
 
-                $this->addReference("Company " . $entity->getName(), $entity);
             }
         }
         $manager->flush(); //Persist objects that did not make up an entire batch

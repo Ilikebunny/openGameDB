@@ -37,12 +37,10 @@ class LoadPlatform_DevelopperData extends AbstractFixture implements OrderedFixt
 
                 $i = $i + 1;
 
-                var_dump($row[0]);
-                var_dump($row[1]);
-                $entity = $this->getReference("Platform " . trim($row[0]));
+                $entity = $this->getReference("Platform_" . trim($row[0]));
 
-                $entity2 = $this->getReference("Company " . trim($row[1]));
-
+                $entity2 = $this->getReference("Company_" . trim($row[1]));
+                
                 $entity->addDeveloper($entity2);
 
                 $manager->persist($entity);

@@ -53,7 +53,7 @@ class LoadPlatformData extends AbstractFixture implements OrderedFixtureInterfac
                 $manager->getClassMetaData(get_class($entity))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
                 $manager->persist($entity);
 
-                $this->addReference("Platform " . trim($entity->getId()), $entity);
+                $this->addReference("Platform_" . trim($entity->getId()), $entity);
 
                 if (($i % $batchSize) === 0) {
                     $manager->flush();
