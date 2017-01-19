@@ -46,7 +46,8 @@ class LoadGameData extends AbstractFixture implements OrderedFixtureInterface, C
                 $entity->setId($row[1]);
                 $entity->setTitle($row[2]);
                 if ($row[3] != "") {
-                    $entity->setReleaseDate($row[3]);
+                    $date = new \DateTime($row[3]);
+                    $entity->setReleaseDate($date);
                 }
                 $entity->setOverview($row[4]);
                 $entity->setEsrb($row[5]);
@@ -60,10 +61,10 @@ class LoadGameData extends AbstractFixture implements OrderedFixtureInterface, C
 
                 $this->addReference("Game_" . $entity->getId(), $entity);
 
-//                if (($i % $batchSize) === 0) {
-                $manager->flush();
-                $manager->clear(); // Detaches all objects from Doctrine!
-//                }
+                if (($i % $batchSize) === 0) {
+                    $manager->flush();
+                    $manager->clear(); // Detaches all objects from Doctrine!
+                }
             }
         }
         $manager->flush(); //Persist objects that did not make up an entire batch
