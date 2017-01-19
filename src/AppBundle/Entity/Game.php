@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="game")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GameRepository")
  */
-class Game
-{
+class Game {
+
     /**
      * @var int
      *
@@ -62,7 +62,7 @@ class Game
      * @ORM\Column(name="coop", type="boolean", nullable=true)
      */
     private $coop;
-    
+
     /**
      * @var \Platform
      *
@@ -73,14 +73,23 @@ class Game
      */
     private $platform;
 
+    /**
+     * Set id
+     *
+     * @param int $id
+     *
+     * @return Platform
+     */
+    public function setId($id) {
+        $this->id = $id;
+    }
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -91,8 +100,7 @@ class Game
      *
      * @return Game
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
 
         return $this;
@@ -103,8 +111,7 @@ class Game
      *
      * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -115,8 +122,7 @@ class Game
      *
      * @return Game
      */
-    public function setReleaseDate($releaseDate)
-    {
+    public function setReleaseDate($releaseDate) {
         $this->releaseDate = $releaseDate;
 
         return $this;
@@ -127,8 +133,7 @@ class Game
      *
      * @return \DateTime
      */
-    public function getReleaseDate()
-    {
+    public function getReleaseDate() {
         return $this->releaseDate;
     }
 
@@ -139,8 +144,7 @@ class Game
      *
      * @return Game
      */
-    public function setOverview($overview)
-    {
+    public function setOverview($overview) {
         $this->overview = $overview;
 
         return $this;
@@ -151,8 +155,7 @@ class Game
      *
      * @return string
      */
-    public function getOverview()
-    {
+    public function getOverview() {
         return $this->overview;
     }
 
@@ -163,8 +166,7 @@ class Game
      *
      * @return Game
      */
-    public function setEsrb($esrb)
-    {
+    public function setEsrb($esrb) {
         $this->esrb = $esrb;
 
         return $this;
@@ -175,8 +177,7 @@ class Game
      *
      * @return string
      */
-    public function getEsrb()
-    {
+    public function getEsrb() {
         return $this->esrb;
     }
 
@@ -187,8 +188,7 @@ class Game
      *
      * @return Game
      */
-    public function setPlayers($players)
-    {
+    public function setPlayers($players) {
         $this->players = $players;
 
         return $this;
@@ -199,8 +199,7 @@ class Game
      *
      * @return int
      */
-    public function getPlayers()
-    {
+    public function getPlayers() {
         return $this->players;
     }
 
@@ -211,8 +210,7 @@ class Game
      *
      * @return Game
      */
-    public function setCoop($coop)
-    {
+    public function setCoop($coop) {
         $this->coop = $coop;
 
         return $this;
@@ -223,8 +221,7 @@ class Game
      *
      * @return bool
      */
-    public function getCoop()
-    {
+    public function getCoop() {
         return $this->coop;
     }
 
@@ -235,8 +232,7 @@ class Game
      *
      * @return Game
      */
-    public function setPlatform(\AppBundle\Entity\Platform $platform = null)
-    {
+    public function setPlatform(\AppBundle\Entity\Platform $platform = null) {
         $this->platform = $platform;
 
         return $this;
@@ -247,8 +243,8 @@ class Game
      *
      * @return \AppBundle\Entity\Platform
      */
-    public function getPlatform()
-    {
+    public function getPlatform() {
         return $this->platform;
     }
+
 }
