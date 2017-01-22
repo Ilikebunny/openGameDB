@@ -49,7 +49,11 @@ class LoadGameData extends AbstractFixture implements OrderedFixtureInterface, C
                     $date = new \DateTime($row[3]);
                     $entity->setReleaseDate($date);
                 }
-                $entity->setOverview($row[4]);
+                
+                $txtName = "txt/game/".$row[1].".txt";
+                $txtContent = $import->TXT_to_String($txtName);
+                $entity->setOverview($txtContent);
+                
                 $entity->setEsrb($row[5]);
                 $entity->setPlayers($row[6]);
                 $entity->setCoop($row[7]);
