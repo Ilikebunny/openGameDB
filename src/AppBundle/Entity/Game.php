@@ -72,6 +72,36 @@ class Game {
      * })
      */
     private $platform;
+    
+      /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Company", inversedBy="game_developed")
+     * @ORM\JoinTable(name="game_developers",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="game_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="company_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $developers;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Company", inversedBy="game_published")
+     * @ORM\JoinTable(name="game_publisher",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="game_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="company_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $publishers;
 
     /**
      * Set id
@@ -247,4 +277,80 @@ class Game {
         return $this->platform;
     }
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->developers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->publishers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add developer
+     *
+     * @param \AppBundle\Entity\Company $developer
+     *
+     * @return Game
+     */
+    public function addDeveloper(\AppBundle\Entity\Company $developer)
+    {
+        $this->developers[] = $developer;
+
+        return $this;
+    }
+
+    /**
+     * Remove developer
+     *
+     * @param \AppBundle\Entity\Company $developer
+     */
+    public function removeDeveloper(\AppBundle\Entity\Company $developer)
+    {
+        $this->developers->removeElement($developer);
+    }
+
+    /**
+     * Get developers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDevelopers()
+    {
+        return $this->developers;
+    }
+
+    /**
+     * Add publisher
+     *
+     * @param \AppBundle\Entity\Company $publisher
+     *
+     * @return Game
+     */
+    public function addPublisher(\AppBundle\Entity\Company $publisher)
+    {
+        $this->publishers[] = $publisher;
+
+        return $this;
+    }
+
+    /**
+     * Remove publisher
+     *
+     * @param \AppBundle\Entity\Company $publisher
+     */
+    public function removePublisher(\AppBundle\Entity\Company $publisher)
+    {
+        $this->publishers->removeElement($publisher);
+    }
+
+    /**
+     * Get publishers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPublishers()
+    {
+        return $this->publishers;
+    }
 }

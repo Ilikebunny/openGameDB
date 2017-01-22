@@ -48,6 +48,20 @@ class Company {
      * @ORM\ManyToMany(targetEntity="Platform", mappedBy="manufacturers")
      */
     private $platform_manufactured;
+    
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Game", mappedBy="developers")
+     */
+    private $game_developed;
+    
+        /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Game", mappedBy="publishers")
+     */
+    private $game_published;
 
     /**
      * To string
@@ -191,5 +205,73 @@ class Company {
     public function getPlatformManufactured()
     {
         return $this->platform_manufactured;
+    }
+
+    /**
+     * Add gameDeveloped
+     *
+     * @param \AppBundle\Entity\Game $gameDeveloped
+     *
+     * @return Company
+     */
+    public function addGameDeveloped(\AppBundle\Entity\Game $gameDeveloped)
+    {
+        $this->game_developed[] = $gameDeveloped;
+
+        return $this;
+    }
+
+    /**
+     * Remove gameDeveloped
+     *
+     * @param \AppBundle\Entity\Game $gameDeveloped
+     */
+    public function removeGameDeveloped(\AppBundle\Entity\Game $gameDeveloped)
+    {
+        $this->game_developed->removeElement($gameDeveloped);
+    }
+
+    /**
+     * Get gameDeveloped
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGameDeveloped()
+    {
+        return $this->game_developed;
+    }
+
+    /**
+     * Add gamePublished
+     *
+     * @param \AppBundle\Entity\Game $gamePublished
+     *
+     * @return Company
+     */
+    public function addGamePublished(\AppBundle\Entity\Game $gamePublished)
+    {
+        $this->game_published[] = $gamePublished;
+
+        return $this;
+    }
+
+    /**
+     * Remove gamePublished
+     *
+     * @param \AppBundle\Entity\Game $gamePublished
+     */
+    public function removeGamePublished(\AppBundle\Entity\Game $gamePublished)
+    {
+        $this->game_published->removeElement($gamePublished);
+    }
+
+    /**
+     * Get gamePublished
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGamePublished()
+    {
+        return $this->game_published;
     }
 }
