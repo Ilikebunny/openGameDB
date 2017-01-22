@@ -1,0 +1,128 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Art
+ *
+ * @ORM\Table(name="art")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ArtRepository")
+ */
+class Art
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="link_file", type="string", length=255)
+     */
+    private $linkFile;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="link_thumb", type="string", length=255)
+     */
+    private $linkThumb;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Art
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set linkFile
+     *
+     * @param string $linkFile
+     *
+     * @return Art
+     */
+    public function setLinkFile($linkFile)
+    {
+        $this->linkFile = $linkFile;
+
+        return $this;
+    }
+
+    /**
+     * Get linkFile
+     *
+     * @return string
+     */
+    public function getLinkFile()
+    {
+        return $this->linkFile;
+    }
+
+    /**
+     * Set linkThumb
+     *
+     * @param string $linkThumb
+     *
+     * @return Art
+     */
+    public function setLinkThumb($linkThumb)
+    {
+        $this->linkThumb = $linkThumb;
+
+        return $this;
+    }
+
+    /**
+     * Get linkThumb
+     *
+     * @return string
+     */
+    public function getLinkThumb()
+    {
+        return $this->linkThumb;
+    }
+}
+
