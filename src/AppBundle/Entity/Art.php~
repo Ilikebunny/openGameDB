@@ -129,48 +129,4 @@ class Art {
         return $this->linkThumb;
     }
 
-    /**
-     * Set game
-     *
-     * @param \AppBundle\Entity\Game $game
-     *
-     * @return Art
-     */
-    public function setGame(\AppBundle\Entity\Game $game) {
-        $this->game = $game;
-
-        return $this;
-    }
-
-    /**
-     * Get game
-     *
-     * @return \AppBundle\Entity\Game
-     */
-    public function getGame() {
-        return $this->game;
-    }
-
-    /**
-     * Set platform
-     *
-     * @param \AppBundle\Entity\Platform $platform
-     *
-     * @return Art
-     */
-    public function setPlatform(\AppBundle\Entity\Platform $platform) {
-        $this->platform = $platform;
-
-        return $this;
-    }
-
-    /**
-     * Get platform
-     *
-     * @return \AppBundle\Entity\Platform
-     */
-    public function getPlatform() {
-        return $this->platform;
-    }
-
 }

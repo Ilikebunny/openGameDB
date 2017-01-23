@@ -72,8 +72,8 @@ class Game {
      * })
      */
     private $platform;
-    
-      /**
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Company", inversedBy="game_developed")
@@ -102,6 +102,11 @@ class Game {
      * )
      */
     private $publishers;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Art", mappedBy="game")
+     */
+    private $arts;
 
     /**
      * Set id
@@ -280,8 +285,7 @@ class Game {
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->developers = new \Doctrine\Common\Collections\ArrayCollection();
         $this->publishers = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -293,8 +297,7 @@ class Game {
      *
      * @return Game
      */
-    public function addDeveloper(\AppBundle\Entity\Company $developer)
-    {
+    public function addDeveloper(\AppBundle\Entity\Company $developer) {
         $this->developers[] = $developer;
 
         return $this;
@@ -305,8 +308,7 @@ class Game {
      *
      * @param \AppBundle\Entity\Company $developer
      */
-    public function removeDeveloper(\AppBundle\Entity\Company $developer)
-    {
+    public function removeDeveloper(\AppBundle\Entity\Company $developer) {
         $this->developers->removeElement($developer);
     }
 
@@ -315,8 +317,7 @@ class Game {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getDevelopers()
-    {
+    public function getDevelopers() {
         return $this->developers;
     }
 
@@ -327,8 +328,7 @@ class Game {
      *
      * @return Game
      */
-    public function addPublisher(\AppBundle\Entity\Company $publisher)
-    {
+    public function addPublisher(\AppBundle\Entity\Company $publisher) {
         $this->publishers[] = $publisher;
 
         return $this;
@@ -339,8 +339,7 @@ class Game {
      *
      * @param \AppBundle\Entity\Company $publisher
      */
-    public function removePublisher(\AppBundle\Entity\Company $publisher)
-    {
+    public function removePublisher(\AppBundle\Entity\Company $publisher) {
         $this->publishers->removeElement($publisher);
     }
 
@@ -349,8 +348,39 @@ class Game {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPublishers()
-    {
+    public function getPublishers() {
         return $this->publishers;
     }
+
+    /**
+     * Add art
+     *
+     * @param \AppBundle\Entity\Art $art
+     *
+     * @return Game
+     */
+    public function addArt(\AppBundle\Entity\Art $art) {
+        $this->arts[] = $art;
+
+        return $this;
+    }
+
+    /**
+     * Remove art
+     *
+     * @param \AppBundle\Entity\Art $art
+     */
+    public function removeArt(\AppBundle\Entity\Art $art) {
+        $this->arts->removeElement($art);
+    }
+
+    /**
+     * Get arts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArts() {
+        return $this->arts;
+    }
+
 }

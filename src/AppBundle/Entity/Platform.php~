@@ -50,7 +50,7 @@ class Platform {
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
-   
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
@@ -122,13 +122,18 @@ class Platform {
      * @ORM\Column(name="maxcontrollers", type="integer", nullable=true)
      */
     private $maxcontrollers;
-    
-       /**
+
+    /**
      * @ORM\OneToMany(targetEntity="Game", mappedBy="platform")
      */
     protected $games;
 
-     /**
+    /**
+     * @ORM\OneToMany(targetEntity="Art", mappedBy="platform")
+     */
+    private $arts;
+
+    /**
      * Set id
      *
      * @param int $id
@@ -235,8 +240,6 @@ class Platform {
     public function getSlug() {
         return $this->slug;
     }
-
- 
 
     /**
      * Set cpu
@@ -370,7 +373,6 @@ class Platform {
         return $this->maxcontrollers;
     }
 
-
     /**
      * Set developer
      *
@@ -378,8 +380,7 @@ class Platform {
      *
      * @return Platform
      */
-    public function setDeveloper(\AppBundle\Entity\Company $developer = null)
-    {
+    public function setDeveloper(\AppBundle\Entity\Company $developer = null) {
         $this->developer = $developer;
 
         return $this;
@@ -390,16 +391,14 @@ class Platform {
      *
      * @return \AppBundle\Entity\Company
      */
-    public function getDeveloper()
-    {
+    public function getDeveloper() {
         return $this->developer;
     }
 
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->developers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -410,10 +409,9 @@ class Platform {
      *
      * @return Platform
      */
-    public function addDeveloper(\AppBundle\Entity\Company $developer)
-    {
+    public function addDeveloper(\AppBundle\Entity\Company $developer) {
         $this->developers[] = $developer;
-       
+
         return $this;
     }
 
@@ -422,8 +420,7 @@ class Platform {
      *
      * @param \AppBundle\Entity\Company $developer
      */
-    public function removeDeveloper(\AppBundle\Entity\Company $developer)
-    {
+    public function removeDeveloper(\AppBundle\Entity\Company $developer) {
         $this->developers->removeElement($developer);
     }
 
@@ -432,8 +429,7 @@ class Platform {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getDevelopers()
-    {
+    public function getDevelopers() {
         return $this->developers;
     }
 
@@ -444,8 +440,7 @@ class Platform {
      *
      * @return Platform
      */
-    public function addManufacturer(\AppBundle\Entity\Company $manufacturer)
-    {
+    public function addManufacturer(\AppBundle\Entity\Company $manufacturer) {
         $this->manufacturers[] = $manufacturer;
 
         return $this;
@@ -456,8 +451,7 @@ class Platform {
      *
      * @param \AppBundle\Entity\Company $manufacturer
      */
-    public function removeManufacturer(\AppBundle\Entity\Company $manufacturer)
-    {
+    public function removeManufacturer(\AppBundle\Entity\Company $manufacturer) {
         $this->manufacturers->removeElement($manufacturer);
     }
 
@@ -466,8 +460,39 @@ class Platform {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getManufacturers()
-    {
+    public function getManufacturers() {
         return $this->manufacturers;
     }
+
+    /**
+     * Add game
+     *
+     * @param \AppBundle\Entity\Game $game
+     *
+     * @return Platform
+     */
+    public function addGame(\AppBundle\Entity\Game $game) {
+        $this->games[] = $game;
+
+        return $this;
+    }
+
+    /**
+     * Remove game
+     *
+     * @param \AppBundle\Entity\Game $game
+     */
+    public function removeGame(\AppBundle\Entity\Game $game) {
+        $this->games->removeElement($game);
+    }
+
+    /**
+     * Get games
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGames() {
+        return $this->games;
+    }
+
 }
