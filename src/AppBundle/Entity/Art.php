@@ -44,13 +44,13 @@ class Art {
 
     /**
      * @ORM\ManyToOne(targetEntity="Game", inversedBy="arts")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $game;
 
     /**
      * @ORM\ManyToOne(targetEntity="Platform", inversedBy="arts")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $platform;
 
