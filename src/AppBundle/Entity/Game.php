@@ -398,4 +398,38 @@ class Game {
         return $this->arts;
     }
 
+
+    /**
+     * Add genre
+     *
+     * @param \AppBundle\Entity\Genre $genre
+     *
+     * @return Game
+     */
+    public function addGenre(\AppBundle\Entity\Genre $genre)
+    {
+        $this->genres[] = $genre;
+
+        return $this;
+    }
+
+    /**
+     * Remove genre
+     *
+     * @param \AppBundle\Entity\Genre $genre
+     */
+    public function removeGenre(\AppBundle\Entity\Genre $genre)
+    {
+        $this->genres->removeElement($genre);
+    }
+
+    /**
+     * Get genres
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGenres()
+    {
+        return $this->genres;
+    }
 }

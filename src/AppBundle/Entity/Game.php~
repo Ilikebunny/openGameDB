@@ -109,13 +109,27 @@ class Game {
     private $arts;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="games")
+     * @ORM\JoinTable(name="game_genre",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="game_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="genre_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $genres;
+
+    /**
      * Set id
      *
      * @param int $id
      *
      * @return Platform
      */
-
     public function setId($id) {
         $this->id = $id;
     }
@@ -351,6 +365,37 @@ class Game {
      */
     public function getPublishers() {
         return $this->publishers;
+    }
+
+    /**
+     * Add art
+     *
+     * @param \AppBundle\Entity\Art $art
+     *
+     * @return Game
+     */
+    public function addArt(\AppBundle\Entity\Art $art) {
+        $this->arts[] = $art;
+
+        return $this;
+    }
+
+    /**
+     * Remove art
+     *
+     * @param \AppBundle\Entity\Art $art
+     */
+    public function removeArt(\AppBundle\Entity\Art $art) {
+        $this->arts->removeElement($art);
+    }
+
+    /**
+     * Get arts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArts() {
+        return $this->arts;
     }
 
 }
