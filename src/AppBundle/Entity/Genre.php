@@ -27,6 +27,13 @@ class Genre
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
+    
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Game", mappedBy="genres")
+     */
+    private $games;
 
 
     /**

@@ -109,6 +109,21 @@ class Game {
     private $arts;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="games")
+     * @ORM\JoinTable(name="game_genre",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="game_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="genre_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $genres;
+
+    /**
      * Set id
      *
      * @param int $id
