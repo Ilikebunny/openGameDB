@@ -122,6 +122,11 @@ class Game {
      * )
      */
     private $genres;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="AlternateTitle", mappedBy="game")
+     */
+    private $alternateTitles;
 
     /**
      * Set id
@@ -431,5 +436,39 @@ class Game {
     public function getGenres()
     {
         return $this->genres;
+    }
+
+    /**
+     * Add alternateTitle
+     *
+     * @param \AppBundle\Entity\AlternateTitle $alternateTitle
+     *
+     * @return Game
+     */
+    public function addAlternateTitle(\AppBundle\Entity\AlternateTitle $alternateTitle)
+    {
+        $this->alternateTitles[] = $alternateTitle;
+
+        return $this;
+    }
+
+    /**
+     * Remove alternateTitle
+     *
+     * @param \AppBundle\Entity\AlternateTitle $alternateTitle
+     */
+    public function removeAlternateTitle(\AppBundle\Entity\AlternateTitle $alternateTitle)
+    {
+        $this->alternateTitles->removeElement($alternateTitle);
+    }
+
+    /**
+     * Get alternateTitles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAlternateTitles()
+    {
+        return $this->alternateTitles;
     }
 }
