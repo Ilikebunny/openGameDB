@@ -24,7 +24,7 @@ class AlternateTitle
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255, unique=true)
+     * @ORM\Column(name="title", type="string", length=255, unique=false)
      */
     private $title;
 
