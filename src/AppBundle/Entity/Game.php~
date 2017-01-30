@@ -122,11 +122,21 @@ class Game {
      * )
      */
     private $genres;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="AlternateTitle", mappedBy="game")
      */
     private $alternateTitles;
+
+    /**
+     * @ORM\OneToMany(targetEntity="GameLink", mappedBy="game_parent")
+     */
+    private $gameLinks;
+
+    /**
+     * @ORM\OneToMany(targetEntity="GameLink", mappedBy="game_child")
+     */
+    private $gameLinks_child;
 
     /**
      * Set id
@@ -403,7 +413,6 @@ class Game {
         return $this->arts;
     }
 
-
     /**
      * Add genre
      *
@@ -411,8 +420,7 @@ class Game {
      *
      * @return Game
      */
-    public function addGenre(\AppBundle\Entity\Genre $genre)
-    {
+    public function addGenre(\AppBundle\Entity\Genre $genre) {
         $this->genres[] = $genre;
 
         return $this;
@@ -423,8 +431,7 @@ class Game {
      *
      * @param \AppBundle\Entity\Genre $genre
      */
-    public function removeGenre(\AppBundle\Entity\Genre $genre)
-    {
+    public function removeGenre(\AppBundle\Entity\Genre $genre) {
         $this->genres->removeElement($genre);
     }
 
@@ -433,8 +440,39 @@ class Game {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getGenres()
-    {
+    public function getGenres() {
         return $this->genres;
     }
+
+    /**
+     * Add alternateTitle
+     *
+     * @param \AppBundle\Entity\AlternateTitle $alternateTitle
+     *
+     * @return Game
+     */
+    public function addAlternateTitle(\AppBundle\Entity\AlternateTitle $alternateTitle) {
+        $this->alternateTitles[] = $alternateTitle;
+
+        return $this;
+    }
+
+    /**
+     * Remove alternateTitle
+     *
+     * @param \AppBundle\Entity\AlternateTitle $alternateTitle
+     */
+    public function removeAlternateTitle(\AppBundle\Entity\AlternateTitle $alternateTitle) {
+        $this->alternateTitles->removeElement($alternateTitle);
+    }
+
+    /**
+     * Get alternateTitles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAlternateTitles() {
+        return $this->alternateTitles;
+    }
+
 }

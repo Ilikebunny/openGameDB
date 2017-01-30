@@ -122,11 +122,21 @@ class Game {
      * )
      */
     private $genres;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="AlternateTitle", mappedBy="game")
      */
     private $alternateTitles;
+
+    /**
+     * @ORM\OneToMany(targetEntity="GameLink", mappedBy="game_parent")
+     */
+    private $gameLinks;
+
+    /**
+     * @ORM\OneToMany(targetEntity="GameLink", mappedBy="game_child")
+     */
+    private $gameLinks_child;
 
     /**
      * Set id
@@ -403,7 +413,6 @@ class Game {
         return $this->arts;
     }
 
-
     /**
      * Add genre
      *
@@ -411,8 +420,7 @@ class Game {
      *
      * @return Game
      */
-    public function addGenre(\AppBundle\Entity\Genre $genre)
-    {
+    public function addGenre(\AppBundle\Entity\Genre $genre) {
         $this->genres[] = $genre;
 
         return $this;
@@ -423,8 +431,7 @@ class Game {
      *
      * @param \AppBundle\Entity\Genre $genre
      */
-    public function removeGenre(\AppBundle\Entity\Genre $genre)
-    {
+    public function removeGenre(\AppBundle\Entity\Genre $genre) {
         $this->genres->removeElement($genre);
     }
 
@@ -433,8 +440,7 @@ class Game {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getGenres()
-    {
+    public function getGenres() {
         return $this->genres;
     }
 
@@ -445,8 +451,7 @@ class Game {
      *
      * @return Game
      */
-    public function addAlternateTitle(\AppBundle\Entity\AlternateTitle $alternateTitle)
-    {
+    public function addAlternateTitle(\AppBundle\Entity\AlternateTitle $alternateTitle) {
         $this->alternateTitles[] = $alternateTitle;
 
         return $this;
@@ -457,8 +462,7 @@ class Game {
      *
      * @param \AppBundle\Entity\AlternateTitle $alternateTitle
      */
-    public function removeAlternateTitle(\AppBundle\Entity\AlternateTitle $alternateTitle)
-    {
+    public function removeAlternateTitle(\AppBundle\Entity\AlternateTitle $alternateTitle) {
         $this->alternateTitles->removeElement($alternateTitle);
     }
 
@@ -467,8 +471,76 @@ class Game {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAlternateTitles()
-    {
+    public function getAlternateTitles() {
         return $this->alternateTitles;
+    }
+
+
+    /**
+     * Add gameLink
+     *
+     * @param \AppBundle\Entity\GameLink $gameLink
+     *
+     * @return Game
+     */
+    public function addGameLink(\AppBundle\Entity\GameLink $gameLink)
+    {
+        $this->gameLinks[] = $gameLink;
+
+        return $this;
+    }
+
+    /**
+     * Remove gameLink
+     *
+     * @param \AppBundle\Entity\GameLink $gameLink
+     */
+    public function removeGameLink(\AppBundle\Entity\GameLink $gameLink)
+    {
+        $this->gameLinks->removeElement($gameLink);
+    }
+
+    /**
+     * Get gameLinks
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGameLinks()
+    {
+        return $this->gameLinks;
+    }
+
+    /**
+     * Add gameLinksChild
+     *
+     * @param \AppBundle\Entity\GameLink $gameLinksChild
+     *
+     * @return Game
+     */
+    public function addGameLinksChild(\AppBundle\Entity\GameLink $gameLinksChild)
+    {
+        $this->gameLinks_child[] = $gameLinksChild;
+
+        return $this;
+    }
+
+    /**
+     * Remove gameLinksChild
+     *
+     * @param \AppBundle\Entity\GameLink $gameLinksChild
+     */
+    public function removeGameLinksChild(\AppBundle\Entity\GameLink $gameLinksChild)
+    {
+        $this->gameLinks_child->removeElement($gameLinksChild);
+    }
+
+    /**
+     * Get gameLinksChild
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGameLinksChild()
+    {
+        return $this->gameLinks_child;
     }
 }
