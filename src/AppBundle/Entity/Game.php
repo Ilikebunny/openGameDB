@@ -139,6 +139,21 @@ class Game {
     private $gameLinks_child;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="ContentRating")
+     * @ORM\JoinTable(name="game_ContentRating",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="game_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="contentRating_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $contentRatings;
+
+    /**
      * Set id
      *
      * @param int $id
@@ -475,7 +490,6 @@ class Game {
         return $this->alternateTitles;
     }
 
-
     /**
      * Add gameLink
      *
@@ -483,8 +497,7 @@ class Game {
      *
      * @return Game
      */
-    public function addGameLink(\AppBundle\Entity\GameLink $gameLink)
-    {
+    public function addGameLink(\AppBundle\Entity\GameLink $gameLink) {
         $this->gameLinks[] = $gameLink;
 
         return $this;
@@ -495,8 +508,7 @@ class Game {
      *
      * @param \AppBundle\Entity\GameLink $gameLink
      */
-    public function removeGameLink(\AppBundle\Entity\GameLink $gameLink)
-    {
+    public function removeGameLink(\AppBundle\Entity\GameLink $gameLink) {
         $this->gameLinks->removeElement($gameLink);
     }
 
@@ -505,8 +517,7 @@ class Game {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getGameLinks()
-    {
+    public function getGameLinks() {
         return $this->gameLinks;
     }
 
@@ -517,8 +528,7 @@ class Game {
      *
      * @return Game
      */
-    public function addGameLinksChild(\AppBundle\Entity\GameLink $gameLinksChild)
-    {
+    public function addGameLinksChild(\AppBundle\Entity\GameLink $gameLinksChild) {
         $this->gameLinks_child[] = $gameLinksChild;
 
         return $this;
@@ -529,8 +539,7 @@ class Game {
      *
      * @param \AppBundle\Entity\GameLink $gameLinksChild
      */
-    public function removeGameLinksChild(\AppBundle\Entity\GameLink $gameLinksChild)
-    {
+    public function removeGameLinksChild(\AppBundle\Entity\GameLink $gameLinksChild) {
         $this->gameLinks_child->removeElement($gameLinksChild);
     }
 
@@ -539,8 +548,8 @@ class Game {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getGameLinksChild()
-    {
+    public function getGameLinksChild() {
         return $this->gameLinks_child;
     }
+
 }
