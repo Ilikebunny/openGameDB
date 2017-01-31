@@ -552,4 +552,38 @@ class Game {
         return $this->gameLinks_child;
     }
 
+
+    /**
+     * Add contentRating
+     *
+     * @param \AppBundle\Entity\ContentRating $contentRating
+     *
+     * @return Game
+     */
+    public function addContentRating(\AppBundle\Entity\ContentRating $contentRating)
+    {
+        $this->contentRatings[] = $contentRating;
+
+        return $this;
+    }
+
+    /**
+     * Remove contentRating
+     *
+     * @param \AppBundle\Entity\ContentRating $contentRating
+     */
+    public function removeContentRating(\AppBundle\Entity\ContentRating $contentRating)
+    {
+        $this->contentRatings->removeElement($contentRating);
+    }
+
+    /**
+     * Get contentRatings
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getContentRatings()
+    {
+        return $this->contentRatings;
+    }
 }

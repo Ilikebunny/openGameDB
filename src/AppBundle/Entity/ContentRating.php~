@@ -98,28 +98,4 @@ class ContentRating {
         return $this->image;
     }
 
-
-    /**
-     * Set contentRatingOrganization
-     *
-     * @param \AppBundle\Entity\ContentRatingOrganization $contentRatingOrganization
-     *
-     * @return ContentRating
-     */
-    public function setContentRatingOrganization(\AppBundle\Entity\ContentRatingOrganization $contentRatingOrganization = null)
-    {
-        $this->contentRatingOrganization = $contentRatingOrganization;
-
-        return $this;
-    }
-
-    /**
-     * Get contentRatingOrganization
-     *
-     * @return \AppBundle\Entity\ContentRatingOrganization
-     */
-    public function getContentRatingOrganization()
-    {
-        return $this->contentRatingOrganization;
-    }
 }

@@ -139,6 +139,21 @@ class Game {
     private $gameLinks_child;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="ContentRating")
+     * @ORM\JoinTable(name="game_ContentRating",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="game_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="contentRating_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $contentRatings;
+
+    /**
      * Set id
      *
      * @param int $id
@@ -473,6 +488,68 @@ class Game {
      */
     public function getAlternateTitles() {
         return $this->alternateTitles;
+    }
+
+    /**
+     * Add gameLink
+     *
+     * @param \AppBundle\Entity\GameLink $gameLink
+     *
+     * @return Game
+     */
+    public function addGameLink(\AppBundle\Entity\GameLink $gameLink) {
+        $this->gameLinks[] = $gameLink;
+
+        return $this;
+    }
+
+    /**
+     * Remove gameLink
+     *
+     * @param \AppBundle\Entity\GameLink $gameLink
+     */
+    public function removeGameLink(\AppBundle\Entity\GameLink $gameLink) {
+        $this->gameLinks->removeElement($gameLink);
+    }
+
+    /**
+     * Get gameLinks
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGameLinks() {
+        return $this->gameLinks;
+    }
+
+    /**
+     * Add gameLinksChild
+     *
+     * @param \AppBundle\Entity\GameLink $gameLinksChild
+     *
+     * @return Game
+     */
+    public function addGameLinksChild(\AppBundle\Entity\GameLink $gameLinksChild) {
+        $this->gameLinks_child[] = $gameLinksChild;
+
+        return $this;
+    }
+
+    /**
+     * Remove gameLinksChild
+     *
+     * @param \AppBundle\Entity\GameLink $gameLinksChild
+     */
+    public function removeGameLinksChild(\AppBundle\Entity\GameLink $gameLinksChild) {
+        $this->gameLinks_child->removeElement($gameLinksChild);
+    }
+
+    /**
+     * Get gameLinksChild
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGameLinksChild() {
+        return $this->gameLinks_child;
     }
 
 }
