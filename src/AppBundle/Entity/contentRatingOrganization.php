@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="content_rating_organization")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\contentRatingOrganizationRepository")
  */
-class contentRatingOrganization {
+class ContentRatingOrganization {
 
     /**
      * @var int
@@ -122,4 +122,45 @@ class contentRatingOrganization {
         return $this->description;
     }
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->contentRatings = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add contentRating
+     *
+     * @param \AppBundle\Entity\ContentRating $contentRating
+     *
+     * @return contentRatingOrganization
+     */
+    public function addContentRating(\AppBundle\Entity\ContentRating $contentRating)
+    {
+        $this->contentRatings[] = $contentRating;
+
+        return $this;
+    }
+
+    /**
+     * Remove contentRating
+     *
+     * @param \AppBundle\Entity\ContentRating $contentRating
+     */
+    public function removeContentRating(\AppBundle\Entity\ContentRating $contentRating)
+    {
+        $this->contentRatings->removeElement($contentRating);
+    }
+
+    /**
+     * Get contentRatings
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getContentRatings()
+    {
+        return $this->contentRatings;
+    }
 }
