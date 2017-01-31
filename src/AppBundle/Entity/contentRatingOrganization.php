@@ -125,8 +125,7 @@ class ContentRatingOrganization {
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->contentRatings = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -137,8 +136,7 @@ class ContentRatingOrganization {
      *
      * @return contentRatingOrganization
      */
-    public function addContentRating(\AppBundle\Entity\ContentRating $contentRating)
-    {
+    public function addContentRating(\AppBundle\Entity\ContentRating $contentRating) {
         $this->contentRatings[] = $contentRating;
 
         return $this;
@@ -149,8 +147,7 @@ class ContentRatingOrganization {
      *
      * @param \AppBundle\Entity\ContentRating $contentRating
      */
-    public function removeContentRating(\AppBundle\Entity\ContentRating $contentRating)
-    {
+    public function removeContentRating(\AppBundle\Entity\ContentRating $contentRating) {
         $this->contentRatings->removeElement($contentRating);
     }
 
@@ -159,8 +156,8 @@ class ContentRatingOrganization {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getContentRatings()
-    {
+    public function getContentRatings() {
         return $this->contentRatings;
     }
+
 }
