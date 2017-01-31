@@ -144,6 +144,14 @@ class Platform {
         $this->id = $id;
     }
 
+    
+    /**
+     * To string
+     */
+    public function __toString() {
+        return $this->name;
+    }
+    
     /**
      * Get id
      *
