@@ -1,0 +1,30 @@
+## YAML Template.
+---
+fos_elastica:
+    clients:
+        default: { host: %elastic_host%, port: %elastic_port% }
+    indexes:
+        opengamedb:
+            client: default
+            types:
+                game:
+                    mappings:
+                        id:
+                            type: integer
+                        title : ~
+                    persistence:
+                        driver: orm
+                        model: AppBundle\Entity\Game
+                        finder: ~
+                        provider: ~
+                        listener: ~
+                alternateTitle:
+                    mappings:
+                        game.id : ~
+                        title : ~
+                    persistence:
+                        driver: orm
+                        model: AppBundle\Entity\AlternateTitle
+                        finder: ~
+                        provider: ~
+                        listener: ~
