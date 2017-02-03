@@ -16,10 +16,10 @@ class DefaultController extends Controller {
         $import = $this->container->get('AppBundle.importcsv');
         $fileContent = $import->CSV_to_array('platform.csv');
 
-        $finder = $this->container->get('fos_elastica.finder.opengamedb.game');
+        $finder = $this->container->get('fos_elastica.finder.opengamedb');
 
 // Option 1. Returns all users who have example.net in any of their mapped fields
-        $results = $finder->find('PES 2011');
+        $results = $finder->find('tsubasa gold');
 
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
