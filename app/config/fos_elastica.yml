@@ -9,8 +9,6 @@ fos_elastica:
             types:
                 game:
                     mappings:
-                        id:
-                            type: integer
                         title : ~
                     persistence:
                         driver: orm
