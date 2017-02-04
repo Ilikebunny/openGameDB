@@ -13,18 +13,14 @@ class DefaultController extends Controller {
      */
     public function indexAction(Request $request) {
 
-        $import = $this->container->get('AppBundle.importcsv');
-        $fileContent = $import->CSV_to_array('platform.csv');
-
         $finder = $this->container->get('fos_elastica.finder.opengamedb');
 
-// Option 1. Returns all users who have example.net in any of their mapped fields
-        $results = $finder->find('tsubasa gold');
+        // Option 1. Returns all users who have example.net in any of their mapped fields
+        $results = $finder->find('Warhammer');
 
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
                     'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..') . DIRECTORY_SEPARATOR,
-                    'test' => $fileContent,
                     'search' => $results,
         ]);
     }
