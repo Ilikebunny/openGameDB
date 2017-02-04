@@ -8,3 +8,8 @@ fos_user:
 fos_user_group:
     resource: "@FOSUserBundle/Resources/config/routing/group.xml"
     prefix: /group 
+    
+#API
+games:
+    type:     rest
+    resource: "@AppBundle/Controller/API/"

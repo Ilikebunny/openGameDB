@@ -146,3 +146,9 @@ fos_user:
 #            template: email/password_resetting.email.twig  
 
 white_october_breadcrumbs: ~
+
+fos_rest:
+    routing_loader:
+        include_format: false
+    view:
+        view_response_listener: true

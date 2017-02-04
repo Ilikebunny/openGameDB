@@ -30,4 +30,31 @@ class GameRepository extends \Doctrine\ORM\EntityRepository {
         return $qb;
     }
 
+    public function getGameComplete($idGame) {
+        $entityAlias = "Game";
+        $qb = $this->createQueryBuilder($entityAlias)
+                ->addSelect('pla')
+                ->join($entityAlias . '.platform', 'pla')
+                ->addSelect('dev')
+                ->leftJoin($entityAlias . '.developers', 'dev')
+                ->addSelect('pub')
+                ->leftJoin($entityAlias . '.publishers', 'pub')
+                ->addSelect('art')
+                ->leftJoin($entityAlias . '.arts', 'art')
+                ->addSelect('gen')
+                ->leftJoin($entityAlias . '.genres', 'gen')
+                ->addSelect('alt')
+                ->leftJoin($entityAlias . '.alternateTitles', 'alt')
+                ->addSelect('child')
+                ->leftJoin($entityAlias . '.gameLinks_child', 'child')
+                ->addSelect('rat')
+                ->leftJoin($entityAlias . '.contentRatings', 'rat')
+                ->andWhere($entityAlias . '.id = ?1')
+                ->setParameter(1, $idGame)
+                ;
+
+
+        return $qb;
+    }
+
 }

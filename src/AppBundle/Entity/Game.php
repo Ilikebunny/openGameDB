@@ -3,12 +3,18 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Game
  *
  * @ORM\Table(name="game")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GameRepository")
+ * @ExclusionPolicy("all")
  */
 class Game {
 
@@ -18,6 +24,7 @@ class Game {
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     private $id;
 
@@ -25,6 +32,7 @@ class Game {
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Expose
      */
     private $title;
 
@@ -32,6 +40,7 @@ class Game {
      * @var \DateTime
      *
      * @ORM\Column(name="releaseDate", type="date", nullable=true)
+     * @Expose
      */
     private $releaseDate;
 
@@ -39,6 +48,7 @@ class Game {
      * @var string
      *
      * @ORM\Column(name="overview", type="string", length=65535, nullable=true)
+     * @Expose
      */
     private $overview;
 
@@ -53,6 +63,7 @@ class Game {
      * @var int
      *
      * @ORM\Column(name="players", type="integer", nullable=true)
+     * @Expose
      */
     private $players;
 
@@ -60,6 +71,7 @@ class Game {
      * @var bool
      *
      * @ORM\Column(name="coop", type="boolean", nullable=true)
+     * @Expose
      */
     private $coop;
 
@@ -70,6 +82,8 @@ class Game {
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="platform_id", referencedColumnName="id")
      * })
+     * @Expose
+     * @MaxDepth(1)
      */
     private $platform;
 
@@ -85,6 +99,7 @@ class Game {
      *     @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      *   }
      * )
+     * 
      */
     private $developers;
 
@@ -105,6 +120,8 @@ class Game {
 
     /**
      * @ORM\OneToMany(targetEntity="Art", mappedBy="game")
+     * @Expose
+     * @MaxDepth(1)
      */
     private $arts;
 
@@ -120,6 +137,8 @@ class Game {
      *     @ORM\JoinColumn(name="genre_id", referencedColumnName="id")
      *   }
      * )
+     * @Expose
+     * @MaxDepth(1)
      */
     private $genres;
 
@@ -552,7 +571,6 @@ class Game {
         return $this->gameLinks_child;
     }
 
-
     /**
      * Add contentRating
      *
@@ -560,8 +578,7 @@ class Game {
      *
      * @return Game
      */
-    public function addContentRating(\AppBundle\Entity\ContentRating $contentRating)
-    {
+    public function addContentRating(\AppBundle\Entity\ContentRating $contentRating) {
         $this->contentRatings[] = $contentRating;
 
         return $this;
@@ -572,8 +589,7 @@ class Game {
      *
      * @param \AppBundle\Entity\ContentRating $contentRating
      */
-    public function removeContentRating(\AppBundle\Entity\ContentRating $contentRating)
-    {
+    public function removeContentRating(\AppBundle\Entity\ContentRating $contentRating) {
         $this->contentRatings->removeElement($contentRating);
     }
 
@@ -582,8 +598,8 @@ class Game {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getContentRatings()
-    {
+    public function getContentRatings() {
         return $this->contentRatings;
     }
+
 }
