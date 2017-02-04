@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\View\TwitterBootstrap3View;
-
 use AppBundle\Entity\Game;
 
 /**
@@ -17,36 +16,42 @@ use AppBundle\Entity\Game;
  *
  * @Route("/game")
  */
-class GameController extends Controller
-{
+class GameController extends Controller {
+
+    private function initBreadcrumbs() {
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->prependRouteItem("Home", "homepage");
+        $breadcrumbs->addRouteItem("Games", "game");
+        return $breadcrumbs;
+    }
+
     /**
      * Lists all Game entities.
      *
      * @Route("/", name="game")
      * @Method("GET")
      */
-    public function indexAction(Request $request)
-    {
+    public function indexAction(Request $request) {
+        $breadcrumbs = $this->initBreadcrumbs();
+
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('AppBundle:Game')->createQueryBuilder('e');
-        
+
         list($filterForm, $queryBuilder) = $this->filter($queryBuilder, $request);
         list($games, $pagerHtml) = $this->paginator($queryBuilder, $request);
-        
-        return $this->render('game/index.html.twig', array(
-            'games' => $games,
-            'pagerHtml' => $pagerHtml,
-            'filterForm' => $filterForm->createView(),
 
+        return $this->render('game/index.html.twig', array(
+                    'games' => $games,
+                    'pagerHtml' => $pagerHtml,
+                    'filterForm' => $filterForm->createView(),
         ));
     }
 
     /**
-    * Create filter form and process filter request.
-    *
-    */
-    protected function filter($queryBuilder, Request $request)
-    {
+     * Create filter form and process filter request.
+     *
+     */
+    protected function filter($queryBuilder, Request $request) {
         $session = $request->getSession();
         $filterForm = $this->createForm('AppBundle\Form\GameFilterType');
 
@@ -71,13 +76,13 @@ class GameController extends Controller
             // Get filter from session
             if ($session->has('GameControllerFilter')) {
                 $filterData = $session->get('GameControllerFilter');
-                
+
                 foreach ($filterData as $key => $filter) { //fix for entityFilterType that is loaded from session
                     if (is_object($filter)) {
                         $filterData[$key] = $queryBuilder->getEntityManager()->merge($filter);
                     }
                 }
-                
+
                 $filterForm = $this->createForm('AppBundle\Form\GameFilterType', $filterData);
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
@@ -86,33 +91,30 @@ class GameController extends Controller
         return array($filterForm, $queryBuilder);
     }
 
-
     /**
-    * Get results from paginator and get paginator view.
-    *
-    */
-    protected function paginator($queryBuilder, Request $request)
-    {
+     * Get results from paginator and get paginator view.
+     *
+     */
+    protected function paginator($queryBuilder, Request $request) {
         //sorting
-        $sortCol = $queryBuilder->getRootAlias().'.'.$request->get('pcg_sort_col', 'id');
+        $sortCol = $queryBuilder->getRootAlias() . '.' . $request->get('pcg_sort_col', 'id');
         $queryBuilder->orderBy($sortCol, $request->get('pcg_sort_order', 'desc'));
         // Paginator
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
-        $pagerfanta->setMaxPerPage($request->get('pcg_show' , 10));
+        $pagerfanta->setMaxPerPage($request->get('pcg_show', 10));
 
         try {
             $pagerfanta->setCurrentPage($request->get('pcg_page', 1));
         } catch (\Pagerfanta\Exception\OutOfRangeCurrentPageException $ex) {
             $pagerfanta->setCurrentPage(1);
         }
-        
+
         $entities = $pagerfanta->getCurrentPageResults();
 
         // Paginator - route generator
         $me = $this;
-        $routeGenerator = function($page) use ($me, $request)
-        {
+        $routeGenerator = function($page) use ($me, $request) {
             $requestParams = $request->query->all();
             $requestParams['pcg_page'] = $page;
             return $me->generateUrl('game', $requestParams);
@@ -128,8 +130,6 @@ class GameController extends Controller
 
         return array($entities, $pagerHtml);
     }
-    
-    
 
     /**
      * Displays a form to create a new Game entity.
@@ -137,30 +137,30 @@ class GameController extends Controller
      * @Route("/new", name="game_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
-    
+    public function newAction(Request $request) {
+        $breadcrumbs = $this->initBreadcrumbs();
+        $breadcrumbs->addItem("New");
+
         $game = new Game();
-        $form   = $this->createForm('AppBundle\Form\GameType', $game);
+        $form = $this->createForm('AppBundle\Form\GameType', $game);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($game);
             $em->flush();
-            
+
             $editLink = $this->generateUrl('game_edit', array('id' => $game->getId()));
-            $this->get('session')->getFlashBag()->add('success', "<a href='$editLink'>New game was created successfully.</a>" );
-            
-            $nextAction=  $request->get('submit') == 'save' ? 'game' : 'game_new';
+            $this->get('session')->getFlashBag()->add('success', "<a href='$editLink'>New game was created successfully.</a>");
+
+            $nextAction = $request->get('submit') == 'save' ? 'game' : 'game_new';
             return $this->redirectToRoute($nextAction);
         }
         return $this->render('game/new.html.twig', array(
-            'game' => $game,
-            'form'   => $form->createView(),
+                    'game' => $game,
+                    'form' => $form->createView(),
         ));
     }
-    
 
     /**
      * Finds and displays a Game entity.
@@ -168,16 +168,17 @@ class GameController extends Controller
      * @Route("/{id}", name="game_show")
      * @Method("GET")
      */
-    public function showAction(Game $game)
-    {
+    public function showAction(Game $game) {
+        $breadcrumbs = $this->initBreadcrumbs();
+        $breadcrumbs->addRouteItem($game->getTitle(), "game_show", [
+            'id' => $game->getId(),
+        ]);
         $deleteForm = $this->createDeleteForm($game);
         return $this->render('game/show.html.twig', array(
-            'game' => $game,
-            'delete_form' => $deleteForm->createView(),
+                    'game' => $game,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
-    
-    
 
     /**
      * Displays a form to edit an existing Game entity.
@@ -185,8 +186,13 @@ class GameController extends Controller
      * @Route("/{id}/edit", name="game_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Game $game)
-    {
+    public function editAction(Request $request, Game $game) {
+        $breadcrumbs = $this->initBreadcrumbs();
+        $breadcrumbs->addRouteItem($game->getTitle(), "game_show", [
+            'id' => $game->getId(),
+        ]);
+        $breadcrumbs->addItem("Edit");
+
         $deleteForm = $this->createDeleteForm($game);
         $editForm = $this->createForm('AppBundle\Form\GameType', $game);
         $editForm->handleRequest($request);
@@ -195,18 +201,16 @@ class GameController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($game);
             $em->flush();
-            
+
             $this->get('session')->getFlashBag()->add('success', 'Edited Successfully!');
             return $this->redirectToRoute('game_edit', array('id' => $game->getId()));
         }
         return $this->render('game/edit.html.twig', array(
-            'game' => $game,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'game' => $game,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
-    
-    
 
     /**
      * Deletes a Game entity.
@@ -214,9 +218,8 @@ class GameController extends Controller
      * @Route("/{id}", name="game_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Game $game)
-    {
-    
+    public function deleteAction(Request $request, Game $game) {
+
         $form = $this->createDeleteForm($game);
         $form->handleRequest($request);
 
@@ -228,10 +231,10 @@ class GameController extends Controller
         } else {
             $this->get('session')->getFlashBag()->add('error', 'Problem with deletion of the Game');
         }
-        
+
         return $this->redirectToRoute('game');
     }
-    
+
     /**
      * Creates a form to delete a Game entity.
      *
@@ -239,24 +242,23 @@ class GameController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Game $game)
-    {
+    private function createDeleteForm(Game $game) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('game_delete', array('id' => $game->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('game_delete', array('id' => $game->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
-    
+
     /**
      * Delete Game by id
      *
      * @Route("/delete/{id}", name="game_by_id_delete")
      * @Method("GET")
      */
-    public function deleteByIdAction(Game $game){
+    public function deleteByIdAction(Game $game) {
         $em = $this->getDoctrine()->getManager();
-        
+
         try {
             $em->remove($game);
             $em->flush();
@@ -266,17 +268,14 @@ class GameController extends Controller
         }
 
         return $this->redirect($this->generateUrl('game'));
-
     }
-    
 
     /**
-    * Bulk Action
-    * @Route("/bulk-action/", name="game_bulk_action")
-    * @Method("POST")
-    */
-    public function bulkAction(Request $request)
-    {
+     * Bulk Action
+     * @Route("/bulk-action/", name="game_bulk_action")
+     * @Method("POST")
+     */
+    public function bulkAction(Request $request) {
         $ids = $request->get("ids", array());
         $action = $request->get("bulk_action", "delete");
 
@@ -292,7 +291,6 @@ class GameController extends Controller
                 }
 
                 $this->get('session')->getFlashBag()->add('success', 'games was deleted successfully!');
-
             } catch (Exception $ex) {
                 $this->get('session')->getFlashBag()->add('error', 'Problem with deletion of the games ');
             }
@@ -300,6 +298,5 @@ class GameController extends Controller
 
         return $this->redirect($this->generateUrl('game'));
     }
-    
 
 }
