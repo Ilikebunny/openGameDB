@@ -46,6 +46,13 @@ class ContentRating {
     private $contentRatingOrganization;
 
     /**
+     * To string
+     */
+    public function __toString() {
+        return $this->rating;
+    }
+
+    /**
      * Get id
      *
      * @return int
@@ -98,7 +105,6 @@ class ContentRating {
         return $this->image;
     }
 
-
     /**
      * Set contentRatingOrganization
      *
@@ -106,8 +112,7 @@ class ContentRating {
      *
      * @return ContentRating
      */
-    public function setContentRatingOrganization(\AppBundle\Entity\ContentRatingOrganization $contentRatingOrganization = null)
-    {
+    public function setContentRatingOrganization(\AppBundle\Entity\ContentRatingOrganization $contentRatingOrganization = null) {
         $this->contentRatingOrganization = $contentRatingOrganization;
 
         return $this;
@@ -118,8 +123,8 @@ class ContentRating {
      *
      * @return \AppBundle\Entity\ContentRatingOrganization
      */
-    public function getContentRatingOrganization()
-    {
+    public function getContentRatingOrganization() {
         return $this->contentRatingOrganization;
     }
+
 }

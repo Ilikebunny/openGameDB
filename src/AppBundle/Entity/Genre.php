@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="genre")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GenreRepository")
  */
-class Genre
-{
+class Genre {
+
     /**
      * @var int
      *
@@ -27,7 +27,7 @@ class Genre
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
-    
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
@@ -35,14 +35,19 @@ class Genre
      */
     private $games;
 
+    /**
+     * To string
+     */
+    public function __toString() {
+        return $this->name;
+    }
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -53,8 +58,7 @@ class Genre
      *
      * @return Genre
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -65,15 +69,14 @@ class Genre
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
+
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->games = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -84,8 +87,7 @@ class Genre
      *
      * @return Genre
      */
-    public function addGame(\AppBundle\Entity\Game $game)
-    {
+    public function addGame(\AppBundle\Entity\Game $game) {
         $this->games[] = $game;
 
         return $this;
@@ -96,8 +98,7 @@ class Genre
      *
      * @param \AppBundle\Entity\Game $game
      */
-    public function removeGame(\AppBundle\Entity\Game $game)
-    {
+    public function removeGame(\AppBundle\Entity\Game $game) {
         $this->games->removeElement($game);
     }
 
@@ -106,8 +107,8 @@ class Genre
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getGames()
-    {
+    public function getGames() {
         return $this->games;
     }
+
 }
