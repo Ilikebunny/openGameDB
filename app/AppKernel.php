@@ -22,6 +22,7 @@ class AppKernel extends Kernel {
             new Petkopara\CrudGeneratorBundle\PetkoparaCrudGeneratorBundle(),
             new FOS\ElasticaBundle\FOSElasticaBundle(),
             new WhiteOctober\BreadcrumbsBundle\WhiteOctoberBreadcrumbsBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
