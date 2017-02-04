@@ -19,6 +19,8 @@ fos_elastica:
                     persistence:
                         driver: orm
                         model: AppBundle\Entity\Game
+                        elastica_to_model_transformer:
+                            query_builder_method: createSearchQueryBuilder
                         finder: ~
                         provider: ~
                         listener: ~
