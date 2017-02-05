@@ -32,7 +32,7 @@ class Art {
      *
      * @ORM\Column(name="type", type="string", length=255)
      * @Expose
-     * @Groups({"getGame"})
+     * @Groups({"getGame", "getPlatform"})
      */
     private $type;
 
@@ -41,7 +41,7 @@ class Art {
      *
      * @ORM\Column(name="link_file", type="string", length=255)
      * @Expose
-     * @Groups({"getGame"})
+     * @Groups({"getGame", "getPlatform"})
      */
     private $linkFile;
 
@@ -50,7 +50,7 @@ class Art {
      *
      * @ORM\Column(name="link_thumb", type="string", length=255)
      * @Expose
-     * @Groups({"getGame"})
+     * @Groups({"getGame", "getPlatform"})
      */
     private $linkThumb;
 

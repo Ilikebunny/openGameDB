@@ -25,7 +25,7 @@ class Company {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Expose
-     * @Groups({"getGame"})
+     * @Groups({"getGame", "getPlatform"})
      */
     private $id;
 
@@ -34,7 +34,7 @@ class Company {
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      * @Expose
-     * @Groups({"getGame"})
+     * @Groups({"getGame", "getPlatform"})
      */
     private $name;
 

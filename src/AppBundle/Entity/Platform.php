@@ -10,7 +10,6 @@ use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\MaxDepth;
 
-
 /**
  * Platform
  *
@@ -27,7 +26,7 @@ class Platform {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Expose
-     * @Groups({"getGame"})
+     * @Groups({"getGame", "getPlatform"})
      */
     private $id;
 
@@ -36,6 +35,7 @@ class Platform {
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      * @Expose
+     * @Groups({"getPlatform"})
      */
     private $name;
 
@@ -43,6 +43,8 @@ class Platform {
      * @var string
      *
      * @ORM\Column(name="overview", type="string", length=65535, nullable=true)
+     * @Expose
+     * @Groups({"getPlatform"})
      */
     private $overview;
 
@@ -50,6 +52,8 @@ class Platform {
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     * @Expose
+     * @Groups({"getPlatform"})
      */
     private $type;
 
@@ -58,6 +62,8 @@ class Platform {
      *
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     * @Expose
+     * @Groups({"getPlatform"})
      */
     private $slug;
 
@@ -73,6 +79,8 @@ class Platform {
      *     @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      *   }
      * )
+     * @Expose
+     * @Groups({"getPlatform"})
      */
     private $developers;
 
@@ -88,6 +96,8 @@ class Platform {
      *     @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      *   }
      * )
+     * @Expose
+     * @Groups({"getPlatform"})
      */
     private $manufacturers;
 
@@ -95,6 +105,8 @@ class Platform {
      * @var string
      *
      * @ORM\Column(name="cpu", type="string", length=255, nullable=true)
+     * @Expose
+     * @Groups({"getPlatform"})
      */
     private $cpu;
 
@@ -102,6 +114,8 @@ class Platform {
      * @var string
      *
      * @ORM\Column(name="memory", type="string", length=255, nullable=true)
+     * @Expose
+     * @Groups({"getPlatform"})
      */
     private $memory;
 
@@ -109,6 +123,8 @@ class Platform {
      * @var string
      *
      * @ORM\Column(name="graphics", type="string", length=255, nullable=true)
+     * @Expose
+     * @Groups({"getPlatform"})
      */
     private $graphics;
 
@@ -116,6 +132,8 @@ class Platform {
      * @var string
      *
      * @ORM\Column(name="sound_info", type="string", length=255, nullable=true)
+     * @Expose
+     * @Groups({"getPlatform"})
      */
     private $soundInfo;
 
@@ -123,6 +141,8 @@ class Platform {
      * @var string
      *
      * @ORM\Column(name="display", type="string", length=255, nullable=true)
+     * @Expose
+     * @Groups({"getPlatform"})
      */
     private $display;
 
@@ -130,6 +150,8 @@ class Platform {
      * @var int
      *
      * @ORM\Column(name="maxcontrollers", type="integer", nullable=true)
+     * @Expose
+     * @Groups({"getPlatform"})
      */
     private $maxcontrollers;
 
@@ -140,6 +162,8 @@ class Platform {
 
     /**
      * @ORM\OneToMany(targetEntity="Art", mappedBy="platform")
+     * @Expose
+     * @Groups({"getPlatform"})
      */
     private $arts;
 
@@ -154,14 +178,13 @@ class Platform {
         $this->id = $id;
     }
 
-    
     /**
      * To string
      */
     public function __toString() {
         return $this->name;
     }
-    
+
     /**
      * Get id
      *
