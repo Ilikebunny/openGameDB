@@ -154,4 +154,5 @@ fos_rest:
         view_response_listener: true
     format_listener:
         rules:
-            - { path: '^/', priorities: ['xml'], fallback_format: 'xml' }
+            - { path: '^/api', priorities: ['xml'], fallback_format: 'xml' }
+            - { path: '^/', stop: true } 
