@@ -155,4 +155,6 @@ fos_rest:
     format_listener:
         rules:
             - { path: '^/api', priorities: ['xml'], fallback_format: 'xml' }
-            - { path: '^/', stop: true } 
+            - { path: '^/', stop: true }
+         
+nelmio_api_doc: ~

@@ -14,3 +14,7 @@ games:
     type:     rest
     resource: "@AppBundle/API/"
     prefix: /api
+    
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /apidocumentation

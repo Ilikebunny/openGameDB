@@ -11,6 +11,7 @@ use FOS\RestBundle\Controller\Annotations as Rest; // alias pour toutes les anno
 use FOS\RestBundle\View\ViewHandler;
 use FOS\RestBundle\View\View; // Utilisation de la vue de FOSRestBundle
 use AppBundle\Entity\Platform;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * API Game controller.
@@ -18,6 +19,9 @@ use AppBundle\Entity\Platform;
 class PlatformController extends FOSRestController {
 
     /**
+     * @ApiDoc(
+     *    description="Get a list of all platforms"
+     * )
      * @Rest\Get("/getPlatformList")
      * @Rest\View(serializerEnableMaxDepthChecks=true, serializerGroups={"getPlatformList"})
      */
@@ -32,6 +36,9 @@ class PlatformController extends FOSRestController {
     }
 
     /**
+     * @ApiDoc(
+     *    description="Get a platform data"
+     * )
      * @Rest\Get("/getPlatform/{id}")
      * @Rest\View(serializerEnableMaxDepthChecks=true, serializerGroups={"getPlatform"})
      */
