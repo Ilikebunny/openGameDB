@@ -3,6 +3,11 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * ContentRating
@@ -18,6 +23,8 @@ class ContentRating {
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
+     * @Groups({"getGame"})
      */
     private $id;
 
@@ -25,6 +32,8 @@ class ContentRating {
      * @var string
      *
      * @ORM\Column(name="rating", type="string", length=255)
+     * @Expose
+     * @Groups({"getGame"})
      */
     private $rating;
 
@@ -42,6 +51,8 @@ class ContentRating {
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="contentRating_id", referencedColumnName="id")
      * })
+     * @Expose
+     * @Groups({"getGame"})
      */
     private $contentRatingOrganization;
 

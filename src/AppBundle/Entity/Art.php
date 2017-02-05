@@ -3,12 +3,18 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Art
  *
  * @ORM\Table(name="art")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ArtRepository")
+ * @ExclusionPolicy("all")
  */
 class Art {
 
@@ -25,6 +31,8 @@ class Art {
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
+     * @Expose
+     * @Groups({"getGame"})
      */
     private $type;
 
@@ -32,6 +40,8 @@ class Art {
      * @var string
      *
      * @ORM\Column(name="link_file", type="string", length=255)
+     * @Expose
+     * @Groups({"getGame"})
      */
     private $linkFile;
 
@@ -39,6 +49,8 @@ class Art {
      * @var string
      *
      * @ORM\Column(name="link_thumb", type="string", length=255)
+     * @Expose
+     * @Groups({"getGame"})
      */
     private $linkThumb;
 

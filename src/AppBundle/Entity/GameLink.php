@@ -3,12 +3,18 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * GameLink
  *
  * @ORM\Table(name="game_link")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GameLinkRepository")
+ * @ExclusionPolicy("all")
  */
 class GameLink {
 
@@ -24,18 +30,24 @@ class GameLink {
     /**
      * @ORM\ManyToOne(targetEntity="Game", inversedBy="gameLinks")
      * @ORM\JoinColumn(nullable=false)
+     * @Expose
+     * @Groups({"getGame"})
      */
     private $game_parent;
 
     /**
      * @ORM\ManyToOne(targetEntity="Game", inversedBy="gameLinks_child")
      * @ORM\JoinColumn(nullable=false)
+     * @Expose
+     * @Groups({"getGame"})
      */
     private $game_child;
 
     /**
      * @ORM\ManyToOne(targetEntity="GameLinkType")
      * @ORM\JoinColumn(nullable=false)
+     * @Expose
+     * @Groups({"getGame"})
      */
     private $type;
 

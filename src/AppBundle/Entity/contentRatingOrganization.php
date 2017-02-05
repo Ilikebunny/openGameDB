@@ -3,12 +3,18 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * contentRatingOrganization
  *
  * @ORM\Table(name="content_rating_organization")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\contentRatingOrganizationRepository")
+ * @ExclusionPolicy("all")
  */
 class ContentRatingOrganization {
 
@@ -25,6 +31,8 @@ class ContentRatingOrganization {
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Expose
+     * @Groups({"getGame"})
      */
     private $name;
 

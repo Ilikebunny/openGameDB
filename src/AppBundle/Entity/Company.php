@@ -3,12 +3,18 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Company
  *
  * @ORM\Table(name="company")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CompanyRepository")
+ * @ExclusionPolicy("all")
  */
 class Company {
 
@@ -18,6 +24,8 @@ class Company {
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
+     * @Groups({"getGame"})
      */
     private $id;
 
@@ -25,6 +33,8 @@ class Company {
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Expose
+     * @Groups({"getGame"})
      */
     private $name;
 
@@ -41,22 +51,22 @@ class Company {
      * @ORM\ManyToMany(targetEntity="Platform", mappedBy="developers")
      */
     private $platform_developed;
-    
-        /**
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Platform", mappedBy="manufacturers")
      */
     private $platform_manufactured;
-    
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Game", mappedBy="developers")
      */
     private $game_developed;
-    
-        /**
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Game", mappedBy="publishers")
@@ -172,7 +182,6 @@ class Company {
         return $this->platform_developed;
     }
 
-
     /**
      * Add platformManufactured
      *
@@ -180,8 +189,7 @@ class Company {
      *
      * @return Company
      */
-    public function addPlatformManufactured(\AppBundle\Entity\Platform $platformManufactured)
-    {
+    public function addPlatformManufactured(\AppBundle\Entity\Platform $platformManufactured) {
         $this->platform_manufactured[] = $platformManufactured;
 
         return $this;
@@ -192,8 +200,7 @@ class Company {
      *
      * @param \AppBundle\Entity\Platform $platformManufactured
      */
-    public function removePlatformManufactured(\AppBundle\Entity\Platform $platformManufactured)
-    {
+    public function removePlatformManufactured(\AppBundle\Entity\Platform $platformManufactured) {
         $this->platform_manufactured->removeElement($platformManufactured);
     }
 
@@ -202,8 +209,7 @@ class Company {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPlatformManufactured()
-    {
+    public function getPlatformManufactured() {
         return $this->platform_manufactured;
     }
 
@@ -214,8 +220,7 @@ class Company {
      *
      * @return Company
      */
-    public function addGameDeveloped(\AppBundle\Entity\Game $gameDeveloped)
-    {
+    public function addGameDeveloped(\AppBundle\Entity\Game $gameDeveloped) {
         $this->game_developed[] = $gameDeveloped;
 
         return $this;
@@ -226,8 +231,7 @@ class Company {
      *
      * @param \AppBundle\Entity\Game $gameDeveloped
      */
-    public function removeGameDeveloped(\AppBundle\Entity\Game $gameDeveloped)
-    {
+    public function removeGameDeveloped(\AppBundle\Entity\Game $gameDeveloped) {
         $this->game_developed->removeElement($gameDeveloped);
     }
 
@@ -236,8 +240,7 @@ class Company {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getGameDeveloped()
-    {
+    public function getGameDeveloped() {
         return $this->game_developed;
     }
 
@@ -248,8 +251,7 @@ class Company {
      *
      * @return Company
      */
-    public function addGamePublished(\AppBundle\Entity\Game $gamePublished)
-    {
+    public function addGamePublished(\AppBundle\Entity\Game $gamePublished) {
         $this->game_published[] = $gamePublished;
 
         return $this;
@@ -260,8 +262,7 @@ class Company {
      *
      * @param \AppBundle\Entity\Game $gamePublished
      */
-    public function removeGamePublished(\AppBundle\Entity\Game $gamePublished)
-    {
+    public function removeGamePublished(\AppBundle\Entity\Game $gamePublished) {
         $this->game_published->removeElement($gamePublished);
     }
 
@@ -270,8 +271,8 @@ class Company {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getGamePublished()
-    {
+    public function getGamePublished() {
         return $this->game_published;
     }
+
 }

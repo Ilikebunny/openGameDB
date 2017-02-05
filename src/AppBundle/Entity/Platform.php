@@ -27,6 +27,7 @@ class Platform {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Expose
+     * @Groups({"getGame"})
      */
     private $id;
 

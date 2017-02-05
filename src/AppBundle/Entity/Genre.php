@@ -3,12 +3,18 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Genre
  *
  * @ORM\Table(name="genre")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GenreRepository")
+ * @ExclusionPolicy("all")
  */
 class Genre {
 
@@ -18,6 +24,7 @@ class Genre {
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     private $id;
 
@@ -25,6 +32,8 @@ class Genre {
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Expose
+     * @Groups({"getGame"})
      */
     private $name;
 

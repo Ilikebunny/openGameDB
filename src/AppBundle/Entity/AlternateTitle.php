@@ -3,15 +3,21 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * AlternateTitle
  *
  * @ORM\Table(name="alternate_title")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AlternateTitleRepository")
+ * @ExclusionPolicy("all")
  */
-class AlternateTitle
-{
+class AlternateTitle {
+
     /**
      * @var int
      *
@@ -25,6 +31,8 @@ class AlternateTitle
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, unique=false)
+     * @Expose
+     * @Groups({"getGame", "GetPlatformGames"})
      */
     private $title;
 
@@ -39,8 +47,7 @@ class AlternateTitle
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -51,8 +58,7 @@ class AlternateTitle
      *
      * @return AlternateTitle
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
 
         return $this;
@@ -63,8 +69,7 @@ class AlternateTitle
      *
      * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -75,8 +80,7 @@ class AlternateTitle
      *
      * @return AlternateTitle
      */
-    public function setGame(\AppBundle\Entity\Game $game = null)
-    {
+    public function setGame(\AppBundle\Entity\Game $game = null) {
         $this->game = $game;
 
         return $this;
@@ -87,8 +91,8 @@ class AlternateTitle
      *
      * @return \AppBundle\Entity\Game
      */
-    public function getGame()
-    {
+    public function getGame() {
         return $this->game;
     }
+
 }

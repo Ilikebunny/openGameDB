@@ -3,15 +3,21 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * GameLinkType
  *
  * @ORM\Table(name="game_link_type")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GameLinkTypeRepository")
+ * @ExclusionPolicy("all")
  */
-class GameLinkType
-{
+class GameLinkType {
+
     /**
      * @var int
      *
@@ -25,9 +31,10 @@ class GameLinkType
      * @var string
      *
      * @ORM\Column(name="linkType", type="string", length=255, unique=true)
+     * @Expose
+     * @Groups({"getGame"})
      */
     private $linkType;
-
 
     /**
      * Set id
@@ -39,14 +46,13 @@ class GameLinkType
     public function setId($id) {
         $this->id = $id;
     }
-    
+
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -57,8 +63,7 @@ class GameLinkType
      *
      * @return GameLinkType
      */
-    public function setLinkType($linkType)
-    {
+    public function setLinkType($linkType) {
         $this->linkType = $linkType;
 
         return $this;
@@ -69,8 +74,8 @@ class GameLinkType
      *
      * @return string
      */
-    public function getLinkType()
-    {
+    public function getLinkType() {
         return $this->linkType;
     }
+
 }

@@ -25,6 +25,7 @@ class Game {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Expose
+     * @Groups({"getGame", "GetPlatformGames"})
      */
     private $id;
 
@@ -33,6 +34,7 @@ class Game {
      *
      * @ORM\Column(name="title", type="string", length=255)
      * @Expose
+     * @Groups({"getGame", "GetPlatformGames"})
      */
     private $title;
 
@@ -41,6 +43,7 @@ class Game {
      *
      * @ORM\Column(name="releaseDate", type="date", nullable=true)
      * @Expose
+     * @Groups({"getGame", "GetPlatformGames"})
      */
     private $releaseDate;
 
@@ -49,6 +52,7 @@ class Game {
      *
      * @ORM\Column(name="overview", type="string", length=65535, nullable=true)
      * @Expose
+     * @Groups({"getGame"})
      */
     private $overview;
 
@@ -64,6 +68,7 @@ class Game {
      *
      * @ORM\Column(name="players", type="integer", nullable=true)
      * @Expose
+     * @Groups({"getGame"})
      */
     private $players;
 
@@ -72,6 +77,7 @@ class Game {
      *
      * @ORM\Column(name="coop", type="boolean", nullable=true)
      * @Expose
+     * @Groups({"getGame"})
      */
     private $coop;
 
@@ -83,7 +89,7 @@ class Game {
      *   @ORM\JoinColumn(name="platform_id", referencedColumnName="id")
      * })
      * @Expose
-     * @MaxDepth(1)
+     * @Groups({"getGame"})
      */
     private $platform;
 
@@ -99,7 +105,8 @@ class Game {
      *     @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      *   }
      * )
-     * 
+     * @Expose
+     * @Groups({"getGame"})
      */
     private $developers;
 
@@ -115,13 +122,15 @@ class Game {
      *     @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      *   }
      * )
+     * @Expose
+     * @Groups({"getGame"})
      */
     private $publishers;
 
     /**
      * @ORM\OneToMany(targetEntity="Art", mappedBy="game")
      * @Expose
-     * @MaxDepth(1)
+     * @Groups({"getGame"})
      */
     private $arts;
 
@@ -138,12 +147,15 @@ class Game {
      *   }
      * )
      * @Expose
-     * @MaxDepth(1)
+     * @Groups({"getGame"})
      */
     private $genres;
 
     /**
      * @ORM\OneToMany(targetEntity="AlternateTitle", mappedBy="game")
+     * @Expose
+     * @MaxDepth(2)
+     * @Groups({"getGame", "GetPlatformGames"})
      */
     private $alternateTitles;
 
@@ -169,6 +181,9 @@ class Game {
      *     @ORM\JoinColumn(name="contentRating_id", referencedColumnName="id")
      *   }
      * )
+     * @Expose
+     * @MaxDepth(3)
+     * @Groups({"getGame"})
      */
     private $contentRatings;
 

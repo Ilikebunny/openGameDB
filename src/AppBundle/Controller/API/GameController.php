@@ -38,18 +38,11 @@ class GameController extends FOSRestController {
 
     /**
      * @Rest\Get("/getGame/{id}")
-     * @Rest\View(serializerEnableMaxDepthChecks=true)
+     * @Rest\View(serializerEnableMaxDepthChecks=true, serializerGroups={"getGame"})
      */
     public function getGameAction($id) {
 
 //        $game = new Game();
-
-//        $game = $this->get('doctrine.orm.entity_manager')
-//                ->getRepository('AppBundle:Game')
-//                ->findById(42286);
-
-//        $game->setId(1);
-//        $game->setTitle("my game name");
 
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('AppBundle:Game')
