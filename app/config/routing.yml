@@ -12,5 +12,5 @@ fos_user_group:
 #API
 games:
     type:     rest
-    resource: "@AppBundle/Controller/API/"
+    resource: "@AppBundle/API/"
     prefix: /api

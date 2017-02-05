@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\API;
+namespace AppBundle\API\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -14,7 +14,6 @@ use AppBundle\Entity\Game;
 
 /**
  * API Game controller.
- * @Route("/api/game")
  */
 class GameController extends FOSRestController {
 
@@ -36,7 +35,7 @@ class GameController extends FOSRestController {
      * @Rest\Get("/getGameByPlatform/{idPlatform}")
      * @Rest\View(serializerEnableMaxDepthChecks=true, serializerGroups={"getGameByPlatform"})
      */
-    public function getGameByPlatform($idPlatform) {
+    public function getGameByPlatformAction($idPlatform) {
 
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('AppBundle:Game')
