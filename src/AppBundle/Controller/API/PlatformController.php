@@ -27,13 +27,9 @@ class PlatformController extends FOSRestController {
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('AppBundle:Platform')
                 ->getAllBase();
-        $game = $queryBuilder->getQuery()->getResult();
+        $result = $queryBuilder->getQuery()->getResult();
 
-        // Création d'une vue FOSRestBundle
-        $view = View::create($game);
-        $view->setFormat('xml');
-
-        return $view;
+        return $result;
     }
 
     /**
@@ -45,13 +41,9 @@ class PlatformController extends FOSRestController {
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('AppBundle:Platform')
                 ->getPlatformComplete($id);
-        $game = $queryBuilder->getQuery()->getResult();
+        $result = $queryBuilder->getQuery()->getResult();
 
-        // Création d'une vue FOSRestBundle
-        $view = View::create($game);
-        $view->setFormat('xml');
-
-        return $view;
+        return $result;
     }
 
 }
