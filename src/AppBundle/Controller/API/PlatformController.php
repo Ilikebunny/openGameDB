@@ -14,7 +14,7 @@ use AppBundle\Entity\Platform;
 
 /**
  * API Game controller.
- * @Route("/api")
+ * @Route("/api/platform")
  */
 class PlatformController extends FOSRestController {
 
