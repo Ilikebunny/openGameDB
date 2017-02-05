@@ -14,7 +14,7 @@ use AppBundle\Entity\Game;
 
 /**
  * API Game controller.
- *
+ * @Route("/api")
  */
 class GameController extends FOSRestController {
 
@@ -52,7 +52,6 @@ class GameController extends FOSRestController {
 //                $game = $this->get('doctrine.orm.entity_manager')
 //                ->getRepository('AppBundle:Game')
 //                ->findById(42286);
-
         // Création d'une vue FOSRestBundle
         $view = View::create($game);
         $view->setFormat('xml');
