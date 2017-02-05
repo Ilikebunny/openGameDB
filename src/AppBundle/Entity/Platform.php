@@ -26,7 +26,7 @@ class Platform {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Expose
-     * @Groups({"getGame", "getPlatform"})
+     * @Groups({"getGame", "getPlatform","getPlatformList"})
      */
     private $id;
 
@@ -35,7 +35,7 @@ class Platform {
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      * @Expose
-     * @Groups({"getPlatform"})
+     * @Groups({"getPlatform", "getPlatformList"})
      */
     private $name;
 
@@ -53,7 +53,7 @@ class Platform {
      *
      * @ORM\Column(name="type", type="string", length=255, nullable=true)
      * @Expose
-     * @Groups({"getPlatform"})
+     * @Groups({"getPlatform", "getPlatformList"})
      */
     private $type;
 
@@ -63,7 +63,7 @@ class Platform {
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
      * @Expose
-     * @Groups({"getPlatform"})
+     * @Groups({"getPlatform", "getPlatformList"})
      */
     private $slug;
 

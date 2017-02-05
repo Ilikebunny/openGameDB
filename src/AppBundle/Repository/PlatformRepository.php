@@ -26,5 +26,13 @@ class PlatformRepository extends \Doctrine\ORM\EntityRepository {
 
         return $qb;
     }
+    
+    public function getAllBase() {
+        $entityAlias = "Platform";
+        $qb = $this->createQueryBuilder($entityAlias)
+        ;
+
+        return $qb;
+    }
 
 }

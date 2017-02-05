@@ -19,6 +19,24 @@ use AppBundle\Entity\Platform;
 class PlatformController extends FOSRestController {
 
     /**
+     * @Rest\Get("/getPlatformList")
+     * @Rest\View(serializerEnableMaxDepthChecks=true, serializerGroups={"getPlatformList"})
+     */
+    public function GetPlatformList() {
+
+        $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->getRepository('AppBundle:Platform')
+                ->getAllBase();
+        $game = $queryBuilder->getQuery()->getResult();
+
+        // Création d'une vue FOSRestBundle
+        $view = View::create($game);
+        $view->setFormat('xml');
+
+        return $view;
+    }
+
+    /**
      * @Rest\Get("/getPlatform/{id}")
      * @Rest\View(serializerEnableMaxDepthChecks=true, serializerGroups={"getPlatform"})
      */
