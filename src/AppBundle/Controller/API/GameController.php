@@ -42,18 +42,31 @@ class GameController extends FOSRestController {
      */
     public function getGameAction($id) {
 
-//        $game = new Game();
-
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('AppBundle:Game')
                 ->getGameComplete($id);
         $game = $queryBuilder->getQuery()->getResult();
 
-//                $game = $this->get('doctrine.orm.entity_manager')
-//                ->getRepository('AppBundle:Game')
-//                ->findById(42286);
         // Création d'une vue FOSRestBundle
         $view = View::create($game);
+        $view->setFormat('xml');
+
+        return $view;
+    }
+
+    /**
+     * @Rest\Get("/getGameByPlatform/{idPlatform}")
+     * @Rest\View(serializerEnableMaxDepthChecks=true, serializerGroups={"getGameByPlatform"})
+     */
+    public function getGameByPlatform($idPlatform) {
+
+        $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->getRepository('AppBundle:Game')
+                ->getAllBaseByPlatform($idPlatform);
+        $result = $queryBuilder->getQuery()->getResult();
+
+        // Création d'une vue FOSRestBundle
+        $view = View::create($result);
         $view->setFormat('xml');
 
         return $view;

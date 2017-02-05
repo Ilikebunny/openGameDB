@@ -51,7 +51,18 @@ class GameRepository extends \Doctrine\ORM\EntityRepository {
                 ->leftJoin($entityAlias . '.contentRatings', 'rat')
                 ->andWhere($entityAlias . '.id = ?1')
                 ->setParameter(1, $idGame)
-                ;
+        ;
+
+
+        return $qb;
+    }
+
+    public function getAllBaseByPlatform($idPlatform) {
+        $entityAlias = "Game";
+        $qb = $this->createQueryBuilder($entityAlias)
+                ->andWhere($entityAlias . '.platform = ?1')
+                ->setParameter(1, $idPlatform)
+        ;
 
 
         return $qb;

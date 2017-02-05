@@ -25,7 +25,7 @@ class Game {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Expose
-     * @Groups({"getGame", "GetPlatformGames"})
+     * @Groups({"getGame", "GetPlatformGames", "getGameByPlatform"})
      */
     private $id;
 
@@ -34,7 +34,7 @@ class Game {
      *
      * @ORM\Column(name="title", type="string", length=255)
      * @Expose
-     * @Groups({"getGame", "GetPlatformGames"})
+     * @Groups({"getGame", "GetPlatformGames", "getGameByPlatform"})
      */
     private $title;
 
@@ -43,7 +43,7 @@ class Game {
      *
      * @ORM\Column(name="releaseDate", type="date", nullable=true)
      * @Expose
-     * @Groups({"getGame", "GetPlatformGames"})
+     * @Groups({"getGame", "GetPlatformGames", "getGameByPlatform"})
      */
     private $releaseDate;
 
