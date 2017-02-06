@@ -48,6 +48,35 @@ class GameController extends Controller {
     }
 
     /**
+     * Lists all Game entities.
+     *
+     * @Route("/search/{search_string}", name="game_search")
+     * @Method("GET")
+     */
+    public function searchAction(Request $request) {
+        $breadcrumbs = $this->initBreadcrumbs();
+
+        $form = $this->createForm("\AppBundle\Form\GameSearchType");
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $finder = $this->container->get('fos_elastica.finder.opengamedb');
+
+            // Option 1. Returns all users who have example.net in any of their mapped fields
+            $results = $finder->find('Warhammer');
+        }
+        else{
+            $results = "test";
+        }
+
+        // replace this example code with whatever you need
+        return $this->render('game/search.html.twig', [
+                    'search' => $results,
+                    'form_search' => $form,
+        ]);
+    }
+
+    /**
      * Create filter form and process filter request.
      *
      */
