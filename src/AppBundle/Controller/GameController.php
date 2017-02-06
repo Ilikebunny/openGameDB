@@ -49,29 +49,17 @@ class GameController extends Controller {
 
     /**
      * Create filter form and process filter request.
-     * @Route("/test", name="game_test")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      * penser à remettre en protected
      */
-    public function search_form(Request $request) {
-        $session = $request->getSession();
+    public function search_formAction(Request $request) {
+
         $filterForm = $this->createForm('AppBundle\Form\GameSearchType', null, array(
             'action' => $this->generateUrl('game_search'),
             'method' => 'GET',
         ));
 
-        // Bind values from the request
-        $filterForm->handleRequest($request);
-        if ($filterForm->isSubmitted() && $filterForm->isValid()) {
-
-            // Save filter to session
-            $search_string = $filterForm->getData('search');
-
-            //Slug the search_string
-            //Redirect
-            return $this->redirectToRoute('game_search', array('search_string' => $search_string));
-        }
-        // replace this example code with whatever you need
+        // render
         return $this->render('game/searchbar.html.twig', [
                     'form_search' => $filterForm->createView(),
         ]);
@@ -81,25 +69,25 @@ class GameController extends Controller {
      * Lists all Game entities.
      *
      * @Route("/search/{search_string}", name="game_search")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function searchAction(Request $request, $search_string = "") {
         $breadcrumbs = $this->initBreadcrumbs();
         $breadcrumbs->addItem("Search");
 
-        $form = $this->createForm("\AppBundle\Form\GameSearchType");
-        $form->handleRequest($request);
+
+        if ($request->query->get('game_search') != "") {
+            $search_string = $request->query->get('game_search')['search'];
+        }
 
         $finder = $this->container->get('fos_elastica.finder.opengamedb');
 
         // Option 1. Returns all users who have example.net in any of their mapped fields
         $results = $finder->find($search_string);
 
-
         // replace this example code with whatever you need
         return $this->render('game/search.html.twig', [
-                    'search' => $results,
-                    'form_search' => $form,
+                    'games' => $results,
         ]);
     }
 

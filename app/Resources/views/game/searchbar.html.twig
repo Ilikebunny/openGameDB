@@ -1,14 +1,14 @@
-{% extends 'layout/base.html.twig' %}
+{#{% extends 'layout/base.html.twig' %}
 
 {% block title %}
     {{ parent() }} -  Search game
-{% endblock %}
+{% endblock %}#}
 
 {% block body %}
 
     {{ form_start(form_search) }}
 
-    {{ form_widget(form_search) }}
+    {{ form_widget(form_search.search) }}
 
     {{ form_end(form_search) }}
 

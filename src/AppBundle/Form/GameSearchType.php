@@ -4,15 +4,20 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class GameSearchType extends AbstractType
-{
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+class GameSearchType extends AbstractType {
+
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('search')
-            ->add('Search', SubmitType::class)
+                ->add('search', TextType::class, array(
+                    'attr' => array(
+                        'placeholder' => 'Search game',
+                    ))
+                )
+                ->add('Search', SubmitType::class)
         ;
     }
+
 }
