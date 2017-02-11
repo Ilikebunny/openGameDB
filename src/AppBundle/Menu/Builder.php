@@ -47,4 +47,63 @@ class Builder implements ContainerAwareInterface {
         return $menu;
     }
 
+    public function userNotLoggedMenu(FactoryInterface $factory, array $options) {
+
+        $menu = $factory->createItem('root', array(
+            'childrenAttributes' => array(
+                'class' => 'dropdown-menu',
+            ),
+        ));
+
+        $menu->addChild('layout.register', array(
+            'route' => 'fos_user_registration_register',
+        ))->setExtra('translation_domain', 'FOSUserBundle');
+
+        //Divider
+        $menu->addChild('', array('attributes' => array(
+                'role' => 'separator',
+                'class' => 'divider',
+        )));
+
+        $menu->addChild('layout.login', array(
+            'route' => 'fos_user_security_login',
+        ))->setExtra('translation_domain', 'FOSUserBundle');
+
+        $menu->addChild('resetting.request.submit', array(
+            'route' => 'fos_user_resetting_request',
+        ))->setExtra('translation_domain', 'FOSUserBundle');
+
+        return $menu;
+    }
+
+    public function userLoggedMenu(FactoryInterface $factory, array $options) {
+
+        $menu = $factory->createItem('root', array(
+            'childrenAttributes' => array(
+                'class' => 'dropdown-menu',
+            ),
+        ));
+
+        $menu->addChild('Editer compte', array(
+            'route' => 'fos_user_profile_edit',
+        ))->setExtra('translation_domain', 'FOSUserBundle');
+
+        $menu->addChild('change_password.submit', array(
+            'route' => 'fos_user_change_password',
+        ))->setExtra('translation_domain', 'FOSUserBundle');
+
+        //Divider
+        $menu->addChild('', array('attributes' => array(
+                'role' => 'separator',
+                'class' => 'divider',
+        )));
+
+
+        $menu->addChild('layout.logout', array(
+            'route' => 'fos_user_security_logout',
+        ))->setExtra('translation_domain', 'FOSUserBundle');
+
+        return $menu;
+    }
+
 }
