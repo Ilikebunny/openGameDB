@@ -16,6 +16,13 @@
     </div>
 
 </div>
+    
+<div class="container">
+    {% block subNav %}
+        {{ knp_menu_render('AppBundle:Builder:subGameMenu', {'currentClass': 'active'}) }}
+    {% endblock %}
+{#    <br>#}
+</div>
 
 <div id="bradcrumbs" class="row">
 </div>
