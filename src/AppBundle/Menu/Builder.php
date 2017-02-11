@@ -10,6 +10,24 @@ class Builder implements ContainerAwareInterface {
 
     use ContainerAwareTrait;
 
+    public function mainNavBarMenu(FactoryInterface $factory, array $options) {
+
+        $menu = $factory->createItem('root', array(
+            'childrenAttributes' => array(
+                'class' => 'nav navbar-nav',
+            ),
+        ));
+
+        $menu->addChild('Games', array('route' => 'game'));
+        $menu->addChild('Platforms', array('route' => 'homepage'));
+        $menu->addChild('Stats', array('route' => 'homepage'));
+        $menu->addChild('API', array('route' => 'homepage'));
+        $menu->addChild('Forum', array('route' => 'homepage'));
+        $menu->addChild('Add new game', array('route' => 'homepage', 'class' => 'label label-default vertical-align'));
+
+        return $menu;
+    }
+
     public function subGameMenu(FactoryInterface $factory, array $options) {
 
         $menu = $factory->createItem('root', array(
