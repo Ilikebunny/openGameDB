@@ -62,6 +62,13 @@ class Generation {
     protected $platforms;
 
     /**
+     * To string
+     */
+    public function __toString() {
+        return $this->name;
+    }
+
+    /**
      * Get id
      *
      * @return int

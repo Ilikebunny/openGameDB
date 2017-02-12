@@ -34,6 +34,13 @@ class PlatformType {
     protected $platforms;
 
     /**
+     * To string
+     */
+    public function __toString() {
+        return $this->name;
+    }
+
+    /**
      * Get id
      *
      * @return int
@@ -67,8 +74,7 @@ class PlatformType {
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->platforms = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -79,8 +85,7 @@ class PlatformType {
      *
      * @return PlatformType
      */
-    public function addPlatform(\AppBundle\Entity\Platform $platform)
-    {
+    public function addPlatform(\AppBundle\Entity\Platform $platform) {
         $this->platforms[] = $platform;
 
         return $this;
@@ -91,8 +96,7 @@ class PlatformType {
      *
      * @param \AppBundle\Entity\Platform $platform
      */
-    public function removePlatform(\AppBundle\Entity\Platform $platform)
-    {
+    public function removePlatform(\AppBundle\Entity\Platform $platform) {
         $this->platforms->removeElement($platform);
     }
 
@@ -101,8 +105,8 @@ class PlatformType {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPlatforms()
-    {
+    public function getPlatforms() {
         return $this->platforms;
     }
+
 }
