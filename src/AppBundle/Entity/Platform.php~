@@ -49,9 +49,9 @@ class Platform {
     private $overview;
 
     /**
-     * @var string
+     * @var \PlatformType
      *
-     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="PlatformType", inversedBy="platforms")
      * @Expose
      * @Groups({"getPlatform", "getPlatformList"})
      */
@@ -572,6 +572,28 @@ class Platform {
      */
     public function getArts() {
         return $this->arts;
+    }
+
+    /**
+     * Set generation
+     *
+     * @param \AppBundle\Entity\Generation $generation
+     *
+     * @return Platform
+     */
+    public function setGeneration(\AppBundle\Entity\Generation $generation = null) {
+        $this->generation = $generation;
+
+        return $this;
+    }
+
+    /**
+     * Get generation
+     *
+     * @return \AppBundle\Entity\Generation
+     */
+    public function getGeneration() {
+        return $this->generation;
     }
 
 }
