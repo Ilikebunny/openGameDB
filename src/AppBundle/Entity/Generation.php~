@@ -31,6 +31,13 @@ class Generation {
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="overview", type="string", length=65535, nullable=true)
      */
     private $overview;
@@ -149,6 +156,44 @@ class Generation {
      */
     public function getEnding() {
         return $this->ending;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->platforms = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add platform
+     *
+     * @param \AppBundle\Entity\Platform $platform
+     *
+     * @return Generation
+     */
+    public function addPlatform(\AppBundle\Entity\Platform $platform) {
+        $this->platforms[] = $platform;
+
+        return $this;
+    }
+
+    /**
+     * Remove platform
+     *
+     * @param \AppBundle\Entity\Platform $platform
+     */
+    public function removePlatform(\AppBundle\Entity\Platform $platform) {
+        $this->platforms->removeElement($platform);
+    }
+
+    /**
+     * Get platforms
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlatforms() {
+        return $this->platforms;
     }
 
 }

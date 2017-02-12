@@ -31,6 +31,13 @@ class Generation {
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="overview", type="string", length=65535, nullable=true)
      */
     private $overview;
@@ -154,8 +161,7 @@ class Generation {
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->platforms = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -166,8 +172,7 @@ class Generation {
      *
      * @return Generation
      */
-    public function addPlatform(\AppBundle\Entity\Platform $platform)
-    {
+    public function addPlatform(\AppBundle\Entity\Platform $platform) {
         $this->platforms[] = $platform;
 
         return $this;
@@ -178,8 +183,7 @@ class Generation {
      *
      * @param \AppBundle\Entity\Platform $platform
      */
-    public function removePlatform(\AppBundle\Entity\Platform $platform)
-    {
+    public function removePlatform(\AppBundle\Entity\Platform $platform) {
         $this->platforms->removeElement($platform);
     }
 
@@ -188,8 +192,30 @@ class Generation {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPlatforms()
-    {
+    public function getPlatforms() {
         return $this->platforms;
     }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Generation
+     */
+    public function setName($name) {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName() {
+        return $this->name;
+    }
+
 }
