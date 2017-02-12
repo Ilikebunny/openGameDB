@@ -168,6 +168,13 @@ class Platform {
     private $arts;
 
     /**
+     * @var \Generation
+     *
+     * @ORM\ManyToOne(targetEntity="Generation", inversedBy="platforms")
+     */
+    private $generation;
+
+    /**
      * Set id
      *
      * @param int $id
@@ -567,4 +574,28 @@ class Platform {
         return $this->arts;
     }
 
+
+    /**
+     * Set generation
+     *
+     * @param \AppBundle\Entity\Generation $generation
+     *
+     * @return Platform
+     */
+    public function setGeneration(\AppBundle\Entity\Generation $generation = null)
+    {
+        $this->generation = $generation;
+
+        return $this;
+    }
+
+    /**
+     * Get generation
+     *
+     * @return \AppBundle\Entity\Generation
+     */
+    public function getGeneration()
+    {
+        return $this->generation;
+    }
 }
