@@ -4,6 +4,10 @@
     {{ parent() }} - game index
 {% endblock %}
 
+{% block subNav %}
+    {{ knp_menu_render('AppBundle:Builder:subGameMenu', {'currentClass': 'active'}) }}
+{% endblock %}
+
 {% block body %}
 
 
