@@ -2,14 +2,22 @@
 <html>
     {{ include('layout/head.html.twig') }}
     <body>
-        {{ include('layout/header.html.twig') }}
+
+        <div class="container-fluid">
+            {{ include('layout/header.html.twig') }}
+        </div>
+
+        <div class="container">
+            {% block subNav %}
+                {{ knp_menu_render('AppBundle:Builder:subGameMenu', {'currentClass': 'active'}) }}
+            {% endblock %}
+            {#    <br>#}
+        </div>
+
         <div id="main" class="container">
 
             <section class="panel row">
-                    {{ wo_render_breadcrumbs() }}
-              {#  <header class="panel-heading col-md-12">
-                    <h2>{% block panel_head %}{% endblock %}</h2>
-                </header>#}
+                {{ wo_render_breadcrumbs() }}
                 {% block menu_content %}
                 {% endblock %}
                 <div class="panel-body col-md-12">
