@@ -4,15 +4,14 @@
     {{ parent() }} - platform index
 {% endblock %}
 
+{% block subNav %}
+    {{ knp_menu_render('AppBundle:Builder:subPlatformMenu', {'currentClass': 'active'}) }}
+{% endblock %}
+
 {% block body %}
 
 
     <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h2><a href="{{ path('platform') }}">Platform</a></h2>
-            </div>
-        </div>       
 
         <!-- FILTERING -->
         <div class="col-md-12">

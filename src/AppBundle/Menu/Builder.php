@@ -47,6 +47,21 @@ class Builder implements ContainerAwareInterface {
         return $menu;
     }
 
+    public function subPlatformMenu(FactoryInterface $factory, array $options) {
+
+        $menu = $factory->createItem('root', array(
+            'childrenAttributes' => array(
+                'class' => 'nav nav-pills nav-justified',
+            ),
+        ));
+
+        $menu->addChild('Browse', array('route' => 'platform'));
+        $menu->addChild('Recently added', array('route' => 'homepage'));
+        $menu->addChild('Recently updated', array('route' => 'homepage'));
+
+        return $menu;
+    }
+
     public function userNotLoggedMenu(FactoryInterface $factory, array $options) {
 
         $menu = $factory->createItem('root', array(
