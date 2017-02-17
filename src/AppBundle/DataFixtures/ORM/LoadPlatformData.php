@@ -39,7 +39,8 @@ class LoadPlatformData extends AbstractFixture implements OrderedFixtureInterfac
                 $entity->setId($row[0]);
                 $entity->setName($row[1]);
                 $entity->setOverview($row[2]);
-                $entity->setType($row[3]);
+//                $entity->setType($row[3]);
+                
 //                $entity->setDeveloper($this->getReference($row[4]));
 //                $entity->setManufacturer($this->getReference($row[5]));
                 $entity->setCpu($row[6]);
@@ -48,6 +49,12 @@ class LoadPlatformData extends AbstractFixture implements OrderedFixtureInterfac
                 $entity->setSoundInfo($row[9]);
                 $entity->setDisplay($row[10]);
                 $entity->setMaxcontrollers($row[11]);
+
+                $entity2 = $this->getReference("PlatformType_" . $row[3]);
+                $entity->setType($entity2);
+                
+                $entity3 = $this->getReference("Generation_number_" . $row[12]);
+                $entity->setGeneration($entity3);
 
                 $manager->getClassMetaData(get_class($entity))->setIdGenerator(new \Doctrine\ORM\Id\AssignedGenerator());
                 $manager->getClassMetaData(get_class($entity))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
