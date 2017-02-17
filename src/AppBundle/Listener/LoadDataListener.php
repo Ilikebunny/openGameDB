@@ -17,7 +17,7 @@ class LoadDataListener {
         $endDate = $calendarEvent->getEnd();
         $filters = $calendarEvent->getFilters();
 
-        dump($startDate);
+//        dump($startDate);
         //You may want do a custom query to populate the events
 
         $calendarEvent->addEvent(new MyCustomEvent('Event Title 1', new \DateTime()));
