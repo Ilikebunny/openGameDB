@@ -1,0 +1,13 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - game index
+{% endblock %}
+
+{% block subNav %}
+    {{ knp_menu_render('AppBundle:Builder:subGameMenu', {'currentClass': 'active'}) }}
+{% endblock %}
+
+{% block body %}
+    {% include '@FullCalendar/Calendar/calendar.html.twig' %}
+{% endblock %}

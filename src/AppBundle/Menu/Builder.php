@@ -42,7 +42,7 @@ class Builder implements ContainerAwareInterface {
         $menu->addChild('Recently added', array('route' => 'homepage'));
         $menu->addChild('Recently updated', array('route' => 'homepage'));
         $menu->addChild('Upcoming', array('route' => 'homepage'));
-        $menu->addChild('Release calendar', array('route' => 'homepage'));
+        $menu->addChild('Release calendar', array('route' => 'game_calendar'));
 
         return $menu;
     }

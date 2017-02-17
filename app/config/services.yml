@@ -8,3 +8,8 @@ services:
     AppBundle.importcsv:
         class: AppBundle\Manager\ImportCSV
         arguments: ["@service_container"]
+        
+    app_bundle.service.listener:
+        class: AppBundle\Listener\LoadDataListener
+        tags:
+            - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: loadData }

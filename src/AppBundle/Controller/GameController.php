@@ -48,6 +48,25 @@ class GameController extends Controller {
     }
 
     /**
+     * Lists all Game entities.
+     *
+     * @Route("/calendar", name="game_calendar")
+     * @Method("GET")
+     */
+    public function calendarAction(Request $request) {
+        $breadcrumbs = $this->initBreadcrumbs();
+
+//        $em = $this->getDoctrine()->getManager();
+//        $queryBuilder = $em->getRepository('AppBundle:Game')->createQueryBuilder('e');
+
+        return $this->render('game/calendar.html.twig', array(
+//                    'games' => $games,
+//                    'pagerHtml' => $pagerHtml,
+//                    'filterForm' => $filterForm->createView(),
+        ));
+    }
+
+    /**
      * Create filter form and process filter request.
      * @Method({"GET", "POST"})
      * penser à remettre en protected
