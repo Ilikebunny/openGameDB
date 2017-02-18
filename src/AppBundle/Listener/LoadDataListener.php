@@ -32,9 +32,15 @@ class LoadDataListener {
 
         foreach ($result as $game) {
             $name = $game->getTitle() . ' (' . $game->getPlatform()->getName() . ')';
-            $calendarEvent->addEvent(
-                    new MyCustomEvent($name, $game->getReleaseDate())
+            $event = new MyCustomEvent($name, $game->getReleaseDate());
+
+            $url = $this->container->get('router')->generate(
+                    'game_show', array('id' => $game->getId())
             );
+
+            $event->setUrl($url);
+            
+            $calendarEvent->addEvent($event);
         }
     }
 
