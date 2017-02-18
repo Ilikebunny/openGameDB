@@ -3,8 +3,15 @@
 <script src="{{ asset('bundles/petkoparacrudgenerator/js/petkopara-crud-generator.js') }}"></script>
 <script src="{{ asset('assets/vendor/chosen/chosen.jquery.js') }}"></script>
 <script src="{{ asset('assets/vendor/jquery-ui-1.12.1.custom/jquery-ui.js') }}"></script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $("#datepicker").datepicker();
+    });
+</script>
+{{ include('layout/_chosen_init.html.twig') }}
+
 <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/fullcalendar.default-settings.js') }}"></script>
-{{ include('layout/_chosen_init.html.twig') }}
