@@ -4,8 +4,16 @@ namespace AppBundle\Listener;
 
 use AncaRebeca\FullCalendarBundle\Event\CalendarEvent;
 use AppBundle\Entity\EventCustom as MyCustomEvent;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class LoadDataListener {
+
+    private $container;
+
+    public function __construct(ContainerInterface $container) {
+        $this->container = $container;
+    }
 
     /**
      * @param CalendarEvent $calendarEvent
@@ -17,21 +25,17 @@ class LoadDataListener {
         $endDate = $calendarEvent->getEnd();
         $filters = $calendarEvent->getFilters();
 
-//        dump($startDate);
-        //You may want do a custom query to populate the events
+        $em = $this->container->get('doctrine')->getEntityManager('default');
+        $queryBuilder = $em->getRepository('AppBundle:Game')
+                ->getBetweenRelease($startDate, $endDate);
+        $result = $queryBuilder->getQuery()->getResult();
 
-        $calendarEvent->addEvent(new MyCustomEvent('Event Title 1', new \DateTime()));
-        $calendarEvent->addEvent(new MyCustomEvent('Event Title 2', new \DateTime()));
-
-        //You may want do a custom query to populate the events
-        $start = new \DateTime('2017-02-17T17:30:00');
-        $end = new \DateTime('2017-02-17T19:30:00');
-
-        $event = new MyCustomEvent('Distribution salle blabla', $start);
-        $event->setEndDate($end);
-        $event->setAllDay(false);
-
-        $calendarEvent->addEvent($event);
+        foreach ($result as $game) {
+            $name = $game->getTitle() . ' (' . $game->getPlatform()->getName() . ')';
+            $calendarEvent->addEvent(
+                    new MyCustomEvent($name, $game->getReleaseDate())
+            );
+        }
     }
 
 }

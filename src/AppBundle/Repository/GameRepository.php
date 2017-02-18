@@ -68,4 +68,17 @@ class GameRepository extends \Doctrine\ORM\EntityRepository {
         return $qb;
     }
 
+    public function getBetweenRelease($start, $end) {
+        $entityAlias = "Game";
+        $qb = $this->createQueryBuilder($entityAlias)
+                ->addSelect('pla')
+                ->join($entityAlias . '.platform', 'pla')
+                ->where($entityAlias . '.releaseDate BETWEEN :start AND :end')
+                ->setParameter('start', $start)
+                ->setParameter('end', $end)
+        ;
+
+        return $qb;
+    }
+
 }

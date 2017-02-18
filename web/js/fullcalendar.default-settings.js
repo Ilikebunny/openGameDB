@@ -1,11 +1,12 @@
 $(function () {
     $('#calendar-holder').fullCalendar({
         header: {
-            left: 'prev, next',
+            left: 'prev, next, prevYear, nextYear',
             center: 'title',
             right: 'month, basicWeek, basicDay,'
         },
         lazyFetching: true,
+        firstDay: 1,
         timeFormat: {
             agenda: 'h:mmt',
             '': 'h:mmt'
