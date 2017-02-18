@@ -22,7 +22,6 @@ class Builder implements ContainerAwareInterface {
         $menu->addChild('Platforms', array('route' => 'platform'));
         $menu->addChild('Stats', array('route' => 'homepage'));
         $menu->addChild('API', array('route' => 'homepage'));
-        $menu->addChild('Forum', array('route' => 'homepage'));
         $menu->addChild('Add new game', array('route' => 'homepage', 'class' => 'label label-default vertical-align'));
 
         return $menu;
