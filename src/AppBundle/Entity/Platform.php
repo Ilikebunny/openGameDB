@@ -575,6 +575,20 @@ class Platform {
     }
 
     /**
+     * Get BoxartFront
+     *
+     * @return \AppBundle\Entity\Art $art
+     */
+    public function getBoxartFront() {
+        $myArt = null;
+        foreach ($this->arts as $art) {
+            if ($art->getType() == "BOXART_front")
+                $myArt = $art;
+        }
+        return $myArt;
+    }
+
+    /**
      * Get BoxartBack
      *
      * @return \AppBundle\Entity\Art $art
@@ -583,6 +597,76 @@ class Platform {
         $myArt = null;
         foreach ($this->arts as $art) {
             if ($art->getType() == "BOXART_back")
+                $myArt = $art;
+        }
+        return $myArt;
+    }
+
+    /**
+     * Get arts
+     *
+     * @return Array
+     */
+    public function getFanarts() {
+        $myArts = Array();
+        foreach ($this->arts as $art) {
+            if ($art->getType() == "FANART")
+                $myArts[] = $art;
+        }
+        return $myArts;
+    }
+
+    /**
+     * Get arts
+     *
+     * @return Array
+     */
+    public function getBanners() {
+        $myArts = Array();
+        foreach ($this->arts as $art) {
+            if ($art->getType() == "BANNER")
+                $myArts[] = $art;
+        }
+        return $myArts;
+    }
+
+    /**
+     * Get Art
+     *
+     * @return \AppBundle\Entity\Art $art
+     */
+    public function getConsoleArt() {
+        $myArt = null;
+        foreach ($this->arts as $art) {
+            if ($art->getType() == "CONSOLEART")
+                $myArt = $art;
+        }
+        return $myArt;
+    }
+
+    /**
+     * Get Art
+     *
+     * @return \AppBundle\Entity\Art $art
+     */
+    public function getControllerArt() {
+        $myArt = null;
+        foreach ($this->arts as $art) {
+            if ($art->getType() == "CONTROLLERART")
+                $myArt = $art;
+        }
+        return $myArt;
+    }
+
+    /**
+     * Get Art
+     *
+     * @return \AppBundle\Entity\Art $art
+     */
+    public function getClearlogo() {
+        $myArt = null;
+        foreach ($this->arts as $art) {
+            if ($art->getType() == "CLEARLOGO")
                 $myArt = $art;
         }
         return $myArt;

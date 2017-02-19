@@ -1,24 +1,17 @@
 {{ dump()}}
 
 {% for platform in platforms %}
-    {#    <div class="row">
-            <div class="panel panel-default">
-                <div class="panel-heading"> {{ platform.name }}</div>
-                <div class="panel-body">
-                    {{ platform.overview }}
-                </div>
-                <div class="panel-footer">Panel footer</div>
-            </div>
-        </div>#}
 
-    <div class="platorm_card row">
+    <div class="platorm_card row well">
         <div class="col-md-2">
+
             <img class="img-responsive" src="{{ asset('images/generique.png') }}" alt="image" />
-            {# {% if produit.image == "" %}
-                 <img class="img-responsive" src="{{ asset('images/generique.png') }}" alt="image" />
-             {% else %}
-                 <img class="img-responsive" src="{{ asset( produit.image) }}" alt="image" />
-             {% endif %}#}
+            {#            {% if platform.BoxartBack | length == 0 %}
+                            <img class="img-responsive" src="{{ asset('images/generique.png') }}" alt="image" />
+                        {% else %}
+                            <img class="" src="/images{{ asset(platform.BoxartBack.linkThumb) }}" alt="image" />
+                        {% endif %}#}
+
         </div>
 
         <div class="col-md-10">
@@ -33,14 +26,56 @@
                 </div>
             </div>
             <div class="row">
-                {{ platform.overview }}
+                {{ platform.overview | truncate(350) }}
             </div>
             <div class="row">
-                Boxart : {{ platform.BoxartBack | length }}
+                Boxart Front:
+                {% if platform.BoxartFront | length == 0 %}
+                    <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+                {% else %}
+                    <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+                {% endif %}
+
+                Boxart Back:
+                {% if platform.BoxartBack | length == 0 %}
+                    <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+                {% else %}
+                    <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+                {% endif %}
+
+                ConsoleArt :
+                {% if platform.ConsoleArt | length == 0 %}
+                    <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+                {% else %}
+                    <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+                {% endif %}
+
+                ControllerArt :
+                {% if platform.ControllerArt | length == 0 %}
+                    <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+                {% else %}
+                    <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+                {% endif %}
+
+                Clearlogo :
+                {% if platform.Clearlogo | length == 0 %}
+                    <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+                {% else %}
+                    <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+                {% endif %}
+
+                Fanart(s) : <span class="badge">{{ platform.Fanarts | length }}</span>
+
+                Banner(s) : <span class="badge">{{ platform.Banners | length }}</span>
 
             </div>
+
+            <div class="row">
+                <button type="button" class="btn btn-primary">View</button>
+                <button type="button" class="btn btn-default">Browse games</button>
+            </div>
+
         </div>
     </div>
-
 
 {% endfor %}
