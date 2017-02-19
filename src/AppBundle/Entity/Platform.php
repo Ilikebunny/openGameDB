@@ -575,6 +575,20 @@ class Platform {
     }
 
     /**
+     * Get BoxartBack
+     *
+     * @return \AppBundle\Entity\Art $art
+     */
+    public function getBoxartBack() {
+        $myArt = null;
+        foreach ($this->arts as $art) {
+            if ($art->getType() == "BOXART_back")
+                $myArt = $art;
+        }
+        return $myArt;
+    }
+
+    /**
      * Set generation
      *
      * @param \AppBundle\Entity\Generation $generation
