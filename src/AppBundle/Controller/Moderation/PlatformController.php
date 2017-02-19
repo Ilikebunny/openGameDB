@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Moderation;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,27 +15,25 @@ use AppBundle\Entity\Platform;
 /**
  * Platform controller.
  *
- * @Route("/platform")
+ * @Route("moderation/platform")
  */
 class PlatformController extends Controller
 {
     /**
      * Lists all Platform entities.
      *
-     * @Route("/", name="platform")
+     * @Route("/", name="moderation_platform")
      * @Method("GET")
      */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-//        $queryBuilder = $em->getRepository('AppBundle:Platform')->createQueryBuilder('e');
-        
-        $queryBuilder = $em->getRepository('AppBundle:Platform')->getAllComplete();
+        $queryBuilder = $em->getRepository('AppBundle:Platform')->createQueryBuilder('e');
         
         list($filterForm, $queryBuilder) = $this->filter($queryBuilder, $request);
         list($platforms, $pagerHtml) = $this->paginator($queryBuilder, $request);
         
-        return $this->render('platform/index.html.twig', array(
+        return $this->render('platform/moderation/index.html.twig', array(
             'platforms' => $platforms,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
@@ -139,7 +137,7 @@ class PlatformController extends Controller
     /**
      * Displays a form to create a new Platform entity.
      *
-     * @Route("/new", name="platform_new")
+     * @Route("/new", name="moderation_platform_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -170,7 +168,7 @@ class PlatformController extends Controller
     /**
      * Finds and displays a Platform entity.
      *
-     * @Route("/{id}", name="platform_show")
+     * @Route("/{id}", name="moderation_platform_show")
      * @Method("GET")
      */
     public function showAction(Platform $platform)
@@ -187,7 +185,7 @@ class PlatformController extends Controller
     /**
      * Displays a form to edit an existing Platform entity.
      *
-     * @Route("/{id}/edit", name="platform_edit")
+     * @Route("/{id}/edit", name="moderation_platform_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Platform $platform)
@@ -216,7 +214,7 @@ class PlatformController extends Controller
     /**
      * Deletes a Platform entity.
      *
-     * @Route("/{id}", name="platform_delete")
+     * @Route("/{id}", name="moderation_platform_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Platform $platform)
@@ -256,7 +254,7 @@ class PlatformController extends Controller
     /**
      * Delete Platform by id
      *
-     * @Route("/delete/{id}", name="platform_by_id_delete")
+     * @Route("/delete/{id}", name="moderation_platform_by_id_delete")
      * @Method("GET")
      */
     public function deleteByIdAction(Platform $platform){
@@ -277,7 +275,7 @@ class PlatformController extends Controller
 
     /**
     * Bulk Action
-    * @Route("/bulk-action/", name="platform_bulk_action")
+    * @Route("/bulk-action/", name="moderation_platform_bulk_action")
     * @Method("POST")
     */
     public function bulkAction(Request $request)

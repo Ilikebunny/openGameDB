@@ -26,7 +26,22 @@ class PlatformRepository extends \Doctrine\ORM\EntityRepository {
 
         return $qb;
     }
-    
+
+    public function getAllComplete() {
+        $entityAlias = "Platform";
+        $qb = $this->createQueryBuilder($entityAlias)
+                ->addSelect('dev')
+                ->leftJoin($entityAlias . '.developers', 'dev')
+                ->addSelect('man')
+                ->leftJoin($entityAlias . '.manufacturers', 'man')
+                ->addSelect('art')
+                ->leftJoin($entityAlias . '.arts', 'art')
+        ;
+
+
+        return $qb;
+    }
+
     public function getAllBase() {
         $entityAlias = "Platform";
         $qb = $this->createQueryBuilder($entityAlias)

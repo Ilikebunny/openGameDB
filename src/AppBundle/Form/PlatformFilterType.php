@@ -14,8 +14,8 @@ class PlatformFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id', Filters\NumberFilterType::class)
-            ->add('name', Filters\TextFilterType::class)
+//            ->add('id', Filters\NumberFilterType::class)
+//            ->add('name', Filters\TextFilterType::class)
 //            ->add('overview', Filters\TextFilterType::class)
 //            ->add('slug', Filters\TextFilterType::class)
 //            ->add('cpu', Filters\TextFilterType::class)
@@ -23,7 +23,7 @@ class PlatformFilterType extends AbstractType
 //            ->add('graphics', Filters\TextFilterType::class)
 //            ->add('soundInfo', Filters\TextFilterType::class)
 //            ->add('display', Filters\TextFilterType::class)
-            ->add('maxcontrollers', Filters\NumberFilterType::class)
+//            ->add('maxcontrollers', Filters\NumberFilterType::class)
         
             ->add('type', Filters\EntityFilterType::class, array(
                     'class' => 'AppBundle\Entity\PlatformType',
