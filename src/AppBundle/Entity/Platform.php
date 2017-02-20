@@ -586,24 +586,10 @@ class Platform {
      *
      * @return \AppBundle\Entity\Art $art
      */
-    public function getBoxartFront() {
+    public function getBoxart() {
         $myArt = null;
         foreach ($this->arts as $art) {
-            if ($art->getType() == "BOXART_front")
-                $myArt = $art;
-        }
-        return $myArt;
-    }
-
-    /**
-     * Get BoxartBack
-     *
-     * @return \AppBundle\Entity\Art $art
-     */
-    public function getBoxartBack() {
-        $myArt = null;
-        foreach ($this->arts as $art) {
-            if ($art->getType() == "BOXART_back")
+            if ($art->getType() == "BOXART")
                 $myArt = $art;
         }
         return $myArt;
@@ -701,7 +687,6 @@ class Platform {
         return $this->generation;
     }
 
-
     /**
      * Add release
      *
@@ -709,8 +694,7 @@ class Platform {
      *
      * @return Platform
      */
-    public function addRelease(\AppBundle\Entity\PlatformRelease $release)
-    {
+    public function addRelease(\AppBundle\Entity\PlatformRelease $release) {
         $this->releases[] = $release;
 
         return $this;
@@ -721,8 +705,7 @@ class Platform {
      *
      * @param \AppBundle\Entity\PlatformRelease $release
      */
-    public function removeRelease(\AppBundle\Entity\PlatformRelease $release)
-    {
+    public function removeRelease(\AppBundle\Entity\PlatformRelease $release) {
         $this->releases->removeElement($release);
     }
 
@@ -731,8 +714,8 @@ class Platform {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getReleases()
-    {
+    public function getReleases() {
         return $this->releases;
     }
+
 }

@@ -4,10 +4,10 @@
 
     <div class="platorm_card row well">
         <div class="col-md-2">
-            {% if platform.BoxartBack | length == 0 %}
+            {% if platform.Boxart | length == 0 %}
                 <img class="img-responsive" src="{{ asset('images/generique.png') }}" alt="image" />
             {% else %}
-                <img class="img-responsive" src="/images{{ asset(platform.BoxartBack.linkThumb) }}" alt="image" />
+                <img class="img-responsive" src="/images{{ asset(platform.Boxart.linkThumb) }}" alt="image" />
             {% endif %}
 
         </div>
@@ -33,15 +33,8 @@
             </div>
             <div class="row card_row">
                 <div class="col-xs-12">
-                    Boxart Front:
-                    {% if platform.BoxartFront | length == 0 %}
-                        <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
-                    {% else %}
-                        <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
-                    {% endif %}
-
-                    | Boxart Back:
-                    {% if platform.BoxartBack | length == 0 %}
+                    Boxart :
+                    {% if platform.Boxart | length == 0 %}
                         <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
                     {% else %}
                         <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
