@@ -33,7 +33,7 @@ class Load_RegionCountry extends AbstractFixture implements OrderedFixtureInterf
 
         $manager->getConnection()->getConfiguration()->setSQLLogger(null);
         $import = $this->container->get('AppBundle.importcsv');
-        $fileContent = $import->CSV_to_array('region_country.csv.csv');
+        $fileContent = $import->CSV_to_array('region_country.csv');
 
         $batchSize = 20;
         $i = 1;

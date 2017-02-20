@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use AppBundle\Entity\PlatformRelease;
 
-class Load_RegionCountry extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface {
+class Load_PlatformRelease extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface {
 
     /**
      * @var ContainerInterface
@@ -43,12 +43,18 @@ class Load_RegionCountry extends AbstractFixture implements OrderedFixtureInterf
                 $i = $i + 1;
 
                 $entity = new PlatformRelease();
+
                 $entity2 = $this->getReference("Platform_" . ($row[0]));
+                $entity->setName($row[1]);
+                if ($row[2] != "") {
+                    $date = new \DateTime($row[2]);
+                    $entity->setReleaseDate($date);
+                }
+                $entity->setUnitSold($row[3]);
                 $entity3 = $this->getReference("RegionCountry_" . ($row[4]));
 
-                $entity->setName($row[1]);
-                $entity->setReleaseDate($row[2]);
-                $entity->setUnitSold($row[3]);
+                $entity->setPlatform($entity2);
+                $entity->setRegionCountry($entity3);
 
                 $manager->persist($entity);
 
