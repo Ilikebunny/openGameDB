@@ -46,6 +46,7 @@ class Load_RegionCountry extends AbstractFixture implements OrderedFixtureInterf
 
                 $entity->setName($row[0]);
                 $entity->setIsRegion($row[1]);
+                $entity->setLogo($row[2]);
 
                 $manager->persist($entity);
 
