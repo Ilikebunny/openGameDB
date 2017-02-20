@@ -175,6 +175,13 @@ class Platform {
     private $generation;
 
     /**
+     * @ORM\OneToMany(targetEntity="PlatformRelease", mappedBy="platform")
+     * @Expose
+     * @Groups({"getPlatform"})
+     */
+    private $releases;
+
+    /**
      * Set id
      *
      * @param int $id
@@ -694,4 +701,38 @@ class Platform {
         return $this->generation;
     }
 
+
+    /**
+     * Add release
+     *
+     * @param \AppBundle\Entity\PlatformRelease $release
+     *
+     * @return Platform
+     */
+    public function addRelease(\AppBundle\Entity\PlatformRelease $release)
+    {
+        $this->releases[] = $release;
+
+        return $this;
+    }
+
+    /**
+     * Remove release
+     *
+     * @param \AppBundle\Entity\PlatformRelease $release
+     */
+    public function removeRelease(\AppBundle\Entity\PlatformRelease $release)
+    {
+        $this->releases->removeElement($release);
+    }
+
+    /**
+     * Get releases
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReleases()
+    {
+        return $this->releases;
+    }
 }

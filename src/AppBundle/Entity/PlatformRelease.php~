@@ -52,7 +52,7 @@ class PlatformRelease {
     /**
      * @var \Platform
      *
-     * @ORM\ManyToOne(targetEntity="Platform")
+     * @ORM\ManyToOne(targetEntity="Platform", inversedBy="releases")
      */
     private $platform;
 
@@ -153,4 +153,28 @@ class PlatformRelease {
         return $this->regionCountry;
     }
 
+
+    /**
+     * Set platform
+     *
+     * @param \AppBundle\Entity\Platform $platform
+     *
+     * @return PlatformRelease
+     */
+    public function setPlatform(\AppBundle\Entity\Platform $platform = null)
+    {
+        $this->platform = $platform;
+
+        return $this;
+    }
+
+    /**
+     * Get platform
+     *
+     * @return \AppBundle\Entity\Platform
+     */
+    public function getPlatform()
+    {
+        return $this->platform;
+    }
 }

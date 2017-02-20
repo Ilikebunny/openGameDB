@@ -95,26 +95,4 @@ class RegionCountry {
         return $this->logo;
     }
 
-    /**
-     * Set isRegion
-     *
-     * @param boolean $isRegion
-     *
-     * @return RegionCountry
-     */
-    public function setIsRegion($isRegion) {
-        $this->isRegion = $isRegion;
-
-        return $this;
-    }
-
-    /**
-     * Get isRegion
-     *
-     * @return boolean
-     */
-    public function getIsRegion() {
-        return $this->isRegion;
-    }
-
 }

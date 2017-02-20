@@ -52,7 +52,7 @@ class PlatformRelease {
     /**
      * @var \Platform
      *
-     * @ORM\ManyToOne(targetEntity="Platform")
+     * @ORM\ManyToOne(targetEntity="Platform", inversedBy="releases")
      */
     private $platform;
 
