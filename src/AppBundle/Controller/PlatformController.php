@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\View\TwitterBootstrap3View;
-
 use AppBundle\Entity\Platform;
 
 /**
@@ -17,44 +16,41 @@ use AppBundle\Entity\Platform;
  *
  * @Route("/platform")
  */
-class PlatformController extends Controller
-{
+class PlatformController extends Controller {
+
     /**
      * Lists all Platform entities.
      *
      * @Route("/", name="platform")
      * @Method("GET")
      */
-    public function indexAction(Request $request)
-    {
+    public function indexAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
 //        $queryBuilder = $em->getRepository('AppBundle:Platform')->createQueryBuilder('e');
-        
+
         $queryBuilder = $em->getRepository('AppBundle:Platform')->getAllComplete();
-        
+
         list($filterForm, $queryBuilder) = $this->filter($queryBuilder, $request);
         list($platforms, $pagerHtml) = $this->paginator($queryBuilder, $request);
-        
-        return $this->render('platform/index.html.twig', array(
-            'platforms' => $platforms,
-            'pagerHtml' => $pagerHtml,
-            'filterForm' => $filterForm->createView(),
 
+        return $this->render('platform/index.html.twig', array(
+                    'platforms' => $platforms,
+                    'pagerHtml' => $pagerHtml,
+                    'filterForm' => $filterForm->createView(),
         ));
     }
 
     /**
-    * Create filter form and process filter request.
-    *
-    */
-    protected function filter($queryBuilder, Request $request)
-    {
+     * Create filter form and process filter request.
+     *
+     */
+    protected function filter($queryBuilder, Request $request) {
         $session = $request->getSession();
         $filterForm = $this->createForm('AppBundle\Form\PlatformFilterType');
 
         //Always clean session
         $session->remove('PlatformControllerFilter');
-        
+
         // Reset filter
         if ($request->get('filter_action') == 'reset') {
             $session->remove('PlatformControllerFilter');
@@ -76,13 +72,13 @@ class PlatformController extends Controller
             // Get filter from session
             if ($session->has('PlatformControllerFilter')) {
                 $filterData = $session->get('PlatformControllerFilter');
-                
+
                 foreach ($filterData as $key => $filter) { //fix for entityFilterType that is loaded from session
                     if (is_object($filter)) {
                         $filterData[$key] = $queryBuilder->getEntityManager()->merge($filter);
                     }
                 }
-                
+
                 $filterForm = $this->createForm('AppBundle\Form\PlatformFilterType', $filterData);
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
@@ -91,33 +87,30 @@ class PlatformController extends Controller
         return array($filterForm, $queryBuilder);
     }
 
-
     /**
-    * Get results from paginator and get paginator view.
-    *
-    */
-    protected function paginator($queryBuilder, Request $request)
-    {
+     * Get results from paginator and get paginator view.
+     *
+     */
+    protected function paginator($queryBuilder, Request $request) {
         //sorting
-        $sortCol = $queryBuilder->getRootAlias().'.'.$request->get('pcg_sort_col', 'id');
+        $sortCol = $queryBuilder->getRootAlias() . '.' . $request->get('pcg_sort_col', 'id');
         $queryBuilder->orderBy($sortCol, $request->get('pcg_sort_order', 'desc'));
         // Paginator
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
-        $pagerfanta->setMaxPerPage($request->get('pcg_show' , 10));
+        $pagerfanta->setMaxPerPage($request->get('pcg_show', 10));
 
         try {
             $pagerfanta->setCurrentPage($request->get('pcg_page', 1));
         } catch (\Pagerfanta\Exception\OutOfRangeCurrentPageException $ex) {
             $pagerfanta->setCurrentPage(1);
         }
-        
+
         $entities = $pagerfanta->getCurrentPageResults();
 
         // Paginator - route generator
         $me = $this;
-        $routeGenerator = function($page) use ($me, $request)
-        {
+        $routeGenerator = function($page) use ($me, $request) {
             $requestParams = $request->query->all();
             $requestParams['pcg_page'] = $page;
             return $me->generateUrl('platform', $requestParams);
@@ -133,8 +126,6 @@ class PlatformController extends Controller
 
         return array($entities, $pagerHtml);
     }
-    
-    
 
     /**
      * Displays a form to create a new Platform entity.
@@ -142,30 +133,28 @@ class PlatformController extends Controller
      * @Route("/new", name="platform_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
-    
+    public function newAction(Request $request) {
+
         $platform = new Platform();
-        $form   = $this->createForm('AppBundle\Form\PlatformType', $platform);
+        $form = $this->createForm('AppBundle\Form\PlatformType', $platform);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($platform);
             $em->flush();
-            
+
             $editLink = $this->generateUrl('platform_edit', array('id' => $platform->getId()));
-            $this->get('session')->getFlashBag()->add('success', "<a href='$editLink'>New platform was created successfully.</a>" );
-            
-            $nextAction=  $request->get('submit') == 'save' ? 'platform' : 'platform_new';
+            $this->get('session')->getFlashBag()->add('success', "<a href='$editLink'>New platform was created successfully.</a>");
+
+            $nextAction = $request->get('submit') == 'save' ? 'platform' : 'platform_new';
             return $this->redirectToRoute($nextAction);
         }
         return $this->render('platform/new.html.twig', array(
-            'platform' => $platform,
-            'form'   => $form->createView(),
+                    'platform' => $platform,
+                    'form' => $form->createView(),
         ));
     }
-    
 
     /**
      * Finds and displays a Platform entity.
@@ -173,16 +162,18 @@ class PlatformController extends Controller
      * @Route("/{id}", name="platform_show")
      * @Method("GET")
      */
-    public function showAction(Platform $platform)
-    {
+    public function showAction(Platform $platform) {
         $deleteForm = $this->createDeleteForm($platform);
+
+        $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->getRepository('AppBundle:Platform')->getPlatformComplete($platform->getId());
+        $platform = $queryBuilder->getQuery()->getResult()[0];
+
         return $this->render('platform/show.html.twig', array(
-            'platform' => $platform,
-            'delete_form' => $deleteForm->createView(),
+                    'platform' => $platform,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
-    
-    
 
     /**
      * Displays a form to edit an existing Platform entity.
@@ -190,8 +181,7 @@ class PlatformController extends Controller
      * @Route("/{id}/edit", name="platform_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Platform $platform)
-    {
+    public function editAction(Request $request, Platform $platform) {
         $deleteForm = $this->createDeleteForm($platform);
         $editForm = $this->createForm('AppBundle\Form\PlatformType', $platform);
         $editForm->handleRequest($request);
@@ -200,18 +190,16 @@ class PlatformController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($platform);
             $em->flush();
-            
+
             $this->get('session')->getFlashBag()->add('success', 'Edited Successfully!');
             return $this->redirectToRoute('platform_edit', array('id' => $platform->getId()));
         }
         return $this->render('platform/edit.html.twig', array(
-            'platform' => $platform,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'platform' => $platform,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
-    
-    
 
     /**
      * Deletes a Platform entity.
@@ -219,9 +207,8 @@ class PlatformController extends Controller
      * @Route("/{id}", name="platform_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Platform $platform)
-    {
-    
+    public function deleteAction(Request $request, Platform $platform) {
+
         $form = $this->createDeleteForm($platform);
         $form->handleRequest($request);
 
@@ -233,10 +220,10 @@ class PlatformController extends Controller
         } else {
             $this->get('session')->getFlashBag()->add('error', 'Problem with deletion of the Platform');
         }
-        
+
         return $this->redirectToRoute('platform');
     }
-    
+
     /**
      * Creates a form to delete a Platform entity.
      *
@@ -244,24 +231,23 @@ class PlatformController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Platform $platform)
-    {
+    private function createDeleteForm(Platform $platform) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('platform_delete', array('id' => $platform->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('platform_delete', array('id' => $platform->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
-    
+
     /**
      * Delete Platform by id
      *
      * @Route("/delete/{id}", name="platform_by_id_delete")
      * @Method("GET")
      */
-    public function deleteByIdAction(Platform $platform){
+    public function deleteByIdAction(Platform $platform) {
         $em = $this->getDoctrine()->getManager();
-        
+
         try {
             $em->remove($platform);
             $em->flush();
@@ -271,17 +257,14 @@ class PlatformController extends Controller
         }
 
         return $this->redirect($this->generateUrl('platform'));
-
     }
-    
 
     /**
-    * Bulk Action
-    * @Route("/bulk-action/", name="platform_bulk_action")
-    * @Method("POST")
-    */
-    public function bulkAction(Request $request)
-    {
+     * Bulk Action
+     * @Route("/bulk-action/", name="platform_bulk_action")
+     * @Method("POST")
+     */
+    public function bulkAction(Request $request) {
         $ids = $request->get("ids", array());
         $action = $request->get("bulk_action", "delete");
 
@@ -297,7 +280,6 @@ class PlatformController extends Controller
                 }
 
                 $this->get('session')->getFlashBag()->add('success', 'platforms was deleted successfully!');
-
             } catch (Exception $ex) {
                 $this->get('session')->getFlashBag()->add('error', 'Problem with deletion of the platforms ');
             }
@@ -305,6 +287,5 @@ class PlatformController extends Controller
 
         return $this->redirect($this->generateUrl('platform'));
     }
-    
 
 }

@@ -21,6 +21,10 @@ class PlatformRepository extends \Doctrine\ORM\EntityRepository {
                 ->leftJoin($entityAlias . '.arts', 'art')
                 ->addSelect('rel')
                 ->leftJoin($entityAlias . '.releases', 'rel')
+                ->addSelect('typ')
+                ->leftJoin($entityAlias . '.type', 'typ')
+                ->addSelect('gen')
+                ->leftJoin($entityAlias . '.generation', 'gen')
                 ->andWhere($entityAlias . '.id = ?1')
                 ->setParameter(1, $idPlatform)
         ;
