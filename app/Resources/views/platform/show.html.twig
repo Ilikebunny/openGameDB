@@ -10,13 +10,15 @@
 
     <div id="top" class="row">
         <div class="col-md-12">
-            {#            <div class="page-header">#}
+            {{ include('platform/_banner_slide.twig') }}
+
             <h3>{{ platform.id }} - {{ platform.name }} ({{ platform.slug }})</h3>
-            {#            </div>#}
+
         </div>
     </div>
 
     <hr/>
+
     <div class="row">
         <div class="col-md-4">
 
@@ -154,20 +156,14 @@
     <hr/>
 
 
-    {% if platform.fanarts | length != 0 %}
-        <div class="row">
-            <div class="flexslider">
-                <ul class="slides">
-                    {% for art in platform.fanarts %}
-                        <li>
-                            <img class="img-responsive" src="/images{{ asset(art.linkFile) }}" alt="image" />
-                        </li>
-                    {% endfor %}                
-                </ul>
-            </div>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">Fanarts</a></li>
+        </ul>
+        <div id="tabs-1">
+            {{ include('platform/_fanart_slide.twig') }}
         </div>
-        <hr/>
-    {% endif %}
+    </div>
 
     <div class="form-group">
         <a class="btn btn-default" href="{{ path('platform') }}">
