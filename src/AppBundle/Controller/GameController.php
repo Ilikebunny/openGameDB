@@ -102,7 +102,7 @@ class GameController extends Controller {
         $finder = $this->container->get('fos_elastica.finder.opengamedb');
 
         // Option 1. Returns all users who have example.net in any of their mapped fields
-        $results = $finder->find($search_string);
+        $results = $finder->find($search_string, 20);
 
         // replace this example code with whatever you need
         return $this->render('game/search.html.twig', [
