@@ -1,6 +1,7 @@
 {% if platform.fanarts | length != 0 %}
     <div class="row">
-        <div class="flexslider">
+
+        <div id="slider" class="flexslider">
             <ul class="slides">
                 {% for art in platform.fanarts %}
                     <li>
@@ -9,5 +10,16 @@
                 {% endfor %}                
             </ul>
         </div>
+
+        <div id="carousel" class="flexslider">
+            <ul class="slides">
+                {% for art in platform.fanarts %}
+                    <li>
+                        <img class="img-responsive" src="/images{{ asset(art.linkFile) }}" alt="image" />
+                    </li>
+                {% endfor %}                
+            </ul>
+        </div>
+
     </div>
 {% endif %}
