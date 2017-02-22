@@ -617,4 +617,88 @@ class Game {
         return $this->contentRatings;
     }
 
+    /**
+     * Get BoxartFront
+     *
+     * @return \AppBundle\Entity\Art $art
+     */
+    public function getBoxartFront() {
+        $myArt = null;
+        foreach ($this->arts as $art) {
+            if ($art->getType() == "BOXART_front")
+                $myArt = $art;
+        }
+        return $myArt;
+    }
+
+    /**
+     * Get BoxartFront
+     *
+     * @return \AppBundle\Entity\Art $art
+     */
+    public function getBoxartBack() {
+        $myArt = null;
+        foreach ($this->arts as $art) {
+            if ($art->getType() == "BOXART_back")
+                $myArt = $art;
+        }
+        return $myArt;
+    }
+
+    /**
+     * Get arts
+     *
+     * @return Array
+     */
+    public function getFanarts() {
+        $myArts = Array();
+        foreach ($this->arts as $art) {
+            if ($art->getType() == "FANART")
+                $myArts[] = $art;
+        }
+        return $myArts;
+    }
+
+    /**
+     * Get arts
+     *
+     * @return Array
+     */
+    public function getBanners() {
+        $myArts = Array();
+        foreach ($this->arts as $art) {
+            if ($art->getType() == "BANNER")
+                $myArts[] = $art;
+        }
+        return $myArts;
+    }
+
+    /**
+     * Get Art
+     *
+     * @return \AppBundle\Entity\Art $art
+     */
+    public function getClearlogo() {
+        $myArt = null;
+        foreach ($this->arts as $art) {
+            if ($art->getType() == "CLEARLOGO")
+                $myArt = $art;
+        }
+        return $myArt;
+    }
+
+    /**
+     * Get Art
+     *
+     * @return \AppBundle\Entity\Art $art
+     */
+    public function getScreenshots() {
+        $myArts = Array();
+        foreach ($this->arts as $art) {
+            if ($art->getType() == "SCREENSHOT")
+                $myArts[] = $art;
+        }
+        return $myArts;
+    }
+
 }
