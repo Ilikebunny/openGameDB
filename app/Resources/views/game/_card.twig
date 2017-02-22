@@ -1,0 +1,80 @@
+{{ dump()}}
+
+{% for game in games %}
+
+    <div class="platorm_card row well">
+        <div class="col-md-2">
+            <p class="text-center">Id : {{ game.id }}</p>
+            {% if game.BoxartFront | length == 0 %}
+                <img class="img-responsive" src="{{ asset('images/generique.png') }}" alt="image" />
+            {% else %}
+                <img class="img-responsive" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
+            {% endif %}
+
+        </div>
+
+        <div class="col-md-10">
+
+
+            <div class="row card_row">
+                <div class="col-xs-12">
+                    <h3 style="display:inline">{{ game.title }}</h3> <span class="label label-primary pull-right">{{ game.platform.name }}</span>
+                    {% if game.alternateTitles | length != 0 %}
+                        A.k.a.(s) :
+                    {% endif %}
+                    {% for alt in game.alternateTitles %}
+                        {{ alt.title }} |
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row card_row">
+                <div class="col-xs-12">
+                    {{ game.overview | truncate(400) }}
+                </div>
+            </div>
+            <div class="row card_row">
+                <div class="col-xs-12">
+                    Boxart front :
+                    {% if game.BoxartFront | length == 0 %}
+                        <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+                    {% else %}
+                        <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+                    {% endif %}
+
+                    Boxart back :
+                    {% if game.BoxartBack | length == 0 %}
+                        <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+                    {% else %}
+                        <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+                    {% endif %}
+
+                    | Clearlogo :
+                    {% if game.Clearlogo | length == 0 %}
+                        <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+                    {% else %}
+                        <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+                    {% endif %}
+
+                    | Fanart(s) : <span class="badge">{{ game.Fanarts | length }}</span>
+
+                    | Banner(s) : <span class="badge">{{ game.Banners | length }}</span>
+
+                    | Screenshot(s) : <span class="badge">{{ game.Screenshots | length }}</span>
+
+                </div>
+            </div>
+
+            <div class="row card_row">
+                <div class="col-xs-12">
+                    <a title='Show' class="btn btn-info btn-sm" href="{{ path('game_show', { 'id': game.id }) }}">
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                    </a>
+                    <button type="button" class="btn btn-primary">View</button>
+                    <button type="button" class="btn btn-default">Browse games</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endfor %}
