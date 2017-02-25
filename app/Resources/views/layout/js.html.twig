@@ -6,44 +6,9 @@
 <script src="{{ asset('assets/vendor/woocommerce-FlexSlider/jquery.flexslider-min.js') }}"></script>
 
 {{ include('layout/_chosen_init.html.twig') }}
+{{ include('layout/_flexslider.twig') }}
+{{ include('layout/_tabs.twig') }}
 
-<script type="text/javascript">
-    jQuery(document).ready(function ($) {
-        $('#flexslider_simple').flexslider({
-            animation: "slide"
-        });
-    });
-
-     jQuery(document).ready(function ($) {
-        // The slider being synced must be initialized first
-        $('#carousel').flexslider({
-            animation: "slide",
-            controlNav: false,
-            animationLoop: false,
-            slideshow: false,
-            itemWidth: 210,
-            itemMargin: 5,
-            asNavFor: '#slider'
-        });
-
-        $('#slider').flexslider({
-            animation: "slide",
-            controlNav: false,
-            animationLoop: false,
-            slideshow: false,
-            sync: "#carousel"
-        });
-    });
-</script>
-
-{#Jquery Ui Tabs#}
-<script>
-    $(function () {
-        $("#tabs").tabs();
-    });
-</script>
-
-{#<script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>#}
 <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/fullcalendar.default-settings.js') }}"></script>
