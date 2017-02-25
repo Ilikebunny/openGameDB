@@ -1,6 +1,58 @@
 {#Jquery Ui Tabs#}
 <script>
     $(function () {
-        $("#tabs").tabs();
+        var slider2_initialized = false;
+        var slider3_initialized = false;
+
+        $("#tabs").tabs({
+            activate: function (event, ui) {
+                //console.log("ui = ");console.log(ui);
+                var tab_id = $(ui.newPanel).attr('id');//alert(tab_id);
+
+                if (tab_id == "tabs-2" && slider2_initialized == false)
+                {
+                    $('#carousel2').flexslider({
+                        animation: "slide",
+                        controlNav: false,
+                        animationLoop: false,
+                        slideshow: false,
+                        itemWidth: 210,
+                        itemMargin: 5,
+                        asNavFor: '#slider2'
+                    });
+
+                    $('#slider2').flexslider({
+                        animation: "slide",
+                        controlNav: false,
+                        animationLoop: false,
+                        slideshow: false,
+                        sync: "#carousel2"
+                    });
+                    //update initialization flag to true
+                    slider2_initialized = true;
+                } else if (tab_id == "tabs-3" && slider3_initialized == false)
+                {
+                    $('#carousel3').flexslider({
+                        animation: "slide",
+                        controlNav: false,
+                        animationLoop: false,
+                        slideshow: false,
+                        itemWidth: 210,
+                        itemMargin: 5,
+                        asNavFor: '#slider3'
+                    });
+
+                    $('#slider3').flexslider({
+                        animation: "slide",
+                        controlNav: false,
+                        animationLoop: false,
+                        slideshow: false,
+                        sync: "#carousel3"
+                    });
+                    //update initialization flag to true
+                    slider3_initialized = true;
+                }
+            }
+        });
     });
 </script>
