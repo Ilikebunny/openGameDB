@@ -1,0 +1,94 @@
+<div class="row">
+
+    <!-- FILTERING -->
+    <div class="col-md-12">
+        <div  id="filters" class="collapse">
+
+            <form class="well" action="{{ path('game') }}" method="get" >
+                <div class="row">
+
+                    <div class="col-md-6">{{ form_row(filterForm.id) }}</div>
+
+
+                    <div class="col-md-6">{{ form_row(filterForm.title) }}</div>
+
+
+                    <div class="col-md-6">{{ form_row(filterForm.releaseDate) }}</div>
+
+
+                    <div class="col-md-6">{{ form_row(filterForm.players) }}</div>
+
+
+                    <div class="col-md-6">{{ form_row(filterForm.coop) }}</div>
+
+                    <div class="col-md-6">
+                        {{ form_rest(filterForm) }}
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-warning" name="filter_action" value="filter"> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Filter</button>
+                            <button type="submit" class="btn btn-default" name="filter_action" value="reset"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- END FILTERING -->
+
+
+    <div class="col-md-3 pull-left">
+
+        <!-- PAGE SIZE -->
+        <div class="pagination form-inline ">
+            <select class = "form-control"  onchange="window.location = this.value" >
+                <option value='{{ path('game', app.request.query.all|merge({'pcg_show': '10'})) }}' {% if app.request.get('pcg_show') == 10 %} selected {% endif %}>10</option>
+                <option value='{{ path('game', app.request.query.all|merge({'pcg_show': '20'})) }}' {% if app.request.get('pcg_show') == 20 %} selected {% endif %}>20</option>
+                <option value='{{ path('game', app.request.query.all|merge({'pcg_show': '50'})) }}' {% if app.request.get('pcg_show') == 50 %} selected {% endif %}>50</option>
+                <option value='{{ path('game', app.request.query.all|merge({'pcg_show': '100'})) }}' {% if app.request.get('pcg_show') == 100 %} selected {% endif %}>100</option>
+                <option value='{{ path('game', app.request.query.all|merge({'pcg_show': '500'})) }}' {% if app.request.get('pcg_show') == 500 %} selected {% endif %}>500</option>
+            </select>
+        </div>
+        <!-- END PAGE SIZE -->
+
+    </div>
+
+    <div class="col-md-6">
+        Sort by :
+        <table class="table table-striped table-hover table-bordered" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    {% import "PetkoparaCrudGeneratorBundle::macros/th_sortable.html.twig" as macros %}
+                    <th>{{macros.th_sortable('id',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'game')}}</th>
+                    <th>{{macros.th_sortable('title',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'game')}}</th>
+                    <th>{{macros.th_sortable('releaseDate',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'game')}}</th>
+                        {#                                <th>{{macros.th_sortable('overview',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'game')}}</th>#}
+                    <th>{{macros.th_sortable('esrb',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'game')}}</th>
+                    <th>{{macros.th_sortable('players',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'game')}}</th>
+                    <th>{{macros.th_sortable('coop',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'game')}}</th>
+                </tr>
+            </thead>
+        </table>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <a class="btn btn-primary h3 pull-right" href="{{ path('game_new') }}" style="margin-bottom:10px">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New
+        </a>
+        <a class="btn dropdown-toggle pull-right h3" data-toggle="collapse" data-target="#filters">
+            Filter
+            <span class="caret"></span>
+        </a>
+    </div>
+
+    <div class="col-md-12">
+        {%- if form_errors(filterForm) %}
+        <div class="alert alert-block alert-error fade in form-errors">
+            {{ form_errors(filterForm) }}
+        </div>
+        {% endif %}
+        </div>
+
+    </div> <!-- /#top -->
