@@ -236,6 +236,11 @@ class GameController extends Controller {
         $breadcrumbs->addRouteItem($game->getTitle(), "game_show", [
             'id' => $game->getId(),
         ]);
+
+        $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->getRepository('AppBundle:Game')->getGameComplete($game->getId());
+        $game = $queryBuilder->getQuery()->getResult()[0];
+
         $deleteForm = $this->createDeleteForm($game);
         return $this->render('game/show.html.twig', array(
                     'game' => $game,

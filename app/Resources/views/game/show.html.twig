@@ -74,6 +74,47 @@
                     <p><strong>Overview</strong></p>
                     <p>{{ game.overview }}</p>
                 </div>
+
+                <div class="col-md-6">
+                    <p><strong>Developper(s)</strong></p>
+                    <p>
+                        {% for company in game.developers %}
+                            <span class="label label-primary">{{ company.name }}</span>
+                        {% endfor %}  
+                    </p>
+
+                </div>
+
+                <div class="col-md-6">
+                    <p><strong>Publisher(s)</strong></p>
+                    <p>
+                        {% for company in game.publishers %}
+                            <span class="label label-primary">{{ company.name }}</span>
+                        {% endfor %}         
+                    </p>
+
+                </div>
+
+                <div class="col-md-6">
+                    <p><strong>Genre(s)</strong></p>
+                    <p>
+                        {% for genre in game.genres %}
+                            <span class="label label-primary">{{ genre.name }}</span>
+                        {% endfor %}  
+                    </p>
+
+                </div>
+
+                <div class="col-md-6">
+                    <p><strong>Content Rating(s)</strong></p>
+                    <p>
+                        {% for contentRating in game.contentRatings %}
+                            <span class="label label-primary">{{ contentRating.rating }}</span>
+                        {% endfor %}         
+                    </p>
+
+                </div>
+
                 <div class="col-md-6">
                     <p><strong>Release date</strong></p>
                     <p>
@@ -106,6 +147,32 @@
             </div>
         </div>
     </div>
+
+    <hr/>
+
+    {% if game.GameLinksChild | length != 0 %}
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>Link Type</th>
+                    <th>Link</th>
+                </tr>
+                {% for link in game.GameLinksChild %}
+                    <tr>
+                        <td> {{ link.type }}</td>
+                        <td>
+                            <span class="label label-primary">{{ link.gameParent.platform.name }}</span>
+                            {{ link.gameParent.title }}
+                            <a title='Show' class="btn btn-info btn-sm" href="{{ path('game_show', { 'id': link.gameParent.id }) }}">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                            </a>
+                        </td> 
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <hr/>
+    {% endif %}
 
     <div class="row">
         <div id="tabs">

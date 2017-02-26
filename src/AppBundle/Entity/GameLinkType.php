@@ -37,6 +37,13 @@ class GameLinkType {
     private $linkType;
 
     /**
+     * To string
+     */
+    public function __toString() {
+        return $this->linkType;
+    }
+
+    /**
      * Set id
      *
      * @param int $id
