@@ -9,6 +9,13 @@
 {{ include('layout/_flexslider.twig') }}
 {{ include('layout/_tabs.twig') }}
 
+<script>
+    $("#flipBoxart").click(function () {
+        $(".boxart").toggle();
+    {#            $("#book").toggle();#}
+        });
+</script>
+
 <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/fullcalendar.default-settings.js') }}"></script>

@@ -58,11 +58,23 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <p><strong>Boxart</strong></p>
+                    <p><strong>Boxart</strong>
+                        <a id="flipBoxart" class="btn btn-default pull-right">
+                            <i class="fa fa-repeat" aria-hidden="true"></i>
+                            Flip
+                        </a>
+                    </p> 
+
                     {% if game.BoxartFront | length == 0 %}
-                        <img class="img-responsive" src="{{ asset('images/generique.png') }}" alt="image" />
+                        <img class="img-responsive boxart" src="{{ asset('images/generique.png') }}" alt="image" />
                     {% else %}
-                        <img class="img-responsive" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
+                        <img class="img-responsive boxart" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
+                    {% endif %}
+
+                    {% if game.BoxartBack | length == 0 %}
+                        <img class="img-responsive boxart " src="{{ asset('images/generique.png') }}" alt="image" style="display:none"/>
+                    {% else %}
+                        <img class="img-responsive boxart" src="/images{{ asset(game.BoxartBack.linkThumb) }}" alt="image" style="display:none"/>
                     {% endif %}
                 </div>
             </div>
@@ -70,6 +82,14 @@
         </div>
         <div class="col-md-8">
             <div class="row">
+
+                {% if game.clearlogo %}
+                    <div class="col-md-12">
+                        <p><strong>Clearlogo</strong></p>
+                        <img class="img-responsive" src="/images{{ asset(game.clearlogo.linkFile) }}" alt="image" />
+                    </div>
+                {% endif %}
+
                 <div class="col-md-12">
                     <p><strong>Overview</strong></p>
                     <p>{{ game.overview }}</p>
