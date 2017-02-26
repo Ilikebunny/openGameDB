@@ -17,13 +17,20 @@
 
             <div class="row card_row">
                 <div class="col-xs-12">
-                    <h3 style="display:inline">{{ game.title }}</h3> <span class="label label-primary pull-right">{{ game.platform.name }}</span>
-                    {% if game.alternateTitles | length != 0 %}
-                        A.k.a.(s) :
-                    {% endif %}
-                    {% for alt in game.alternateTitles %}
-                        {{ alt.title }} |
-                    {% endfor %}
+                    <h3 style="display:inline">{{ game.title }}</h3>
+                    <span class="label label-primary pull-right">{{ game.platform.name }}</span>
+                </div>
+                <div class="col-xs-12">
+                    <p>
+                        <small>
+                            {% if game.alternateTitles | length != 0 %}
+                                A.k.a.(s) :
+                            {% endif %}
+                            {% for alt in game.alternateTitles %}
+                                | {{ alt.title }} |
+                            {% endfor %}
+                        </small>
+                    </p>
                 </div>
             </div>
             <div class="row card_row">
