@@ -3,12 +3,12 @@
 
     <div class="platorm_card row well">
         <div class="col-md-2">
-            <p class="text-center">Id : {{ game.id }}</p>
             {% if game.BoxartFront | length == 0 %}
                 <img class="img-responsive" src="{{ asset('images/generique.png') }}" alt="image" />
             {% else %}
                 <img class="img-responsive" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
             {% endif %}
+            <p class="text-center">Id : {{ game.id }}</p>
 
         </div>
 
