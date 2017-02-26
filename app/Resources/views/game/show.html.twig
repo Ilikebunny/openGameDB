@@ -208,8 +208,8 @@
     <div class="row">
         <div id="tabs">
             <ul>
-                <li><a href="#tabs-1">Fanarts</a></li>
-                <li><a href="#tabs-2">Screenshots</a></li>
+                <li><a href="#tabs-1">Fanarts <span class="badge">{{ game.Fanarts | length }}</span></a></li>
+                <li><a href="#tabs-2">Screenshots <span class="badge">{{ game.Screenshots | length }}</span></a></li>
             </ul>
             <div id="tabs-1">
                 {{ include('game/_fanart_slide.twig') }}
