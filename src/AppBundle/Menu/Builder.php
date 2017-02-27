@@ -20,7 +20,7 @@ class Builder implements ContainerAwareInterface {
 
         $menu->addChild('Games', array('route' => 'game'));
         $menu->addChild('Platforms', array('route' => 'platform'));
-        $menu->addChild('Stats', array('route' => 'homepage'));
+        $menu->addChild('Stats', array('route' => 'stats'));
         $menu->addChild('API', array('route' => 'homepage'));
         $menu->addChild('Add new game', array('route' => 'homepage', 'class' => 'label label-default vertical-align'));
 
@@ -57,6 +57,22 @@ class Builder implements ContainerAwareInterface {
         $menu->addChild('Browse', array('route' => 'platform'));
         $menu->addChild('Recently added', array('route' => 'homepage'));
         $menu->addChild('Recently updated', array('route' => 'homepage'));
+
+        return $menu;
+    }
+
+    public function subStatMenu(FactoryInterface $factory, array $options) {
+
+        $menu = $factory->createItem('root', array(
+            'childrenAttributes' => array(
+                'class' => 'nav nav-pills nav-justified',
+            ),
+        ));
+
+        $menu->addChild('Game', array('route' => 'stats_game'));
+        $menu->addChild('Platform', array('route' => 'homepage'));
+        $menu->addChild('Art', array('route' => 'homepage'));
+        $menu->addChild('Companies', array('route' => 'homepage'));
 
         return $menu;
     }
