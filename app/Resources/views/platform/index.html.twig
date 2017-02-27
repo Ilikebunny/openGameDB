@@ -57,7 +57,26 @@
         </div>
 
         <div class="col-md-6">
+            Sort by :
+            <table class="table table-striped table-hover table-bordered" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
 
+                        {% import "PetkoparaCrudGeneratorBundle::macros/th_sortable.html.twig" as macros %}
+                        <th>{{macros.th_sortable('id',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'platform')}}</th>
+                        <th>{{macros.th_sortable('name',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'platform')}}</th>
+                            {#                            <th>{{macros.th_sortable('overview',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'platform')}}</th>#}
+{#                        <th>{{macros.th_sortable('slug',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'platform')}}</th>#}
+                            {# <th>{{macros.th_sortable('cpu',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'platform')}}</th>
+                             <th>{{macros.th_sortable('memory',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'platform')}}</th>
+                             <th>{{macros.th_sortable('graphics',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'platform')}}</th>
+                             <th>{{macros.th_sortable('soundInfo',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'platform')}}</th>#}
+                            {#                            <th>{{macros.th_sortable('display',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'platform')}}</th>#}
+{#                        <th>{{macros.th_sortable('maxcontrollers',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'platform')}}</th>#}
+
+                    </tr>
+                </thead>
+            </table>
 
         </div>
 
@@ -98,15 +117,7 @@
         {{ include('platform/_card.twig') }}
 
         <div class="row">
-            <div class="col-md-4 pull-left">
-                <div class="pagination form-inline ">
-                    <select class = "form-control" name="bulk_action" >
-                        <option value="delete">DELETE</option>
-                    </select>
-                    <input type="submit" id='bulkSubmitBtn' onclick="return confirm('Are you sure?')" form="bulk_form" class="form-control btn btn-danger btn-sm" disabled>
-                </div>
-            </div>
-
+            
             <div class="col-md-6 col-md-offset-2 text-right">
                 {{ pagerHtml|raw }} 
             </div>
