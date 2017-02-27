@@ -70,9 +70,9 @@ class Builder implements ContainerAwareInterface {
         ));
 
         $menu->addChild('Game', array('route' => 'stats_game'));
-        $menu->addChild('Platform', array('route' => 'homepage'));
-        $menu->addChild('Art', array('route' => 'homepage'));
-        $menu->addChild('Companies', array('route' => 'homepage'));
+        $menu->addChild('Platform', array('route' => 'stats_platform'));
+        $menu->addChild('Art', array('route' => 'stats_art'));
+        $menu->addChild('Companies', array('route' => 'stats_company'));
 
         return $menu;
     }

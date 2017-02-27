@@ -56,4 +56,52 @@ class StatController extends Controller {
         ));
     }
 
+    /**
+     * Stats
+     *
+     * @Route("/platform", name="stats_platform")
+     * @Method("GET")
+     */
+    public function platformAction(Request $request) {
+        $breadcrumbs = $this->initBreadcrumbs();
+        $breadcrumbs->addRouteItem("Platform", "stats_platform");
+        return $this->render('stat/platform.twig', array(
+//                    'games' => $games,
+//                    'pagerHtml' => $pagerHtml,
+//                    'filterForm' => $filterForm->createView(),
+        ));
+    }
+
+    /**
+     * Stats
+     *
+     * @Route("/art", name="stats_art")
+     * @Method("GET")
+     */
+    public function artAction(Request $request) {
+        $breadcrumbs = $this->initBreadcrumbs();
+        $breadcrumbs->addRouteItem("Art", "stats_art");
+        return $this->render('stat/art.twig', array(
+//                    'games' => $games,
+//                    'pagerHtml' => $pagerHtml,
+//                    'filterForm' => $filterForm->createView(),
+        ));
+    }
+
+    /**
+     * Stats
+     *
+     * @Route("/company", name="stats_company")
+     * @Method("GET")
+     */
+    public function companyAction(Request $request) {
+        $breadcrumbs = $this->initBreadcrumbs();
+        $breadcrumbs->addRouteItem("Company", "stats_company");
+        return $this->render('stat/company.twig', array(
+//                    'games' => $games,
+//                    'pagerHtml' => $pagerHtml,
+//                    'filterForm' => $filterForm->createView(),
+        ));
+    }
+
 }

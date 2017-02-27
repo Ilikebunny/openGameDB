@@ -1,0 +1,14 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - platform index
+{% endblock %}
+
+{% block subNav %}
+    {{ knp_menu_render('AppBundle:Builder:subStatMenu', {'currentClass': 'active'}) }}
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}
+
