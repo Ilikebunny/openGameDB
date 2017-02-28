@@ -281,6 +281,24 @@ class GameController extends Controller {
     }
 
     /**
+     * Displays a form to edit an existing Game entity.
+     *
+     * @Route("/{id}/editArts", name="game_edit_arts")
+     * @Method({"GET", "POST"})
+     */
+    public function editArtAction(Request $request, Game $game) {
+        $breadcrumbs = $this->initBreadcrumbs();
+        $breadcrumbs->addRouteItem($game->getTitle(), "game_show", [
+            'id' => $game->getId(),
+        ]);
+        $breadcrumbs->addItem("EditArts");
+
+        return $this->render('game/edit_arts.twig', array(
+                    'game' => $game,
+        ));
+    }
+
+    /**
      * Deletes a Game entity.
      *
      * @Route("/{id}", name="game_delete")

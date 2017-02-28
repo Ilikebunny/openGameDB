@@ -28,6 +28,7 @@ class AppKernel extends Kernel {
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
+            new Oneup\UploaderBundle\OneupUploaderBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
