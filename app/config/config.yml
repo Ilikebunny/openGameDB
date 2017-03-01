@@ -164,3 +164,6 @@ oneup_uploader:
         screenshots:
             frontend: fineuploader
             root_folder: true
+        banners:
+            frontend: fineuploader
+            root_folder: true
