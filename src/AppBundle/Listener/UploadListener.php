@@ -23,11 +23,12 @@ class UploadListener {
         $file = $event->getFile();
 
         $request = $event->getRequest();
-        $idGame = $request->get('idGame');
+        $idGame = $request->get('idEntity');
+        $uploadType = $request->get('type');
 
         if ($idGame != "") {
             $file->move(
-                    "uploads/game/" . $idGame . "/" . $mappingName . "/", $file
+                    "uploads/game/" . $idGame . "/" . $uploadType . "/", $file
             );
         }
 
