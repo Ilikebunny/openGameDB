@@ -532,6 +532,10 @@ class Platform {
         return $this;
     }
 
+    public function getGameCount() {
+        return $this->games->count();
+    }
+
     /**
      * Remove game
      *

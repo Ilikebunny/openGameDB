@@ -17,6 +17,7 @@
             <div class="row card_row">
                 <div class="col-xs-12">
                     <h3>{{ platform.name }}</h3>
+                    Game(s) : <span class="badge">{{ platform.gameCount }}</span>
                     {% if platform.releases | length != 0 %}
                         A.k.a.(s) :
                     {% endif %}
