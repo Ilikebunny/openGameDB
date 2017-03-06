@@ -28,3 +28,6 @@ ancarebeca_fullcalendar:
 oneup_uploader:
     resource: .
     type: uploader
+    
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
