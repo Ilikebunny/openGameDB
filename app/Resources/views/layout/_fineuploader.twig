@@ -93,7 +93,8 @@
             endpoint: "{{ oneup_uploader_endpoint('screenshots') }}",
             params: {
                 idEntity: "{{ idEntity }}",
-                type: "{{ uploadType }}"
+                type: "{{ uploadType }}",
+                entityType: "{{ entityType }}"
             }
         },
         thumbnails: {

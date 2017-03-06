@@ -13,12 +13,12 @@
     <script src="{{ asset('assets/vendor/fineuploader/fine-uploader.min.js') }}"></script>
     {#    {% include 'layout/_fineuploader_template_manual.twig' with {'idEntity': game.id , 'uploadType': 'screenshots'} %}
         {% include 'layout/_fineuploader_game.twig' with {'idEntity': game.id, 'uploadType': 'screenshots'} %}#}
-    {% include 'layout/_fineuploader.twig' with {'idEntity': game.id, 'uploadType': 'SCREENSHOT', 'uploaderId': "1"} %}
-    {% include 'layout/_fineuploader.twig' with {'idEntity': game.id, 'uploadType': 'BANNER', 'uploaderId': "2"} %}
-    {% include 'layout/_fineuploader.twig' with {'idEntity': game.id, 'uploadType': 'FANART', 'uploaderId': "3"} %}
-    {% include 'layout/_fineuploader.twig' with {'idEntity': game.id, 'uploadType': 'CLEARLOGO', 'uploaderId': "4"} %}
-    {% include 'layout/_fineuploader.twig' with {'idEntity': game.id, 'uploadType': 'BOXART_front', 'uploaderId': "5"} %}
-    {% include 'layout/_fineuploader.twig' with {'idEntity': game.id, 'uploadType': 'BOXART_back', 'uploaderId': "6"} %}
+    {% include 'layout/_fineuploader.twig' with {'idEntity': game.id, 'entityType': 'game', 'uploadType': 'SCREENSHOT', 'uploaderId': "1"} %}
+    {% include 'layout/_fineuploader.twig' with {'idEntity': game.id, 'entityType': 'game', 'uploadType': 'BANNER', 'uploaderId': "2"} %}
+    {% include 'layout/_fineuploader.twig' with {'idEntity': game.id, 'entityType': 'game', 'uploadType': 'FANART', 'uploaderId': "3"} %}
+    {% include 'layout/_fineuploader.twig' with {'idEntity': game.id, 'entityType': 'game', 'uploadType': 'CLEARLOGO', 'uploaderId': "4"} %}
+    {% include 'layout/_fineuploader.twig' with {'idEntity': game.id, 'entityType': 'game', 'uploadType': 'BOXART_front', 'uploaderId': "5"} %}
+    {% include 'layout/_fineuploader.twig' with {'idEntity': game.id, 'entityType': 'game', 'uploadType': 'BOXART_back', 'uploaderId': "6"} %}
 {% endblock %}
 
 {% block body %}

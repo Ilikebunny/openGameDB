@@ -7,6 +7,7 @@ use Oneup\UploaderBundle\Event\PostPersistEvent;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Art;
 
 class UploadListener {
 
@@ -27,23 +28,43 @@ class UploadListener {
         $file = $event->getFile();
 
         $request = $event->getRequest();
-        $idGame = $request->get('idEntity');
+        $idEntity = $request->get('idEntity');
+        $entityType = $request->get('entityType');
         $uploadType = $request->get('type');
 
-        $destination = "uploads/game/" . $idGame . "/" . $uploadType . "/";
+        //replace uploads with web (symbolics links problem)
+        $destination = "uploads/" . $entityType . "/" . $idEntity . "/" . $uploadType . "/";
+        $destinationThumb = "thumb/my_thumb/" . $entityType . "/" . $idEntity . "/" . $uploadType . "/";
 
-        if ($idGame != "") {
+        if ($idEntity != "") {
             $file->move($destination, $file);
         }
 
         dump($file);
         dump($destination . $file->getFilename());
+        dump("entityType : ".$entityType);
 
-        //create thumb
-         $imagemanagerResponse = $this->container->get('liip_imagine.controller');
-         $imagemanagerResponse->filterAction(new Request(), $destination . $file->getFilename(),'my_thumb');
-        
+        //create thumb (todo : move in doctrine listener)
+        $imagemanagerResponse = $this->container->get('liip_imagine.controller');
+        $imagemanagerResponse->filterAction(new Request(), $destination . $file->getFilename(), 'my_thumb');
+
         //persist entity
+        $manager = $this->container->get('doctrine')->getEntityManager('default');
+        $myArt = new Art();
+
+        if ($entityType == "game") {
+            $entity2 = $manager->getRepository('AppBundle:Game')->findOneById($idEntity);
+            $myArt->setGame($entity2);
+        }
+
+        $myArt->setType($uploadType);
+        $myArt->setLinkFile($destination . $file->getFilename());
+        $myArt->setLinkThumb($destinationThumb . $file->getFilename());
+
+        $manager->persist($myArt);
+        $manager->flush();
+        $manager->clear();
+
         //if everything went fine
         $response = $event->getResponse();
         $response['success'] = true;
