@@ -157,8 +157,8 @@ fos_rest:
             - { path: '^/api', priorities: ['xml'], fallback_format: 'xml' }
             - { path: '^/', stop: true }
          
-nelmio_api_doc: ~
-
+nelmio_api_doc: 
+    name: OGDB API
 oneup_uploader:
     mappings:
         screenshots:

@@ -21,7 +21,7 @@ class Builder implements ContainerAwareInterface {
         $menu->addChild('Games', array('route' => 'game'));
         $menu->addChild('Platforms', array('route' => 'platform'));
         $menu->addChild('Stats', array('route' => 'stats'));
-        $menu->addChild('API', array('route' => 'homepage'));
+        $menu->addChild('API', array('route' => 'nelmio_api_doc_index'));
         $menu->addChild('Add new game', array('route' => 'homepage', 'class' => 'label label-default vertical-align'));
 
         return $menu;
