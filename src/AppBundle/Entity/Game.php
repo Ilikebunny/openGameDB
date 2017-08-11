@@ -92,6 +92,18 @@ class Game {
      * @Groups({"getGame"})
      */
     private $platform;
+    
+       /**
+     * @var \Platform
+     *
+     * @ORM\ManyToOne(targetEntity="GameRoot", inversedBy="games")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="gameroot_id", referencedColumnName="id")
+     * })
+     * @Expose
+     * @Groups({"getGame"})
+     */
+    private $gameRoot;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -701,4 +713,28 @@ class Game {
         return $myArts;
     }
 
+
+    /**
+     * Set gameRoot
+     *
+     * @param \AppBundle\Entity\GameRoot $gameRoot
+     *
+     * @return Game
+     */
+    public function setGameRoot(\AppBundle\Entity\GameRoot $gameRoot = null)
+    {
+        $this->gameRoot = $gameRoot;
+
+        return $this;
+    }
+
+    /**
+     * Get gameRoot
+     *
+     * @return \AppBundle\Entity\GameRoot
+     */
+    public function getGameRoot()
+    {
+        return $this->gameRoot;
+    }
 }

@@ -1,0 +1,50 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}
+{{ parent() }} - gameRoot
+{% endblock %}
+
+{% block body %}
+
+<div id="top" class="row">
+    <div class="page-header">
+        <h2>View gameRoot <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <p><strong>Id</strong></p>
+        <p>
+            {{ gameRoot.id }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Title</strong></p>
+        <p>
+            {{ gameRoot.title }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Overview</strong></p>
+        <p>
+            {{ gameRoot.overview }}
+        </p>
+
+    </div></div>
+
+<hr/>
+
+
+<div class="form-group">
+    <a class="btn btn-default" href="{{ path('gameroot') }}">
+        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+        Back to list
+    </a>
+</div>
+
+
+{% endblock %}
+
