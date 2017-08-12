@@ -241,6 +241,8 @@ class GameController extends Controller {
         $queryBuilder = $em->getRepository('AppBundle:Game')->getGameComplete($game->getId());
         $game = $queryBuilder->getQuery()->getResult()[0];
 
+//        dump($game);
+        
         $deleteForm = $this->createDeleteForm($game);
         return $this->render('game/show.html.twig', array(
                     'game' => $game,

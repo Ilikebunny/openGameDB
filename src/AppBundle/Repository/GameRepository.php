@@ -46,6 +46,8 @@ class GameRepository extends \Doctrine\ORM\EntityRepository {
                 ->addSelect('alt')
                 ->leftJoin($entityAlias . '.alternateTitles', 'alt')
                 ->addSelect('child')
+                ->leftJoin($entityAlias . '.gameRoot', 'root')
+                ->addSelect('root')
                 ->leftJoin($entityAlias . '.gameLinks_child', 'child')
                 ->addSelect('linkType')
                 ->leftJoin('child.type', 'linkType')
