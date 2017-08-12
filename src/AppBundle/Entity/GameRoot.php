@@ -50,6 +50,17 @@ class GameRoot {
     }
 
     /**
+     * Set id
+     *
+     * @param int $id
+     *
+     * @return Platform
+     */
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    /**
      * Set title
      *
      * @param string $title
@@ -96,8 +107,7 @@ class GameRoot {
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->games = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -108,8 +118,7 @@ class GameRoot {
      *
      * @return GameRoot
      */
-    public function addGame(\AppBundle\Entity\Game $game)
-    {
+    public function addGame(\AppBundle\Entity\Game $game) {
         $this->games[] = $game;
 
         return $this;
@@ -120,8 +129,7 @@ class GameRoot {
      *
      * @param \AppBundle\Entity\Game $game
      */
-    public function removeGame(\AppBundle\Entity\Game $game)
-    {
+    public function removeGame(\AppBundle\Entity\Game $game) {
         $this->games->removeElement($game);
     }
 
@@ -130,8 +138,8 @@ class GameRoot {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getGames()
-    {
+    public function getGames() {
         return $this->games;
     }
+
 }
