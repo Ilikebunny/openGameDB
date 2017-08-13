@@ -50,7 +50,7 @@ class Game {
     /**
      * @var string
      *
-     * @ORM\Column(name="overview", type="string", length=65535, nullable=true)
+     * @ORM\Column(name="overview", type="text", nullable=true)
      * @Expose
      * @Groups({"getGame"})
      */
@@ -92,8 +92,8 @@ class Game {
      * @Groups({"getGame"})
      */
     private $platform;
-    
-       /**
+
+    /**
      * @var \Platform
      *
      * @ORM\ManyToOne(targetEntity="GameRoot", inversedBy="games")
@@ -713,7 +713,6 @@ class Game {
         return $myArts;
     }
 
-
     /**
      * Set gameRoot
      *
@@ -721,8 +720,7 @@ class Game {
      *
      * @return Game
      */
-    public function setGameRoot(\AppBundle\Entity\GameRoot $gameRoot = null)
-    {
+    public function setGameRoot(\AppBundle\Entity\GameRoot $gameRoot = null) {
         $this->gameRoot = $gameRoot;
 
         return $this;
@@ -733,8 +731,8 @@ class Game {
      *
      * @return \AppBundle\Entity\GameRoot
      */
-    public function getGameRoot()
-    {
+    public function getGameRoot() {
         return $this->gameRoot;
     }
+
 }
