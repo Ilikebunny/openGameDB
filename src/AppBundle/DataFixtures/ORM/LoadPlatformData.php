@@ -45,7 +45,7 @@ class LoadPlatformData extends AbstractFixture implements OrderedFixtureInterfac
 //                $entity->setManufacturer($this->getReference($row[5]));
                 $entity->setCpu($row[6]);
                 $entity->setMemory($row[7]);
-                $entity->setGraphics($row[8]);
+                $entity->setGraphics(utf8_encode($row[8]));
                 $entity->setSoundInfo($row[9]);
                 $entity->setDisplay(utf8_encode($row[10]));
                 $entity->setMaxcontrollers($row[11]);
