@@ -37,10 +37,6 @@ class LoadGameData extends AbstractFixture implements OrderedFixtureInterface, C
                 $i = $i + 1;
                 $entity = new Game();
 
-//                var_dump($row[1]);
-//                var_dump($row[2]);
-//                var_dump($row[3]);
-
                 $entity2 = $this->getReference("Platform_" . trim($row[0]));
                 $entity->setPlatform($entity2);
 
