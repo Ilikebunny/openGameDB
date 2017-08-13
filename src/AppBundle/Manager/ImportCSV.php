@@ -48,6 +48,7 @@ class ImportCSV {
     public function TXT_to_String($filename) {
         $csvDirectory = $this->getDirectoryData();
         $content = file_get_contents($csvDirectory . $filename);
+        $content = utf8_encode($content);
         return $content;
     }
 
