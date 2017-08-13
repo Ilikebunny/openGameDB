@@ -38,7 +38,7 @@ class Generation {
     /**
      * @var string
      *
-     * @ORM\Column(name="overview", type="string", length=65535, nullable=true)
+     * @ORM\Column(name="overview", type="text", nullable=true)
      */
     private $overview;
 
