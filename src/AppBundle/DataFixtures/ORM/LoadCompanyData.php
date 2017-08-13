@@ -35,7 +35,7 @@ class LoadCompanyData extends AbstractFixture implements OrderedFixtureInterface
                 $i = $i + 1;
                 $entity = new Company();
 
-                $name =  utf8_encode($row[0]);
+                $name =  $row[0];
                 
                 $entity->setName($name);
 
