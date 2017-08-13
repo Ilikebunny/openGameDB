@@ -32,7 +32,7 @@ class ImportCSV {
         $csvContent = array();
         if (($handle = fopen($csvDirectory . $filename, "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 0, ";")) !== FALSE) {
-                $csvContent[$row] = $data;
+                $csvContent[$row] = utf8_encode($data);
                 $row++;
             }
             fclose($handle);
