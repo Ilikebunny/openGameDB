@@ -44,8 +44,11 @@ class LoadGameData extends AbstractFixture implements OrderedFixtureInterface, C
 
                 $text = html_entity_decode(htmlentities($row[2], ENT_IGNORE, "UTF-8"));
                 $entity->setTitle($text);
+                
+                var_dump($row[3]);
                 if ($row[3] != "") {
-                    $date = DateTime::createFromFormat('d/m/Y', $row[3]);
+//                    $date = DateTime::createFromFormat('d/m/Y', $row[3]);
+                    $date = DateTime::createFromFormat('Y-m-d', $row[3]);
 //                    $date = new \DateTime($row[3]);
                     $entity->setReleaseDate($date);
                 }
