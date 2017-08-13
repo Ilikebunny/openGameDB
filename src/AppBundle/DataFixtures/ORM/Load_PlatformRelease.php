@@ -9,6 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use AppBundle\Entity\PlatformRelease;
+use \Datetime;
 
 class Load_PlatformRelease extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface {
 
@@ -47,7 +48,7 @@ class Load_PlatformRelease extends AbstractFixture implements OrderedFixtureInte
                 $entity2 = $this->getReference("Platform_" . ($row[0]));
                 $entity->setName($row[1]);
                 if ($row[2] != "") {
-                    $date = new \DateTime($row[2]);
+                    $date = DateTime::createFromFormat('d/m/Y', $row[2]);
                     $entity->setReleaseDate($date);
                 }
                 $entity->setUnitSold($row[3]);
