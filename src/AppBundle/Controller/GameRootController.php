@@ -29,9 +29,12 @@ class GameRootController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('AppBundle:GameRoot')->createQueryBuilder('e');
+        $queryBuilder = $em->getRepository('AppBundle:GameRoot')->getList();
         
         list($filterForm, $queryBuilder) = $this->filter($queryBuilder, $request);
         list($gameRoots, $pagerHtml) = $this->paginator($queryBuilder, $request);
+        
+        dump($gameRoots);
         
         return $this->render('gameroot/index.html.twig', array(
             'gameRoots' => $gameRoots,

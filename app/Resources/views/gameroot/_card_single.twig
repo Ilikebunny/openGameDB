@@ -1,0 +1,105 @@
+
+<div class="platorm_card row">
+
+    <div class="col-md-12 well">
+
+        {# Game root#}
+        <div class="row card_row">
+            <div class="col-xs-12">
+                <h3 style="display:inline">{{ gameRoot.title }}</h3>
+                {# Game root Arts#}
+                <span class="label label-primary pull-right">
+                    | Fanart(s) : <span class="badge">{{ gameRoot.games[0].Fanarts | length }}</span>
+
+                    | Banner(s) : <span class="badge">{{ gameRoot.games[0].Banners | length }}</span>
+
+                    | Screenshot(s) : <span class="badge">{{ gameRoot.games[0].Screenshots | length }}</span>
+                </span>
+            </div>
+            <div class="col-xs-12">
+                <p>
+                    <small>
+                        {#      {% if game.alternateTitles | length != 0 %}
+                                  A.k.a.(s) :
+                              {% endif %}
+                              {% for alt in game.alternateTitles %}
+                                  | {{ alt.title }} |
+                              {% endfor %}#}
+                    </small>
+                </p>
+            </div>
+        </div>
+
+        {# Games #}
+        <div class="row card_row">
+            {% for game in gameRoot.games %}
+                <div class="col-md-2">
+                    {% if game.BoxartFront | length == 0 %}
+                        <img class="img-responsive" src="{{ asset('images/generique.png') }}" alt="image" />
+                    {% else %}
+                        <img class="img-responsive" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
+                    {% endif %}
+
+                    <div class="row card_row">
+                        <p class="text-center">Id : {{ game.id }}</p>
+                    </div>
+                    <div class="row card_row text-center">
+                        <span class="label label-primary text-center">{{ game.platform.name }}</span>
+                    </div>
+                    <div class="row card_row text-center">
+                        <a title='Show' class="btn btn-info btn-sm" href="{{ path('game_show', { 'id': game.id }) }}">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-10">
+                    {# Overview#}
+                    <div class="row card_row">
+                        {% if gameRoot.overview | length != 0 %}
+                            {{ gameRoot.overview | truncate(400) }}
+                        {% else %}
+                            {{ gameRoot.games[0].overview | truncate(400) }}
+                        {% endif %}
+                    </div>
+                    {# Arts #}
+                    <div class="row card_row">
+                        <div class="col-xs-12">
+                            Boxart front :
+                            {% if gameRoot.games[0].BoxartFront | length == 0 %}
+                                <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+                            {% else %}
+                                <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+                            {% endif %}
+
+                            | Boxart back :
+                            {% if gameRoot.games[0].BoxartBack | length == 0 %}
+                                <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+                            {% else %}
+                                <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+                            {% endif %}
+
+                            | Clearlogo :
+                            {% if gameRoot.games[0].Clearlogo | length == 0 %}
+                                <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+                            {% else %}
+                                <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+                            {% endif %}
+
+                            | Fanart(s) : <span class="badge">{{ gameRoot.games[0].Fanarts | length }}</span>
+
+                            | Banner(s) : <span class="badge">{{ gameRoot.games[0].Banners | length }}</span>
+
+                            | Screenshot(s) : <span class="badge">{{ gameRoot.games[0].Screenshots | length }}</span>
+
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
