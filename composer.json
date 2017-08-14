@@ -3,7 +3,9 @@
     "license": "MIT",
     "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
-    "autoload": {
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+	"autoload": {
         "psr-4": { "": "src/" },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
