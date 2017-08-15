@@ -187,3 +187,26 @@ liip_imagine :
                 # create a thumbnail: set size to 120x90 and use the "outbound" mode
                 # to crop the image when the size ratio of the input differs
                 thumbnail  : { size : [120, 90], mode : outbound }
+                
+doctrine_phpcr:
+    session:
+        backend:
+            type: doctrinedbal
+            # connection: default
+
+            # requires DoctrineCacheBundle
+            # caches:
+            #     meta: doctrine_cache.providers.phpcr_meta
+            #     nodes: doctrine_cache.providers.phpcr_nodes
+            # enable logging
+            logging: true
+            # enable profiling in the debug toolbar.
+            profiling: true
+        workspace: default
+        username: admin
+        password: admin
+        
+doctrine_phpcr:
+    odm:
+        auto_mapping: true
+        auto_generate_proxy_classes: "%kernel.debug%"
