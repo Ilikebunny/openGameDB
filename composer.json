@@ -4,6 +4,7 @@
     "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
     "minimum-stability": "dev",
+	"prefer-stable": true,
 	"autoload": {
         "psr-4": { "": "src/" },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
@@ -40,7 +41,8 @@
         "jackalope/jackalope-doctrine-dbal": "1.2.x-dev",
         "doctrine/phpcr-bundle": "^1.4@dev",
         "doctrine/phpcr-odm": "^1.4@dev",
-        "symfony-cmf/symfony-cmf": "2.0.0"
+        "symfony-cmf/symfony-cmf": "2.0.0",
+        "symfony-cmf/routing-auto-bundle": "2.0.0-rc2"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

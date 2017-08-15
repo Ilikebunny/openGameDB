@@ -9,7 +9,7 @@ fos_elastica:
             finder : ~
             types:
                 game:
-                    mappings:
+                    properties:
                         title : ~
                         alternateTitles:
                             type: "nested"
