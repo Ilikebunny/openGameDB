@@ -202,26 +202,47 @@ doctrine_phpcr:
             logging: true
             # enable profiling in the debug toolbar.
             profiling: true
+            caches:
+                meta: doctrine_cache.providers.phpcr_meta
+                nodes: doctrine_cache.providers.phpcr_nodes
         workspace: default
         username: admin
         password: admin
-        
-doctrine_phpcr:
     odm:
         auto_mapping: true
         auto_generate_proxy_classes: "%kernel.debug%"
-        
+   
 doctrine_cache:
     providers:
         phpcr_meta:
             type: file_system
         phpcr_nodes:
             type: file_system
+                
+cmf_core:
+    persistence:
+        phpcr:
+            enabled: true
+            
+sonata_block:
+    default_contexts: [sonata_page_bundle]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
 
-doctrine_phpcr:
-    session:
-        backend:
-            # ...
-            caches:
-                meta: doctrine_cache.providers.phpcr_meta
-                nodes: doctrine_cache.providers.phpcr_nodes
+        #sonata.admin_doctrine_orm.block.audit:
+        #    contexts:   [admin]
+
+        sonata.block.service.text:
+        sonata.block.service.rss:
+
+        # Some specific block from the SonataMediaBundle
+        #sonata.media.block.media:
+        #sonata.media.block.gallery:
+        #sonata.media.block.feature_media:
+
+        # Some block with different templates
+        #acme.demo.block.demo:
+        #    templates:
+        #       - { name: 'Simple', template: 'AcmeDemoBundle:Block:demo_simple.html.twig' }
+        #       - { name: 'Big',    template: 'AcmeDemoBundle:Block:demo_big.html.twig' }
