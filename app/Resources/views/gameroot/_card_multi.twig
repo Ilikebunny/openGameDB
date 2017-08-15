@@ -43,18 +43,24 @@
         {# Games #}
         <div class="row card_row">
             {% for game in gameRoot.games %}
-                <div class="col-md-2">
-                    {% if game.BoxartFront | length == 0 %}
-                        <img class="img-responsive" src="{{ asset('images/generique.png') }}" alt="image" />
-                    {% else %}
-                        <img class="img-responsive" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
-                    {% endif %}
+                <div class="col-md-3">
+
+                    <div class="card_img-wrapper">
+                        {% if game.BoxartFront | length == 0 %}
+                            <img class="img-responsive center-block" src="{{ asset('images/generique.png') }}" alt="image" />
+                        {% else %}
+                            <img class="img-responsive center-block" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
+                        {% endif %}
+                    </div>
 
                     <div class="row card_row">
                         <p class="text-center">Id : {{ game.id }}</p>
                     </div>
                     <div class="row card_row text-center">
                         <span class="label label-primary text-center">{{ game.platform.name }}</span>
+                    </div>
+                    <div class="row card_row text-center">
+                        <span class="label label-primary text-center">{{ game.releaseDate | date('Y-m-d') }}</span>
                     </div>
 
                     <div class="row card_row">

@@ -30,6 +30,19 @@ class AppKernel extends Kernel {
             new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            new Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle(),
+            new Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
+            //CMF
+            new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
+            new Symfony\Cmf\Bundle\CoreBundle\CmfCoreBundle(),
+            new Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
+            new Symfony\Cmf\Bundle\ContentBundle\CmfContentBundle(),
+            new Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
+            // Dependencies of the CmfMenuBundle
+//            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            // Dependencies of the CmfBlockBundle
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
