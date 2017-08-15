@@ -4,7 +4,6 @@
     "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
     "minimum-stability": "dev",
-    "prefer-stable": true,
 	"autoload": {
         "psr-4": { "": "src/" },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
@@ -14,7 +13,7 @@
     },
     "require": {
         "php": ">=5.5.9",
-        "symfony/symfony": "3.2.*",
+        "symfony/symfony": "3.2.2",
         "doctrine/orm": "^2.5",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-cache-bundle": "^1.2",
@@ -37,7 +36,11 @@
         "friendsofsymfony/jsrouting-bundle": "^1.6",
         "twig/extensions": "^1.4",
         "oneup/uploader-bundle": "^1.7",
-        "liip/imagine-bundle": "^1.7"
+        "liip/imagine-bundle": "^1.7",
+        "jackalope/jackalope-doctrine-dbal": "1.2.x-dev",
+        "doctrine/phpcr-bundle": "^1.4@dev",
+        "doctrine/phpcr-odm": "^1.4@dev",
+        "symfony-cmf/symfony-cmf": "2.0.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
@@ -59,11 +62,6 @@
         "post-update-cmd": [
             "@symfony-scripts"
         ]
-    },
-    "config": {
-        "platform": {
-            "php": "5.5.9"
-        }
     },
     "extra": {
         "symfony-app-dir": "app",
