@@ -210,3 +210,18 @@ doctrine_phpcr:
     odm:
         auto_mapping: true
         auto_generate_proxy_classes: "%kernel.debug%"
+        
+doctrine_cache:
+    providers:
+        phpcr_meta:
+            type: file_system
+        phpcr_nodes:
+            type: file_system
+
+doctrine_phpcr:
+    session:
+        backend:
+            # ...
+            caches:
+                meta: doctrine_cache.providers.phpcr_meta
+                nodes: doctrine_cache.providers.phpcr_nodes

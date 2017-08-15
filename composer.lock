@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e99f11580ec5db1d9d6048bc271a957",
+    "content-hash": "3edfd01e5744e81153c60aa304291252",
     "packages": [
         {
             "name": "ancarebeca/full-calendar-bundle",
@@ -5227,6 +5227,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "doctrine/doctrine-cache-bundle": 20,
         "friendsofsymfony/user-bundle": 20,
         "friendsofsymfony/elastica-bundle": 20,
         "jackalope/jackalope-doctrine-dbal": 20,
