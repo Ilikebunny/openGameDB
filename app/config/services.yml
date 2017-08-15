@@ -31,11 +31,3 @@ services:
         arguments: ["@doctrine.orm.entity_manager", "@service_container"]
         tags:
             - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
-            
-    app.phpcr.initializer:
-        class: Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer
-        arguments:
-            - My custom initializer
-            - ["/cms/pages", "/cms/posts", "/cms/routes"]
-        tags:
-            - { name: doctrine_phpcr.initializer }
