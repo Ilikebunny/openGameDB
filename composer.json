@@ -37,12 +37,7 @@
         "friendsofsymfony/jsrouting-bundle": "^1.6",
         "twig/extensions": "^1.4",
         "oneup/uploader-bundle": "^1.7",
-        "liip/imagine-bundle": "^1.7",
-        "jackalope/jackalope-doctrine-dbal": "1.2.x-dev",
-        "doctrine/phpcr-bundle": "^1.4@dev",
-        "doctrine/phpcr-odm": "^1.4@dev",
-        "symfony-cmf/symfony-cmf": "2.0.0",
-        "symfony-cmf/routing-auto-bundle": "2.0.0-rc2"
+        "liip/imagine-bundle": "^1.7"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
