@@ -187,3 +187,15 @@ liip_imagine :
                 # create a thumbnail: set size to 120x90 and use the "outbound" mode
                 # to crop the image when the size ratio of the input differs
                 thumbnail  : { size : [120, 90], mode : outbound }
+                
+doctrine_phpcr:
+   # configure the PHPCR session
+   session:
+       backend: "%phpcr_backend%"
+       workspace: "%phpcr_workspace%"
+       username: "%phpcr_user%"
+       password: "%phpcr_pass%"
+   # enable the ODM layer
+   odm:
+       auto_mapping: true
+       auto_generate_proxy_classes: "%kernel.debug%"

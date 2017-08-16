@@ -30,6 +30,9 @@ class AppKernel extends Kernel {
             new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            
+            //SYMFONY CMF
+            new Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -20,3 +20,10 @@ parameters:
 
     elastic_host : localhost
     elastic_port : 9200
+
+    phpcr_backend:
+        type: doctrinedbal
+        connection: default
+    phpcr_workspace: default
+    phpcr_user: admin
+    phpcr_pass: admin
