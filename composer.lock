@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "264f465c89fc385cbefc6c1a11a998d5",
+    "content-hash": "1c2631c5ac0aedcdf7ce4e7aa3a1d050",
     "packages": [
         {
             "name": "aferrandini/urlizer",
