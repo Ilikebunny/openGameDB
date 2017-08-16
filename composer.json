@@ -48,7 +48,8 @@
         "doctrine/data-fixtures": "^1.2",
         "symfony-cmf/routing-bundle": "^2.0",
         "sonata-project/admin-bundle": "3.x",
-        "symfony-cmf/block-bundle": "^2.0"
+        "symfony-cmf/block-bundle": "^2.0",
+        "symfony-cmf/symfony-cmf": "^2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
