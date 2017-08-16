@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c2631c5ac0aedcdf7ce4e7aa3a1d050",
+    "content-hash": "6eb51cb4b319439de6e29c4fb20341c2",
     "packages": [
         {
             "name": "aferrandini/urlizer",
@@ -4612,6 +4612,70 @@
             "time": "2017-05-01T15:54:03+00:00"
         },
         {
+            "name": "symfony-cmf/block-bundle",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony-cmf/block-bundle.git",
+                "reference": "8d2c0e335ba016e2fdfd8c47041f8d6bc02e8c96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony-cmf/block-bundle/zipball/8d2c0e335ba016e2fdfd8c47041f8d6bc02e8c96",
+                "reference": "8d2c0e335ba016e2fdfd8c47041f8d6bc02e8c96",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/phpcr-bundle": "^1.0",
+                "doctrine/phpcr-odm": "^1.4.2",
+                "php": "^5.6|^7.0",
+                "sonata-project/block-bundle": "^3.3",
+                "symfony-cmf/core-bundle": "^2.0",
+                "symfony/framework-bundle": "^2.8|^3.0"
+            },
+            "require-dev": {
+                "sonata-project/cache-bundle": "^2.1.3,<2.3",
+                "sonata-project/core-bundle": "^3.0",
+                "symfony-cmf/menu-bundle": "^2.0",
+                "symfony-cmf/testing": "^2.0",
+                "symfony/phpunit-bridge": "^3.2",
+                "twig/twig": "^1.14.2|^2.0"
+            },
+            "suggest": {
+                "eko/feedbundle": "When using the RssBlock",
+                "sonata-project/cache-bundle": "To add caching support for block loading"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Cmf\\Bundle\\BlockBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony CMF Community",
+                    "homepage": "https://github.com/symfony-cmf/BlockBundle/contributors"
+                }
+            ],
+            "description": "Symfony CMF Block Bundle",
+            "homepage": "http://cmf.symfony.com",
+            "keywords": [
+                "Symfony CMF",
+                "block",
+                "content fragments"
+            ],
+            "time": "2017-02-27T14:42:59+00:00"
+        },
+        {
             "name": "symfony-cmf/core-bundle",
             "version": "2.0.0",
             "source": {
@@ -6316,6 +6380,66 @@
                 "persistence"
             ],
             "time": "2015-11-04T21:23:23+00:00"
+        },
+        {
+            "name": "symfony-cmf/content-bundle",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony-cmf/content-bundle.git",
+                "reference": "0fb389d4669cefebc1b3f98889eb975b74a40245"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony-cmf/content-bundle/zipball/0fb389d4669cefebc1b3f98889eb975b74a40245",
+                "reference": "0fb389d4669cefebc1b3f98889eb975b74a40245",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6|^7.0",
+                "symfony-cmf/core-bundle": "^2.0",
+                "symfony-cmf/menu-bundle": "^2.0",
+                "symfony-cmf/routing-bundle": "^2.0",
+                "symfony/framework-bundle": "^2.8|^3.0"
+            },
+            "require-dev": {
+                "doctrine/phpcr-odm": "^1.4",
+                "symfony-cmf/testing": "^2.0",
+                "symfony/phpunit-bridge": "^3.2"
+            },
+            "suggest": {
+                "doctrine/phpcr-bundle": "To integrate PHPCR-ODM with Symfony",
+                "doctrine/phpcr-odm": "To persist content with the PHP content repository",
+                "friendsofsymfony/rest-bundle": "Improved handling for different output formats",
+                "symfony-cmf/sonata-admin-integration-bundle": "To provide admin interfaces for the content"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Cmf\\Bundle\\ContentBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony CMF Community",
+                    "homepage": "https://github.com/symfony-cmf/ContentBundle/contributors"
+                }
+            ],
+            "description": "Symfony CMF Content Bundle",
+            "homepage": "http://cmf.symfony.com",
+            "keywords": [
+                "Symfony CMF"
+            ],
+            "time": "2017-02-27T09:35:36+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",
