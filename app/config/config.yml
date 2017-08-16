@@ -191,7 +191,15 @@ liip_imagine :
 doctrine_phpcr:
    # configure the PHPCR session
    session:
-       backend: "%phpcr_backend%"
+       backend:
+           type: doctrinedbal
+           connection: default
+           logging: true
+           # enable profiling in the debug toolbar.
+           profiling: true   
+           caches:
+               meta: doctrine_cache.providers.phpcr_meta
+               nodes: doctrine_cache.providers.phpcr_nodes           
        workspace: "%phpcr_workspace%"
        username: "%phpcr_user%"
        password: "%phpcr_pass%"
@@ -199,3 +207,25 @@ doctrine_phpcr:
    odm:
        auto_mapping: true
        auto_generate_proxy_classes: "%kernel.debug%"
+
+doctrine_cache:
+    providers:
+        phpcr_meta:
+            type: file_system
+        phpcr_nodes:
+            type: file_system
+            
+cmf_routing:
+    chain:
+        routers_by_id:
+            cmf_routing.dynamic_router: 200
+            router.default: 100
+    dynamic:
+        enabled: true
+        persistence:
+            phpcr: true
+            
+cmf_routing_auto:
+    persistence:
+        phpcr:
+            enabled: true
