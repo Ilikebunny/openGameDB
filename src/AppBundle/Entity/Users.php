@@ -12,12 +12,16 @@ use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\MaxDepth;
+//BLOG
+use ED\BlogBundle\Interfaces\Model\BlogUserInterface;
+use ED\BlogBundle\Interfaces\Model\ArticleCommenterInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UsersRepository")
  */
-class Users extends BaseUser {
+class Users extends BaseUser implements BlogUserInterface, ArticleCommenterInterface {
 
     /**
      * @ORM\Id
@@ -54,6 +58,25 @@ class Users extends BaseUser {
      * })
      */
     protected $group;
+
+    /**
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $firstName;
+
+    /**
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $lastName;
+
+    /**
+     * Required by BlogUserInterface
+     *
+     * @ORM\Column(name="blog_display_name", type="string", nullable=true)
+     */
+    protected $blogDisplayName;
 
     public function __construct() {
         parent::__construct();
@@ -169,6 +192,52 @@ class Users extends BaseUser {
      */
     public function getModified() {
         return $this->modified;
+    }
+
+    public function getBlogDisplayName() {
+        return $this->blogDisplayName;
+    }
+
+    public function setBlogDisplayName($blogDisplayName) {
+        $this->blogDisplayName = $blogDisplayName;
+
+        return $this;
+    }
+
+    public function getCommenterDisplayName() {
+        return $this->blogDisplayName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstName() {
+        return $this->firstName;
+    }
+
+    /**
+     * @param mixed $firstName
+     * @return User
+     */
+    public function setFirstName($firstName) {
+        $this->firstName = $firstName;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastName() {
+        return $this->lastName;
+    }
+
+    /**
+     * @param mixed $lastName
+     * @return User
+     */
+    public function setLastName($lastName) {
+        $this->lastName = $lastName;
+        return $this;
     }
 
 }

@@ -9,6 +9,15 @@ security:
         ROLE_COORDINATEUR: ROLE_PUBLISHER
         ROLE_ADMIN:       ROLE_COORDINATEUR
 #        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    #BLOG
+        ROLE_BLOG_USER: ROLE_USER
+        ROLE_BLOG_CONTRIBUTOR: ROLE_PUBLISHER
+        ROLE_BLOG_AUTHOR: ROLE_PUBLISHER
+        ROLE_BLOG_EDITOR: ROLE_PUBLISHER
+        ROLE_BLOG_ADMIN:  [ROLE_BLOG_EDITOR, ROLE_BLOG_AUTHOR, ROLE_BLOG_CONTRIBUTOR, ROLE_BLOG_USER, ROLE_USER]
+
+        ROLE_SUPER_ADMIN: ROLE_BLOG_ADMIN    
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         fos_userbundle:

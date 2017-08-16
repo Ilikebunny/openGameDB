@@ -31,3 +31,26 @@ oneup_uploader:
     
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
+    
+#BLOG    
+gallery:
+    resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
+    prefix: /media/gallery
+
+media:
+    resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
+    prefix: /media
+
+ed_blog_admin_feed:
+    path:      /feed/{type}
+    defaults:  { _controller: EDBlogBundle:Backend/Feed:feed }
+
+ed_blog_frontend:
+    resource: "@EDBlogBundle/Controller/Frontend/"
+    type:     annotation
+    prefix:   /
+
+ed_blog:
+    resource: "@EDBlogBundle/Controller/Backend/"
+    type:     annotation
+    prefix:   /blog/admin/

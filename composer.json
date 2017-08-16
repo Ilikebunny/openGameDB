@@ -37,7 +37,9 @@
         "friendsofsymfony/jsrouting-bundle": "^1.6",
         "twig/extensions": "^1.4",
         "oneup/uploader-bundle": "^1.7",
-        "liip/imagine-bundle": "^1.7"
+        "liip/imagine-bundle": "^1.7",
+        "ed/blog-bundle": "dev-dev-symfony3",
+        "symfony/assetic-bundle": "^2.8"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

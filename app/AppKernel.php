@@ -30,6 +30,15 @@ class AppKernel extends Kernel {
             new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            //BLOG
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new ED\BlogBundle\EDBlogBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\MediaBundle\SonataMediaBundle(),
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new Eko\FeedBundle\EkoFeedBundle(),
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(), //will be generated later
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
