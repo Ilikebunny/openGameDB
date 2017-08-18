@@ -148,16 +148,32 @@ fos_user:
 
 white_october_breadcrumbs: ~
 
+#fos_rest:
+#    routing_loader:
+#        include_format: false
+#    view:
+#        view_response_listener: true
+#    format_listener:
+#        rules:
+#            - { path: '^/api', priorities: ['xml'], fallback_format: 'xml' }
+#            - { path: '^/', stop: true }
+#     
 fos_rest:
-    routing_loader:
-        include_format: false
     view:
-        view_response_listener: true
+        force_redirects:
+            html: true
+        formats:
+            json: true
+            xml: true
+        templating_formats:
+            html: true
+    allowed_methods_listener: true
+    access_denied_listener:
+        json: true
     format_listener:
         rules:
-            - { path: '^/api', priorities: ['xml'], fallback_format: 'xml' }
-            - { path: '^/', stop: true }
-         
+            - { path: ^/, priorities: ['html'], fallback_format: html, prefer_extension: false }
+            
 nelmio_api_doc: 
     name: OGDB API
 oneup_uploader:
@@ -208,6 +224,12 @@ doctrine_phpcr:
    odm:
        auto_mapping: true
        auto_generate_proxy_classes: "%kernel.debug%"
+       locales:
+           en: [fr]
+           fr: [en]
+            
+knp_menu:
+    twig: true
 
 doctrine_cache:
     providers:
@@ -223,20 +245,37 @@ cmf_core:
         phpcr:
             enabled: true
             
+#cmf_routing:
+#    chain:
+#        routers_by_id:
+#            cmf_routing.dynamic_router: 200
+#            router.default: 100
+#    dynamic:
+#        enabled: true
+#        persistence:
+#            phpcr: true
+#            
+#cmf_routing_auto:
+#    persistence:
+#        phpcr:
+#            enabled: true
 cmf_routing:
     chain:
         routers_by_id:
-            cmf_routing.dynamic_router: 200
+            cmf_routing.dynamic_router: 20
             router.default: 100
     dynamic:
-        enabled: true
-        persistence:
-            phpcr: true
-            
-cmf_routing_auto:
-    persistence:
-        phpcr:
-            enabled: true
+        route_collection_limit: 10
+        controllers_by_type:
+            demo_type: app.content_controller:typeAction
+        controllers_by_class:
+            AppBundle\Document\DemoClassContent: app.content_controller:classAction
+            Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Phpcr\RedirectRoute:  cmf_routing.redirect_controller:redirectAction
+
+        templates_by_class:
+            Symfony\Cmf\Bundle\ContentBundle\Doctrine\Phpcr\StaticContent: static_content/index.html.twig
+      
+
             
 #SONATA
 sonata_block:
@@ -255,10 +294,6 @@ sonata_block:
             cache: cmf.block.cache.js_async
             
 sonata_admin:
-#    dashboard:
-#        blocks:
-#            - { position: left, type: sonata_admin_doctrine_phpcr.tree_block }
-#            - { position: right, type: sonata.admin.block.admin_list }
     extensions:
         cmf_sonata_phpcr_admin_integration.core.extension.child:
             implements:
@@ -286,7 +321,47 @@ sonata_admin:
         cmf_sonata_phpcr_admin_integration.seo.extension.metadata:
             implements:
                 - Symfony\Cmf\Bundle\SeoBundle\SeoAwareInterface
-                            
+
+    templates:
+        layout:     admin/custom_layout.html.twig
+        user_block: admin/user_block.html.twig
+    dashboard:
+        blocks:
+            - { position: right, type: sonata.admin.block.admin_list }
+            - { position: left, type: sonata_admin_doctrine_phpcr.tree_block }
+        groups:
+            content:
+                label: Content
+                icon: '<i class="fa fa-file-text-o"></i>'
+                items:
+                    - cmf_sonata_phpcr_admin_integration.content.admin
+                    - cmf_sonata_phpcr_admin_integration.block.simple_admin
+                    - cmf_sonata_phpcr_admin_integration.block.container_admin
+                    - cmf_sonata_phpcr_admin_integration.block.reference_admin
+                    - cmf_sonata_phpcr_admin_integration.block.action_admin
+            routing:
+                label: URLs
+                icon: '<i class="fa fa-link"></i>'
+                items:
+                    - cmf_sonata_phpcr_admin_integration.routing.route_admin
+                    - cmf_sonata_phpcr_admin_integration.routing.redirect_route_admin
+            menu:
+                label: Menu
+                icon: '<i class="fa  fa-bars"></i>'
+                items:
+                    - cmf_sonata_phpcr_admin_integration.menu.menu_admin
+                    - cmf_sonata_phpcr_admin_integration.menu.node_admin
+
+
+cmf_seo:
+    title: 'OpenGameDB - %%content_title%%'
+    description: 'The Open Game DataBase. %%content_description%%'
+    alternate_locale: ~                            
+
+cmf_menu:
+    voters:
+        content_identity: ~
+        
 sonata_seo:
     page:
         title: OpenGameDB
@@ -294,21 +369,32 @@ sonata_seo:
             name:
                 keywords: 'OGDB, OpenGameDB'
 
-sonata_translation:
-    locales: '%locales%'
-    default_locale: '%locale%'
-    phpcr: true
-    
+#sonata_translation:
+#    locales: '%locales%'
+#    default_locale: '%locale%'
+#    phpcr: true
+#    
 ivory_ck_editor:
     configs:
         cmf_sonata_phpcr_admin_integration: { toolbar: standard }
-        
+  
+#sensio_framework_extra:
+#    router:  { annotations: true }
+#    request: { converters: true }
+    
+#sonata_doctrine_phpcr_admin:
+#    document_tree:
+#        routing_defaults: [locale]
+#        repository_name: default
+#        sortable_by: position
+
 sonata_doctrine_phpcr_admin:
+    templates:
+        form:
+            - admin/form_admin_fields.html.twig
     document_tree:
         routing_defaults: [locale]
-        repository_name: default
-        sortable_by: position
-
+        
 cmf_sonata_phpcr_admin_integration:
     bundles:
         seo: ~
@@ -321,13 +407,28 @@ cmf_sonata_phpcr_admin_integration:
             basepath: /cms/content
             menu_basepath: /cms/content
         routing: ~
-        
+
+#cmf_resource:
+##    description:
+##        enhancers: [sonata_phpcr_admin, cmf_tree_icons, doctrine_phpcr_position]
+#    repositories:
+#        default:
+#            type: doctrine/phpcr-odm
 cmf_resource:
-#    description:
-#        enhancers: [sonata_phpcr_admin, cmf_tree_icons, doctrine_phpcr_position]
+    description:
+        enhancers: [sonata_phpcr_admin, cmf_tree_icons, doctrine_phpcr_position]
     repositories:
         default:
             type: doctrine/phpcr-odm
+            
+cmf_tree_browser:
+    icons:
+        AppBundle\Document\DemoSeoContent: 'fa fa-file-text-o'
+        Sonata\BlockBundle\Model\BlockInterface: 'fa fa-cube'
+        Symfony\Cmf\Bundle\SeoBundle\Model\SeoMetadata: 'fa fa-search'
+        Symfony\Cmf\Bundle\MenuBundle\Model\MenuNode: 'fa fa-share-square-o'
+        Symfony\Cmf\Bundle\RoutingBundle\Model\Route: 'fa fa-link'
+        Symfony\Cmf\Bundle\RoutingBundle\Model\RedirectRoute: 'fa fa-reply'            
             
 #Locale
 lunetics_locale:
@@ -339,4 +440,5 @@ lunetics_locale:
         - browser
     allowed_locales:
         - en
-#        - fr
+        - fr
+
