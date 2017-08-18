@@ -53,15 +53,15 @@ class AppKernel extends Kernel {
             // CmfSonataPhpcrAdminIntegrationBundle
             new Symfony\Cmf\Bundle\SonataPhpcrAdminIntegrationBundle\CmfSonataPhpcrAdminIntegrationBundle(),
             // enable cmf bundles
-//            new Symfony\Cmf\Bundle\SeoBundle\CmfSeoBundle(),
+            new Symfony\Cmf\Bundle\SeoBundle\CmfSeoBundle(),
             new Symfony\Cmf\Bundle\ResourceRestBundle\CmfResourceRestBundle(),
             // language switcher
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
                 //ADDON
             new Sonata\SeoBundle\SonataSeoBundle(),
 //            new Sonata\TranslationBundle\SonataTranslationBundle(),
-//            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-//            new Burgov\Bundle\KeyValueFormBundle\BurgovKeyValueFormBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new Burgov\Bundle\KeyValueFormBundle\BurgovKeyValueFormBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

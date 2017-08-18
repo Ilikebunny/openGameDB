@@ -54,7 +54,10 @@
         "symfony-cmf/resource-bundle": "dev-master",
         "lunetics/locale-bundle": "^2.5",
         "sonata-project/translation-bundle": "^2.1",
-        "sonata-project/seo-bundle": "^2.2"
+        "sonata-project/seo-bundle": "^2.2",
+        "egeloen/ckeditor-bundle": "^6.0",
+        "symfony-cmf/seo-bundle": "^2.0",
+        "burgov/key-value-form-bundle": "@stable"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

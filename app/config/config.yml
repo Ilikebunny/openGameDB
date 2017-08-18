@@ -8,6 +8,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    locales: [en, fr]
 
 framework:
     #esi:             ~
@@ -252,47 +253,54 @@ sonata_block:
             cache: cmf.block.cache.js_async
             
 sonata_admin:
-    dashboard:
-        blocks:
-            - { position: left, type: sonata_admin_doctrine_phpcr.tree_block }
-            - { position: right, type: sonata.admin.block.admin_list }
-            
-#sonata_admin:
-#    extensions:
-#        cmf_sonata_phpcr_admin_integration.core.extension.child:
-#            implements:
-#                - Symfony\Cmf\Bundle\CoreBundle\Model\ChildInterface
-#        cmf_sonata_phpcr_admin_integration.core.extension.publish_workflow.time_period:
-#            implements:
-#                - Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface
-#        cmf_sonata_phpcr_admin_integration.core.extension.publish_workflow.publishable:
-#            implements:
-#                - Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface
-#        cmf_sonata_phpcr_admin_integration.menu.extension.menu_node_referrers:
-#            implements:
-#                - Symfony\Cmf\Bundle\MenuBundle\Model\MenuNodeReferrersInterface
-#        cmf_sonata_phpcr_admin_integration.menu.extension.menu_options:
-#            implements:
-#                - Symfony\Cmf\Bundle\MenuBundle\Model\MenuOptionsInterface
-#        cmf_sonata_phpcr_admin_integration.routing.extension.route_referrers:
-#            implements:
-#                - Symfony\Cmf\Component\Routing\RouteReferrersInterface
-#        cmf_sonata_phpcr_admin_integration.routing.extension.frontend_link:
-#            implements:
-#                - Symfony\Cmf\Component\Routing\RouteReferrersReadInterface
-#            extends:
-#                - Symfony\Component\Routing\Route
-#        cmf_sonata_phpcr_admin_integration.seo.extension.metadata:
-#            implements:
-#                - Symfony\Cmf\Bundle\SeoBundle\SeoAwareInterface
-                
+#    dashboard:
+#        blocks:
+#            - { position: left, type: sonata_admin_doctrine_phpcr.tree_block }
+#            - { position: right, type: sonata.admin.block.admin_list }
+    extensions:
+        cmf_sonata_phpcr_admin_integration.core.extension.child:
+            implements:
+                - Symfony\Cmf\Bundle\CoreBundle\Model\ChildInterface
+        cmf_sonata_phpcr_admin_integration.core.extension.publish_workflow.time_period:
+            implements:
+                - Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface
+        cmf_sonata_phpcr_admin_integration.core.extension.publish_workflow.publishable:
+            implements:
+                - Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface
+        cmf_sonata_phpcr_admin_integration.menu.extension.menu_node_referrers:
+            implements:
+                - Symfony\Cmf\Bundle\MenuBundle\Model\MenuNodeReferrersInterface
+        cmf_sonata_phpcr_admin_integration.menu.extension.menu_options:
+            implements:
+                - Symfony\Cmf\Bundle\MenuBundle\Model\MenuOptionsInterface
+        cmf_sonata_phpcr_admin_integration.routing.extension.route_referrers:
+            implements:
+                - Symfony\Cmf\Component\Routing\RouteReferrersInterface
+        cmf_sonata_phpcr_admin_integration.routing.extension.frontend_link:
+            implements:
+                - Symfony\Cmf\Component\Routing\RouteReferrersReadInterface
+            extends:
+                - Symfony\Component\Routing\Route
+        cmf_sonata_phpcr_admin_integration.seo.extension.metadata:
+            implements:
+                - Symfony\Cmf\Bundle\SeoBundle\SeoAwareInterface
+                            
 sonata_seo:
     page:
         title: OpenGameDB
         metas:
             name:
                 keywords: 'OGDB, OpenGameDB'
-                
+
+#sonata_translation:
+#    locales: '%locales%'
+#    default_locale: '%locale%'
+#    phpcr: true
+    
+ivory_ck_editor:
+    configs:
+        cmf_sonata_phpcr_admin_integration: { toolbar: standard }
+        
 sonata_doctrine_phpcr_admin:
     document_tree:
         routing_defaults: [locale]
@@ -301,7 +309,7 @@ sonata_doctrine_phpcr_admin:
 
 cmf_sonata_phpcr_admin_integration:
     bundles:
-#        seo: ~
+        seo: ~
         menu: ~
         core: ~
         content:
