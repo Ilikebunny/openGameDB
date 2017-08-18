@@ -53,7 +53,8 @@
         "symfony-cmf/sonata-phpcr-admin-integration-bundle": "^1.0@RC",
         "symfony-cmf/resource-bundle": "dev-master",
         "lunetics/locale-bundle": "^2.5",
-        "sonata-project/translation-bundle": "^2.1"
+        "sonata-project/translation-bundle": "^2.1",
+        "sonata-project/seo-bundle": "^2.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

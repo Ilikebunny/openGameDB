@@ -286,6 +286,13 @@ sonata_admin:
 #            implements:
 #                - Symfony\Cmf\Bundle\SeoBundle\SeoAwareInterface
                 
+sonata_seo:
+    page:
+        title: OpenGameDB
+        metas:
+            name:
+                keywords: 'OGDB, OpenGameDB'
+                
 sonata_doctrine_phpcr_admin:
     document_tree:
         routing_defaults: [locale]

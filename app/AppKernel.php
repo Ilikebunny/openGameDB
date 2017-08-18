@@ -58,7 +58,7 @@ class AppKernel extends Kernel {
             // language switcher
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
                 //ADDON
-//            new Sonata\SeoBundle\SonataSeoBundle(),
+            new Sonata\SeoBundle\SonataSeoBundle(),
 //            new Sonata\TranslationBundle\SonataTranslationBundle(),
 //            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
 //            new Burgov\Bundle\KeyValueFormBundle\BurgovKeyValueFormBundle(),
