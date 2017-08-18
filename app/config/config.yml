@@ -217,6 +217,8 @@ doctrine_cache:
             type: file_system
 
 cmf_core:
+    multilang:
+        locales: '%locales%'
     persistence:
         phpcr:
             enabled: true
@@ -292,10 +294,10 @@ sonata_seo:
             name:
                 keywords: 'OGDB, OpenGameDB'
 
-#sonata_translation:
-#    locales: '%locales%'
-#    default_locale: '%locale%'
-#    phpcr: true
+sonata_translation:
+    locales: '%locales%'
+    default_locale: '%locale%'
+    phpcr: true
     
 ivory_ck_editor:
     configs:

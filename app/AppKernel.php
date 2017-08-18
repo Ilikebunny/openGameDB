@@ -57,11 +57,14 @@ class AppKernel extends Kernel {
             new Symfony\Cmf\Bundle\ResourceRestBundle\CmfResourceRestBundle(),
             // language switcher
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
-                //ADDON
+            //ADDON
             new Sonata\SeoBundle\SonataSeoBundle(),
 //            new Sonata\TranslationBundle\SonataTranslationBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Burgov\Bundle\KeyValueFormBundle\BurgovKeyValueFormBundle(),
+            // block caching and feeds
+            new Sonata\CacheBundle\SonataCacheBundle(),
+            new Eko\FeedBundle\EkoFeedBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
