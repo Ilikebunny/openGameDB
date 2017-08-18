@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c6fb4718af9b0e82d00756cc6fa5158b",
+    "content-hash": "b663dd5379e4e07a0610637a0e336c62",
     "packages": [
         {
             "name": "aferrandini/urlizer",
@@ -2663,6 +2663,74 @@
             "time": "2017-05-09T14:18:19+00:00"
         },
         {
+            "name": "lunetics/locale-bundle",
+            "version": "2.5.3",
+            "target-dir": "Lunetics/LocaleBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lunetics/LocaleBundle.git",
+                "reference": "62a75ead1ca9be7a4338f5cf8e363c9b10ff844a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lunetics/LocaleBundle/zipball/62a75ead1ca9be7a4338f5cf8e363c9b10ff844a",
+                "reference": "62a75ead1ca9be7a4338f5cf8e363c9b10ff844a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "psr/log": "~1.0",
+                "symfony/framework-bundle": "^2.8|^3.0",
+                "symfony/intl": "^2.8|^3.0",
+                "symfony/validator": "^2.8|^3.0",
+                "symfony/yaml": "^2.8|^3.0"
+            },
+            "require-dev": {
+                "ext-intl": "*",
+                "symfony/form": "^2.8|^3.0",
+                "twig/twig": "1.*|2.*"
+            },
+            "suggest": {
+                "ext-intl": "Needed for displaying the country name in the locale language"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Lunetics\\LocaleBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lunetics",
+                    "homepage": "http://www.lunetics.com"
+                },
+                {
+                    "name": "Christophe Willesmen",
+                    "homepage": "http://christophewillemsen.com"
+                }
+            ],
+            "description": "A Bundle for switching Languages",
+            "keywords": [
+                "browser",
+                "bundle",
+                "cookie",
+                "language",
+                "locale",
+                "multilanguage",
+                "router"
+            ],
+            "time": "2016-06-29T06:36:59+00:00"
+        },
+        {
             "name": "michelf/php-markdown",
             "version": "1.7.0",
             "source": {
@@ -4497,6 +4565,82 @@
             "time": "2017-02-09T16:39:40+00:00"
         },
         {
+            "name": "sonata-project/translation-bundle",
+            "version": "2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sonata-project/SonataTranslationBundle.git",
+                "reference": "34538852a28ccfe835a95bb63ab4021243adaa82"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sonata-project/SonataTranslationBundle/zipball/34538852a28ccfe835a95bb63ab4021243adaa82",
+                "reference": "34538852a28ccfe835a95bb63ab4021243adaa82",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4 || ^7.0",
+                "sonata-project/admin-bundle": "^3.1",
+                "sonata-project/block-bundle": "^3.2",
+                "sonata-project/core-bundle": "^3.0",
+                "symfony/framework-bundle": "^2.3 || ^3.0",
+                "symfony/options-resolver": "^2.3 || ^3.0",
+                "twig/twig": "^1.23"
+            },
+            "conflict": {
+                "doctrine/phpcr-odm": ">=3.0",
+                "knplabs/doctrine-behaviors": "<1.0 || >=2.0",
+                "stof/doctrine-extensions-bundle": "<1.1 || >=2.0"
+            },
+            "require-dev": {
+                "knplabs/doctrine-behaviors": "^1.0",
+                "sllh/php-cs-fixer-styleci-bridge": "^2.0",
+                "stof/doctrine-extensions-bundle": "^1.1",
+                "symfony/phpunit-bridge": "^2.7 || ^3.0"
+            },
+            "suggest": {
+                "doctrine/phpcr-odm": "if you translate odm documents",
+                "knplabs/doctrine-behaviors": "if you translate orm entities with the knplabs behaviours",
+                "stof/doctrine-extensions-bundle": "if you translate orm entities with the gedmo extensions"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sonata\\TranslationBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Bastien",
+                    "email": "nbastien.pro@gmail.com",
+                    "homepage": "https://github.com/nicolas-bastien"
+                },
+                {
+                    "name": "Sonata Community",
+                    "homepage": "https://github.com/sonata-project/SonataTranslationBundle/contributors"
+                }
+            ],
+            "description": "SonataTranslationBundle",
+            "homepage": "http://sonata-project.org/bundles/translation",
+            "keywords": [
+                "i18n",
+                "translation"
+            ],
+            "time": "2017-04-04T09:13:00+00:00"
+        },
+        {
             "name": "stof/doctrine-extensions-bundle",
             "version": "v1.2.2",
             "source": {
@@ -4919,16 +5063,16 @@
         },
         {
             "name": "symfony-cmf/resource-bundle",
-            "version": "1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony-cmf/resource-bundle.git",
-                "reference": "146f3069d32ba4a437f9c0f2c48db6a044ccbd0b"
+                "reference": "7d403b0f5af7b6123e7873c479def9ba33ffcc02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/resource-bundle/zipball/146f3069d32ba4a437f9c0f2c48db6a044ccbd0b",
-                "reference": "146f3069d32ba4a437f9c0f2c48db6a044ccbd0b",
+                "url": "https://api.github.com/repos/symfony-cmf/resource-bundle/zipball/7d403b0f5af7b6123e7873c479def9ba33ffcc02",
+                "reference": "7d403b0f5af7b6123e7873c479def9ba33ffcc02",
                 "shasum": ""
             },
             "require": {
@@ -4969,7 +5113,7 @@
             ],
             "description": "Bundle which facilitates document resource location",
             "homepage": "http://cmf.symfony.com",
-            "time": "2017-03-25T10:40:36+00:00"
+            "time": "2017-07-17T07:25:46+00:00"
         },
         {
             "name": "symfony-cmf/resource-rest-bundle",
@@ -5318,6 +5462,82 @@
                 "urlize"
             ],
             "time": "2017-02-18T23:11:17+00:00"
+        },
+        {
+            "name": "symfony-cmf/sonata-phpcr-admin-integration-bundle",
+            "version": "1.0.0-RC3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony-cmf/sonata-phpcr-admin-integration-bundle.git",
+                "reference": "8e9f953cbb71d77af0509397680971a0addce2ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony-cmf/sonata-phpcr-admin-integration-bundle/zipball/8e9f953cbb71d77af0509397680971a0addce2ee",
+                "reference": "8e9f953cbb71d77af0509397680971a0addce2ee",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6|^7.0",
+                "sonata-project/admin-bundle": "^3.6.0",
+                "sonata-project/doctrine-phpcr-admin-bundle": "^2.0.0-RC4",
+                "symfony-cmf/tree-browser-bundle": "^2.0",
+                "symfony/framework-bundle": "^2.8|^3.0"
+            },
+            "require-dev": {
+                "burgov/key-value-form-bundle": "^1.0",
+                "doctrine/doctrine-bundle": "^1.3",
+                "doctrine/orm": "^2.4",
+                "doctrine/phpcr-odm": "^2.0",
+                "egeloen/ckeditor-bundle": "^4.0",
+                "matthiasnoback/symfony-config-test": "^1.3.1",
+                "matthiasnoback/symfony-dependency-injection-test": "~0.6",
+                "symfony-cmf/block-bundle": "^2.0",
+                "symfony-cmf/content-bundle": "^2.0",
+                "symfony-cmf/core-bundle": "^2.0",
+                "symfony-cmf/menu-bundle": "^2.0",
+                "symfony-cmf/routing-bundle": "^2.0",
+                "symfony-cmf/seo-bundle": "^2.0",
+                "symfony-cmf/testing": "^2.0",
+                "symfony/phpunit-bridge": "^3.2"
+            },
+            "suggest": {
+                "doctrine/doctrine-bundle": "To persist the metadata in ORM entities",
+                "doctrine/orm": "To persist the metadata in ORM entities, ~2.4",
+                "doctrine/phpcr-bundle": "To persist the metadata in PHPCR ODM documents",
+                "egeloen/ckeditor-bundle": "To have CkEditor support on textareas.",
+                "symfony-cmf/routing-bundle": "To make use of the alternate locale provider."
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Cmf\\Bundle\\SonataPhpcrAdminIntegrationBundle\\": "src/",
+                    "Symfony\\Cmf\\Bundle\\SonataPhpcrAdminIntegrationBundle\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony CMF Community",
+                    "homepage": "https://github.com/symfony-cmf/sonata-admin-bundle/contributors"
+                }
+            ],
+            "description": "Symfony CMF sonata admin implementations",
+            "homepage": "http://cmf.symfony.com",
+            "keywords": [
+                "Symfony CMF",
+                "admin",
+                "sonata"
+            ],
+            "time": "2017-07-31T16:31:04+00:00"
         },
         {
             "name": "symfony-cmf/symfony-cmf",
@@ -6566,7 +6786,9 @@
         "friendsofsymfony/user-bundle": 20,
         "friendsofsymfony/elastica-bundle": 20,
         "symfony-cmf/routing-auto-bundle": 20,
-        "sonata-project/doctrine-phpcr-admin-bundle": 20
+        "sonata-project/doctrine-phpcr-admin-bundle": 20,
+        "symfony-cmf/sonata-phpcr-admin-integration-bundle": 5,
+        "symfony-cmf/resource-bundle": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

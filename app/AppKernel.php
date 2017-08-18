@@ -39,6 +39,7 @@ class AppKernel extends Kernel {
             new Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
             new Symfony\Cmf\Bundle\ContentBundle\CmfContentBundle(),
             new Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
+            new Symfony\Cmf\Bundle\ResourceBundle\CmfResourceBundle(),
             //SONATA
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
@@ -46,6 +47,21 @@ class AppKernel extends Kernel {
 //            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             // Then add SonataAdminBundle
             new Sonata\AdminBundle\SonataAdminBundle(),
+            //SONATA PHPCR
+            new Symfony\Cmf\Bundle\TreeBrowserBundle\CmfTreeBrowserBundle(),
+            new Sonata\DoctrinePHPCRAdminBundle\SonataDoctrinePHPCRAdminBundle(),
+            // CmfSonataPhpcrAdminIntegrationBundle
+            new Symfony\Cmf\Bundle\SonataPhpcrAdminIntegrationBundle\CmfSonataPhpcrAdminIntegrationBundle(),
+            // enable cmf bundles
+//            new Symfony\Cmf\Bundle\SeoBundle\CmfSeoBundle(),
+            new Symfony\Cmf\Bundle\ResourceRestBundle\CmfResourceRestBundle(),
+            // language switcher
+            new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
+                //ADDON
+//            new Sonata\SeoBundle\SonataSeoBundle(),
+//            new Sonata\TranslationBundle\SonataTranslationBundle(),
+//            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+//            new Burgov\Bundle\KeyValueFormBundle\BurgovKeyValueFormBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

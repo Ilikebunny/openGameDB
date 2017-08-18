@@ -239,6 +239,87 @@ cmf_routing_auto:
 sonata_block:
     default_contexts: [cms]
     blocks:
-        # enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts:   [admin]
+        sonata.admin.block.search_result:
+            contexts:   [admin]
+        sonata_admin_doctrine_phpcr.tree_block:
+            settings:
+                id: '/cms'
+            contexts:   [admin]
+    blocks_by_class:
+        Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\RssBlock:
+            cache: cmf.block.cache.js_async
+            
+sonata_admin:
+    dashboard:
+        blocks:
+            - { position: left, type: sonata_admin_doctrine_phpcr.tree_block }
+            - { position: right, type: sonata.admin.block.admin_list }
+            
+#sonata_admin:
+#    extensions:
+#        cmf_sonata_phpcr_admin_integration.core.extension.child:
+#            implements:
+#                - Symfony\Cmf\Bundle\CoreBundle\Model\ChildInterface
+#        cmf_sonata_phpcr_admin_integration.core.extension.publish_workflow.time_period:
+#            implements:
+#                - Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface
+#        cmf_sonata_phpcr_admin_integration.core.extension.publish_workflow.publishable:
+#            implements:
+#                - Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface
+#        cmf_sonata_phpcr_admin_integration.menu.extension.menu_node_referrers:
+#            implements:
+#                - Symfony\Cmf\Bundle\MenuBundle\Model\MenuNodeReferrersInterface
+#        cmf_sonata_phpcr_admin_integration.menu.extension.menu_options:
+#            implements:
+#                - Symfony\Cmf\Bundle\MenuBundle\Model\MenuOptionsInterface
+#        cmf_sonata_phpcr_admin_integration.routing.extension.route_referrers:
+#            implements:
+#                - Symfony\Cmf\Component\Routing\RouteReferrersInterface
+#        cmf_sonata_phpcr_admin_integration.routing.extension.frontend_link:
+#            implements:
+#                - Symfony\Cmf\Component\Routing\RouteReferrersReadInterface
+#            extends:
+#                - Symfony\Component\Routing\Route
+#        cmf_sonata_phpcr_admin_integration.seo.extension.metadata:
+#            implements:
+#                - Symfony\Cmf\Bundle\SeoBundle\SeoAwareInterface
+                
+sonata_doctrine_phpcr_admin:
+    document_tree:
+        routing_defaults: [locale]
+        repository_name: default
+        sortable_by: position
+
+cmf_sonata_phpcr_admin_integration:
+    bundles:
+#        seo: ~
+        menu: ~
+        core: ~
+        content:
+           ivory_ckeditor:
+              config_name: cmf_sonata_phpcr_admin_integration
+        block:
+            basepath: /cms/content
+            menu_basepath: /cms/content
+        routing: ~
+        
+cmf_resource:
+#    description:
+#        enhancers: [sonata_phpcr_admin, cmf_tree_icons, doctrine_phpcr_position]
+    repositories:
+        default:
+            type: doctrine/phpcr-odm
+            
+#Locale
+lunetics_locale:
+    strict_mode: true
+    guessing_order:
+        - subdomain
+        - router
+        - cookie
+        - browser
+    allowed_locales:
+        - en
+#        - fr

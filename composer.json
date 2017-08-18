@@ -49,7 +49,11 @@
         "symfony-cmf/routing-bundle": "^2.0",
         "sonata-project/admin-bundle": "3.x",
         "symfony-cmf/block-bundle": "^2.0",
-        "symfony-cmf/symfony-cmf": "^2.0"
+        "symfony-cmf/symfony-cmf": "^2.0",
+        "symfony-cmf/sonata-phpcr-admin-integration-bundle": "^1.0@RC",
+        "symfony-cmf/resource-bundle": "dev-master",
+        "lunetics/locale-bundle": "^2.5",
+        "sonata-project/translation-bundle": "^2.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
