@@ -67,25 +67,7 @@ class GameController extends Controller {
     }
 
     /**
-     * Create filter form and process filter request.
-     * @Method({"GET", "POST"})
-     * penser à remettre en protected
-     */
-    public function search_formAction(Request $request) {
-
-        $filterForm = $this->createForm('AppBundle\Form\GameSearchType', null, array(
-            'action' => $this->generateUrl('game_search'),
-            'method' => 'GET',
-        ));
-
-        // render
-        return $this->render('game/searchbar.html.twig', [
-                    'form_search' => $filterForm->createView(),
-        ]);
-    }
-
-    /**
-     * Lists all Game entities.
+     * Search and list all Game entities.
      *
      * @Route("/search/{search_string}", name="game_search")
      * @Method({"GET", "POST"})
@@ -94,12 +76,9 @@ class GameController extends Controller {
         $breadcrumbs = $this->initBreadcrumbs();
         $breadcrumbs->addItem("Search");
 
-
-        if ($request->query->get('game_search') != "") {
-            $search_string = $request->query->get('game_search')['search'];
-        }
-
-        $finder = $this->container->get('fos_elastica.finder.opengamedb');
+        dump($search_string);
+        
+        $finder = $this->container->get('fos_elastica.finder.opengamedb.game');
 
         // Option 1. Returns all users who have example.net in any of their mapped fields
         $results = $finder->find($search_string, 320);
@@ -242,7 +221,7 @@ class GameController extends Controller {
         $game = $queryBuilder->getQuery()->getResult()[0];
 
 //        dump($game);
-        
+
         $deleteForm = $this->createDeleteForm($game);
         return $this->render('game/show.html.twig', array(
                     'game' => $game,

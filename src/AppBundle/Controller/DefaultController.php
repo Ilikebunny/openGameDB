@@ -17,7 +17,7 @@ class DefaultController extends Controller {
 
         // Option 1. Returns all users who have example.net in any of their mapped fields
         $results = $finder->find('Warhammer');
-        
+
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('AppBundle:Game')->getGameComplete(1);
         $game = $queryBuilder->getQuery()->getResult();

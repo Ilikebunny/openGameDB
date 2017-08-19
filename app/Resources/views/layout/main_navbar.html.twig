@@ -20,8 +20,9 @@
 
             {{ knp_menu_render('AppBundle:Builder:mainNavBarMenu', {'currentClass': 'active'}) }}
 
+            {# SearchBar #}
             <div class="navbar-form navbar-left">
-                {{ render(controller('AppBundle:Game:search_form')) }}
+                {{ render(controller('AppBundle:Search:search_form')) }}
             </div>
 
             <ul class="nav navbar-nav navbar-right">

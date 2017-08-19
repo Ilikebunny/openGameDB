@@ -1,0 +1,11 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block subNav %}
+    {{ knp_menu_render('AppBundle:Builder:subPlatformMenu', {'currentClass': 'active'}) }}
+{% endblock %}
+
+{% block body %}
+
+    {{ include('platform/_card.twig') }}
+
+{% endblock %}

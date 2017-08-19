@@ -8,21 +8,21 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class GameSearchType extends AbstractType {
+class SearchType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-        ->add('search', TextType::class, array(
+        ->add('searchstring', TextType::class, array(
         'attr' => array(
         'placeholder' => 'Search...',
         ))
         )
-        ->add('Type', ChoiceType::class, array(
+        ->add('type', ChoiceType::class, array(
         'choices' => array(
-        'Game' => null,
-        'Platform' => true,
-        'Company' => false,
-        'People' => false,
+        'Game' => 0,
+        'Platform' => 1,
+//        'Company' => 2,
+//        'People' => 3,
         )))
         ->add('Search', SubmitType::class)
         ;

@@ -24,3 +24,19 @@ fos_elastica:
                         finder: ~
                         provider: ~
                         listener: ~
+                platform :    
+                    properties:
+                        name : ~
+                        releases:
+                            type: "nested"
+                            properties:
+                                name: ~
+                                id: ~
+                    persistence:
+                        driver: orm
+                        model: AppBundle\Entity\Platform
+                        elastica_to_model_transformer:
+                            query_builder_method: createSearchQueryBuilder
+                        finder: ~
+                        provider: ~
+                        listener: ~                    
