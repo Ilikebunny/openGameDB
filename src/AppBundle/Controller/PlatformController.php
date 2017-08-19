@@ -289,7 +289,7 @@ class PlatformController extends Controller {
     }
 
     /**
-     * Search and list all Game entities.
+     * Search and list all Platform entities.
      *
      * @Route("/search/{search_string}", name="platform_search")
      * @Method({"GET", "POST"})
@@ -298,14 +298,17 @@ class PlatformController extends Controller {
 //        $breadcrumbs = $this->initBreadcrumbs();
 //        $breadcrumbs->addItem("Search");
 
-        dump($search_string);
+        if ($this->get('kernel')->getEnvironment() == 'dev')
+            dump($search_string);
 
         $finder = $this->container->get('fos_elastica.finder.opengamedb.platform');
 
         // Option 1. Returns all users who have example.net in any of their mapped fields
         $results = $finder->find($search_string, 320);
 
-        dump($results);
+        if ($this->get('kernel')->getEnvironment() == 'dev')
+            dump($results);
+
         // replace this example code with whatever you need
         return $this->render('platform/search.html.twig', [
                     'platforms' => $results,

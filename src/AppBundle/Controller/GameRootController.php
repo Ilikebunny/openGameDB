@@ -49,7 +49,8 @@ class GameRootController extends Controller {
      */
     public function searchAction(Request $request, $search_string = "") {
 
-        dump($search_string);
+        if ($this->get('kernel')->getEnvironment() == 'dev')
+            dump($search_string);
 
         $finder = $this->container->get('fos_elastica.finder.opengamedb.gameroot');
 
