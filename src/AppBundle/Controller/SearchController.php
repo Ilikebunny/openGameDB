@@ -47,7 +47,10 @@ class SearchController extends Controller {
 
         switch ($search_type) {
             case 0: //game
-                $response = $this->forward('AppBundle:Game:Search', array(
+//                $response = $this->forward('AppBundle:Game:Search', array(
+//                    'search_string' => $searchstring,
+//                ));
+                $response = $this->forward('AppBundle:GameRoot:Search', array(
                     'search_string' => $searchstring,
                 ));
                 break;

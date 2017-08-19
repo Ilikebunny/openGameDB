@@ -8,6 +8,27 @@ fos_elastica:
             client: default
             finder : ~
             types:
+                gameroot:
+                    properties:
+                        id : ~
+                        title : ~
+                        games:
+                            type: "nested"
+                            properties:
+                                title : ~
+                                alternateTitles:
+                                    type: "nested"
+                                    properties:
+                                        title: ~
+                                        id: ~
+                    persistence:
+                        driver: orm
+                        model: AppBundle\Entity\GameRoot
+                        elastica_to_model_transformer:
+                            query_builder_method: createSearchQueryBuilder
+                        finder: ~
+                        provider: ~
+                        listener: ~
                 game:
                     properties:
                         title : ~

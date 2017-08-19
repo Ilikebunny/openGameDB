@@ -1,0 +1,19 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - gameRoot index
+{% endblock %}
+
+{% block body %}
+
+    {% for gameRoot in gameRoots %}
+        {#        {% set games = gameRoot.games %}#}
+        {% if gameRoot.games | length == 1 %}
+            {{ include('gameroot/_card_single.twig') }}
+        {% else %}
+            {{ include('gameroot/_card_multi.twig') }}
+        {% endif %}
+    {% endfor %} 
+
+{% endblock %}
+
