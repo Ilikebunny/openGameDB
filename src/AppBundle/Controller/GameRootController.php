@@ -32,7 +32,8 @@ class GameRootController extends Controller {
         list($filterForm, $queryBuilder) = $this->filter($queryBuilder, $request);
         list($gameRoots, $pagerHtml) = $this->paginator($queryBuilder, $request);
 
-        dump($gameRoots);
+        if ($this->get('kernel')->getEnvironment() == 'dev')
+            dump($gameRoots);
 
         return $this->render('gameroot/index.html.twig', array(
                     'gameRoots' => $gameRoots,
