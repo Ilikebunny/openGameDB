@@ -315,4 +315,24 @@ class PlatformController extends Controller {
         ]);
     }
 
+    /**
+     * Create Navigation by generation and type
+     * @Method("POST")
+     */
+    public function nav_generationAction(Request $request) {
+
+        $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->getRepository('AppBundle:Generation')->getAllComplete();
+        $generations = $queryBuilder->getQuery()->getResult();
+
+        //Trace
+        if ($this->get('kernel')->getEnvironment() == 'dev')
+            dump($generations);
+        
+        //Render
+        return $this->render('platform/_nav_generation.twig', [
+                    'generations' => $generations,
+        ]);
+    }
+
 }

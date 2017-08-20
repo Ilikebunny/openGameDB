@@ -1,0 +1,11 @@
+
+<h3>Generation</h3>
+{% for generation in generations %}
+    <ul>
+        {{ generation.name }}
+
+        {% for platform in generation.platforms %}
+            <li>{{ platform.name }}</li>
+            {% endfor %}
+    </ul>
+{% endfor %}
