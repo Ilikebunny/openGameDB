@@ -155,8 +155,19 @@ class GameRootController extends Controller {
      * @Method("GET")
      */
     public function showAction(GameRoot $gameRoot) {
+        //Dump
+        if ($this->get('kernel')->getEnvironment() == 'dev') {
+            dump($gameRoot);
+        }
+        //Custom query
+        $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->getRepository('AppBundle:GameRoot')->getComplete($gameRoot->getId());
+        $gameRoot = $queryBuilder->getQuery()->getResult()[0];
+        $game = $gameRoot->getGames()[0];
+        //Render
         return $this->render('gameroot/show.html.twig', array(
                     'gameRoot' => $gameRoot,
+                    'game' => $game,
         ));
     }
 

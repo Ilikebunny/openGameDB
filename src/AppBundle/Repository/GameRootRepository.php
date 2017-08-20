@@ -68,4 +68,33 @@ class GameRootRepository extends \Doctrine\ORM\EntityRepository {
         return $qb;
     }
 
+    public function getComplete($idGameRoot) {
+        $entityAlias = "GameRoot";
+        $entityAlias2 = "game";
+        $qb = $this->createQueryBuilder($entityAlias)
+                ->addSelect('game')
+                ->join($entityAlias . '.games', 'game')
+                ->addSelect('pla')
+                ->join($entityAlias2 . '.platform', 'pla')
+                ->addSelect('dev')
+                ->leftJoin($entityAlias2 . '.developers', 'dev')
+                ->addSelect('pub')
+                ->leftJoin($entityAlias2 . '.publishers', 'pub')
+                ->addSelect('art')
+                ->leftJoin($entityAlias2 . '.arts', 'art')
+                ->addSelect('gen')
+                ->leftJoin($entityAlias2 . '.genres', 'gen')
+                ->addSelect('alt')
+                ->leftJoin($entityAlias2 . '.alternateTitles', 'alt')
+                ->addSelect('rat')
+                ->leftJoin($entityAlias2 . '.contentRatings', 'rat')
+                //WHERE
+                ->andWhere($entityAlias . '.id = ?1')
+                ->setParameter(1, $idGameRoot)
+        ;
+
+
+        return $qb;
+    }
+
 }

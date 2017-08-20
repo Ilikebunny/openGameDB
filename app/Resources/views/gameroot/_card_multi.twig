@@ -7,6 +7,10 @@
         <div class="row card_row">
             <div class="col-xs-12">
                 <h3 style="display:inline">{{ gameRoot.title }}</h3>
+{#                Bouton view#}
+                <a title='Show' class="btn btn-info btn-sm" href="{{ path('gameroot_show', { 'id': gameRoot.id }) }}">
+                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View
+                </a>
                 {# Game root Arts#}
                 <span class="label label-primary pull-right">
                     | Fanart(s) : <span class="badge">{{ gameRoot.games[0].Fanarts | length }}</span>
@@ -43,73 +47,8 @@
         {# Games #}
         <div class="row card_row">
             {% for game in gameRoot.games %}
-                <div class="col-md-3">
-
-                    <div class="card_img-wrapper">
-                        {% if game.BoxartFront | length == 0 %}
-                            <img class="img-responsive center-block" src="{{ asset('images/generique.png') }}" alt="image" />
-                        {% else %}
-                            <img class="img-responsive center-block" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
-                        {% endif %}
-                    </div>
-
-                    <div class="row card_row">
-                        <p class="text-center">Id : {{ game.id }}</p>
-                    </div>
-                    <div class="row card_row text-center">
-                        <span class="label label-primary text-center">{{ game.platform.name }}</span>
-                    </div>
-                    <div class="row card_row text-center">
-                        <span class="label label-primary text-center">{{ game.releaseDate | date('Y-m-d') }}</span>
-                    </div>
-
-                    <div class="row card_row">
-                        Boxart front :
-                        {% if game.BoxartFront | length == 0 %}
-                            <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
-                        {% else %}
-                            <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
-                        {% endif %}
-                    </div>
-
-                    <div class="row card_row">
-                        | Boxart back :
-                        {% if game.BoxartBack | length == 0 %}
-                            <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
-                        {% else %}
-                            <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
-                        {% endif %}
-                    </div>
-
-                    <div class="row card_row">
-                        | Clearlogo :
-                        {% if game.Clearlogo | length == 0 %}
-                            <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
-                        {% else %}
-                            <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
-                        {% endif %}
-                    </div>
-
-                    <div class="row card_row">
-                        | Fanart(s) : <span class="badge">{{ game.Fanarts | length }}</span>
-                    </div>
-
-                    <div class="row card_row">
-                        | Banner(s) : <span class="badge">{{ game.Banners | length }}</span>
-                    </div>
-
-                    <div class="row card_row">
-                        | Screenshot(s) : <span class="badge">{{ game.Screenshots | length }}</span>
-                    </div>
-
-                    <div class="row card_row text-center">
-                        <a title='Show' class="btn btn-info btn-sm" href="{{ path('game_show', { 'id': game.id }) }}">
-                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View
-                        </a>
-                    </div>
-                </div>
+                {{ include('game/_card_mini.twig') }}
             {% endfor %}
-
         </div>
 
     </div>
