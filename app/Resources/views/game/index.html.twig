@@ -11,8 +11,11 @@
 {% block body %}
 
     {{ include('game/_menu_top.twig') }}
-    {{ include('game/_card.twig') }}
 
+    {% for game in games %}
+        {{ include('game/_card_row.twig') }}
+    {% endfor %}
+    
     <div class="row">
         <div class="col-md-4 pull-left">
             <div class="pagination form-inline ">

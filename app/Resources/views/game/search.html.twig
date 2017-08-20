@@ -6,6 +6,8 @@
 
 {% block body %}
 
-    {{ include('game/_card.twig') }}
-    
+    {% for game in games %}
+        {{ include('game/_card_row.twig') }}
+    {% endfor %}
+
 {% endblock %}
