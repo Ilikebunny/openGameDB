@@ -13,16 +13,24 @@
     {#Game root section    #}
     <div id="top" class="row">
         <div class="col-md-12">
-            <h3>{{ gameRoot.id }} - {{ gameRoot.title }}
+            <h3>{{ gameRoot.title }}</h3>
+        </div>
+        <div class="col-md-12">
+             <p class="">Id : {{ gameRoot.id }}</p>
         </div>
     </div>
 
+   
     <hr>
 
     {#        Games listing#}
-    {% for game in gameRoot.games %}
-        {{ include('game/_card_mini.twig') }}
-    {% endfor %}
+    <div class="row">
+        <div class="col-md-12">
+            {{ include('gameroot/_accordion.twig') }}
+        </div>
+    </div>
+
+
 
     <hr>
 

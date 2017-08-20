@@ -35,7 +35,8 @@ class Builder implements ContainerAwareInterface {
             ),
         ));
 
-        $menu->addChild('Browse', array('route' => 'game'));
+        $menu->addChild('Browse Games', array('route' => 'gameroot'));
+        $menu->addChild('Browse Versions', array('route' => 'game'));
         $menu->addChild('Add', array('route' => 'homepage'));
         $menu->addChild('Top Rated', array('route' => 'homepage'));
         $menu->addChild('Recently added', array('route' => 'homepage'));
