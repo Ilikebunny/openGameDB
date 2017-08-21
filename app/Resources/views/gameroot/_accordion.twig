@@ -1,15 +1,20 @@
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
+    {% set panelId = gameRoot.id + "1" %}
+    {% set stat = " in" %} 
+    {# If stat = in then already collapsed, else stat = "" #}
     <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingOne">
+        <div class="panel-heading" role="tab" id="heading{{ panelId }}">
             <h4 class="panel-title">
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseExample">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse{{ panelId }}" aria-expanded="false" aria-controls="collapse{{ panelId }}">
+                    {# Custom code#}
                     Version(s) <span class="badge">{{ gameRoot.games | length }}</span>
                 </button>
             </h4>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div id="collapse{{ panelId }}" class="panel-collapse collapse{{ stat }}" role="tabpanel" aria-labelledby="heading{{ panelId }}">
             <div class="panel-body">
+                {# Custom code #}
                 {% for game in gameRoot.games %}
                     {{ include('game/_card_mini.twig') }}
                 {% endfor %}
@@ -17,32 +22,42 @@
         </div>
     </div>
 
+    {% set panelId = gameRoot.id + "2" %}
+    {% set stat = "" %}
+    {# If stat = in then already collapsed, else stat = "" #}
     <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingTwo">
+        <div class="panel-heading" role="tab" id="heading{{ panelId }}">
             <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse{{ panelId }}" aria-expanded="false" aria-controls="collapse{{ panelId }}">
+                    {# Custom code#}
                     Extension / DLC
-                </a>
+                </button>
             </h4>
         </div>
-        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div id="collapse{{ panelId }}" class="panel-collapse collapse{{ stat }}" role="tabpanel" aria-labelledby="heading{{ panelId }}">
             <div class="panel-body">
+                {# Custom code #}
 
             </div>
         </div>
     </div>
 
+    {% set panelId = gameRoot.id + "3" %}
+    {% set stat = "" %}
+    {# If stat = in then already collapsed, else stat = "" #}
     <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingThree">
+        <div class="panel-heading" role="tab" id="heading{{ panelId }}">
             <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse{{ panelId }}" aria-expanded="false" aria-controls="collapse{{ panelId }}">
+                    {# Custom code#}
                     Special Edition
-                </a>
+                </button>
             </h4>
         </div>
-        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+        <div id="collapse{{ panelId }}" class="panel-collapse collapse{{ stat }}" role="tabpanel" aria-labelledby="heading{{ panelId }}">
             <div class="panel-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                {# Custom code #}
+
             </div>
         </div>
     </div>
