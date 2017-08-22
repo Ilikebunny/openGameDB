@@ -50,7 +50,7 @@ class Game {
     /**
      * @var string
      *
-     * @ORM\Column(name="overview", type="string", length=65535, nullable=true)
+     * @ORM\Column(name="overview", type="text", nullable=true)
      * @Expose
      * @Groups({"getGame"})
      */
@@ -92,9 +92,9 @@ class Game {
      * @Groups({"getGame"})
      */
     private $platform;
-    
-       /**
-     * @var \Platform
+
+    /**
+     * @var \GameRoot
      *
      * @ORM\ManyToOne(targetEntity="GameRoot", inversedBy="games")
      * @ORM\JoinColumns({
@@ -104,6 +104,15 @@ class Game {
      * @Groups({"getGame"})
      */
     private $gameRoot;
+
+    /**
+     * @var \GameRoot
+     *
+     * @ORM\ManyToOne(targetEntity="GameVersionType", inversedBy="games")
+     * @Expose
+     * @Groups({"getGame"})
+     */
+    private $type;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -711,6 +720,28 @@ class Game {
                 $myArts[] = $art;
         }
         return $myArts;
+    }
+
+    /**
+     * Set gameRoot
+     *
+     * @param \AppBundle\Entity\GameRoot $gameRoot
+     *
+     * @return Game
+     */
+    public function setGameRoot(\AppBundle\Entity\GameRoot $gameRoot = null) {
+        $this->gameRoot = $gameRoot;
+
+        return $this;
+    }
+
+    /**
+     * Get gameRoot
+     *
+     * @return \AppBundle\Entity\GameRoot
+     */
+    public function getGameRoot() {
+        return $this->gameRoot;
     }
 
 }

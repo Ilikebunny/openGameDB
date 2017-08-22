@@ -94,7 +94,7 @@ class Game {
     private $platform;
 
     /**
-     * @var \Platform
+     * @var \GameRoot
      *
      * @ORM\ManyToOne(targetEntity="GameRoot", inversedBy="games")
      * @ORM\JoinColumns({
@@ -104,6 +104,18 @@ class Game {
      * @Groups({"getGame"})
      */
     private $gameRoot;
+
+    /**
+     * @var \GameRoot
+     *
+     * @ORM\ManyToOne(targetEntity="GameVersionType", inversedBy="games")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="gameversiontype_id", referencedColumnName="id", nullable=true)
+     * })
+     * @Expose
+     * @Groups({"getGame"})
+     */
+    private $type;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -733,6 +745,28 @@ class Game {
      */
     public function getGameRoot() {
         return $this->gameRoot;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \AppBundle\Entity\GameVersionType $type
+     *
+     * @return Game
+     */
+    public function setType(\AppBundle\Entity\GameVersionType $type = null) {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \AppBundle\Entity\GameVersionType
+     */
+    public function getType() {
+        return $this->type;
     }
 
 }
