@@ -68,6 +68,17 @@ class GameRootRepository extends \Doctrine\ORM\EntityRepository {
         return $qb;
     }
 
+    public function getSmallList() {
+        $entityAlias = "GameRoot";
+        $qb = $this->createQueryBuilder($entityAlias)
+                //ORDER BY
+                ->orderBy($entityAlias . '.title', 'ASC')
+        ;
+
+
+        return $qb;
+    }
+
     public function getComplete($idGameRoot) {
         $entityAlias = "GameRoot";
         $entityAlias2 = "game";

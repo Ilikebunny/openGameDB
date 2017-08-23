@@ -41,6 +41,13 @@ class GameRoot {
     protected $games;
 
     /**
+     * To string
+     */
+    public function __toString() {
+        return $this->title;
+    }
+
+    /**
      * Get id
      *
      * @return int

@@ -77,7 +77,7 @@ class GameController extends Controller {
         $breadcrumbs->addItem("Search");
 
         dump($search_string);
-        
+
         $finder = $this->container->get('fos_elastica.finder.opengamedb.game');
 
         // Option 1. Returns all users who have example.net in any of their mapped fields
@@ -258,6 +258,36 @@ class GameController extends Controller {
                     'game' => $game,
                     'edit_form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Displays a form to edit an existing Game entity.
+     *
+     * @Route("/editroot/{id}", name="game_edit_root")
+     * @Method({"GET", "POST"})
+     */
+    public function editRootAction(Request $request, Game $game) {
+        $breadcrumbs = $this->initBreadcrumbs();
+        $breadcrumbs->addRouteItem($game->getTitle(), "game_show", [
+            'id' => $game->getId(),
+        ]);
+        $breadcrumbs->addItem("Edit Root");
+
+        $editForm = $this->createForm('AppBundle\Form\GameEditRootType', $game);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($game);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add('success', 'Edited Successfully!');
+            return $this->redirectToRoute('game_edit', array('id' => $game->getId()));
+        }
+        return $this->render('game/edit_root.twig', array(
+                    'game' => $game,
+                    'edit_form' => $editForm->createView(),
         ));
     }
 
