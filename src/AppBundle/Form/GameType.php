@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+//Allow custom query
+use Doctrine\ORM\EntityRepository;
 
 class GameType extends AbstractType {
 
@@ -16,6 +18,18 @@ class GameType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
                 ->add('title')
+                ->add('type', EntityType::class, array(
+                    'class' => 'AppBundle\Entity\GameVersionType',
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->getSmallList();
+//                        return $er->createQueryBuilder('u')->orderBy('u.title', 'ASC');
+                    },
+                    'empty_data' => null,
+                    'required' => false,
+                    'attr' => array(
+                        'class' => 'chosen-select',
+                        'allow_single_deselect' => true,
+            )))
                 ->add('releaseDate')
                 ->add('overview')
 //                ->add('esrb')

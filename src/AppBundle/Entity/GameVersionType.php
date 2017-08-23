@@ -34,6 +34,13 @@ class GameVersionType {
     protected $games;
 
     /**
+     * To string
+     */
+    public function __toString() {
+        return $this->name;
+    }
+
+    /**
      * Get id
      *
      * @return int
