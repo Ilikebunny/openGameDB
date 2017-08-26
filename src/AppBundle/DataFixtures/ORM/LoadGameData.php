@@ -44,7 +44,7 @@ class LoadGameData extends AbstractFixture implements OrderedFixtureInterface, C
 
                 $text = html_entity_decode(htmlentities($row[2], ENT_IGNORE, "UTF-8"));
                 $entity->setTitle($text);
-                
+
                 var_dump($row[3]);
                 if ($row[3] != "") {
 //                    $date = DateTime::createFromFormat('d/m/Y', $row[3]);
@@ -63,6 +63,11 @@ class LoadGameData extends AbstractFixture implements OrderedFixtureInterface, C
 
                 $entity3 = $this->getReference("Game_Root" . trim($row[8]));
                 $entity->setGameRoot($entity3);
+
+                if ($row[10] != "") {
+                    $entity4 = $this->getReference("GameVersionType_" . trim($row[10]));
+                    $entity->setType($entity4);
+                }
 
                 $manager->getClassMetaData(get_class($entity))->setIdGenerator(new \Doctrine\ORM\Id\AssignedGenerator());
                 $manager->getClassMetaData(get_class($entity))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
