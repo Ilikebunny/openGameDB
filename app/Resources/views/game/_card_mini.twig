@@ -15,7 +15,11 @@
         <span class="label label-primary text-center">{{ game.platform.name }}</span>
     </div>
     <div class="row card_row text-center">
-        <span class="label label-primary text-center">{{ game.releaseDate | date('Y-m-d') }}</span>
+        {% if game.releaseDate is null %}
+            <span class="label label-primary text-center">N/C</span>
+        {% else %}
+            <span class="label label-primary text-center">{{ game.releaseDate | date('Y-m-d') }}</span>
+        {% endif %}
     </div>
 
     <div class="row card_row">
