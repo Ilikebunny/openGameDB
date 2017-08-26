@@ -8,14 +8,14 @@
             <h4 class="panel-title">
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse{{ panelId }}" aria-expanded="false" aria-controls="collapse{{ panelId }}">
                     {# Custom code#}
-                    Version(s) <span class="badge">{{ gameRoot.games | length }}</span>
+                    Version(s) <span class="badge">{{ gameRoot.games_version | length }}</span>
                 </button>
             </h4>
         </div>
         <div id="collapse{{ panelId }}" class="panel-collapse collapse{{ stat }}" role="tabpanel" aria-labelledby="heading{{ panelId }}">
             <div class="panel-body">
                 {# Custom code #}
-                {% for game in gameRoot.games %}
+                {% for game in gameRoot.games_version %}
                     {{ include('game/_card_mini.twig') }}
                 {% endfor %}
             </div>
@@ -50,14 +50,16 @@
             <h4 class="panel-title">
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse{{ panelId }}" aria-expanded="false" aria-controls="collapse{{ panelId }}">
                     {# Custom code#}
-                    Special Edition
+                    Special Edition <span class="badge">{{ gameRoot.games_edition | length }}</span>
                 </button>
             </h4>
         </div>
         <div id="collapse{{ panelId }}" class="panel-collapse collapse{{ stat }}" role="tabpanel" aria-labelledby="heading{{ panelId }}">
             <div class="panel-body">
                 {# Custom code #}
-
+                {% for game in gameRoot.games_edition %}
+                    {{ include('game/_card_mini.twig') }}
+                {% endfor %}
             </div>
         </div>
     </div>

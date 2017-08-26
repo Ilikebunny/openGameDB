@@ -149,4 +149,34 @@ class GameRoot {
         return $this->games;
     }
 
+    /**
+     * Get games
+     *
+     * @return \AppBundle\Entity\Art $art
+     */
+    public function getGames_Version() {
+        $myGames = Array();
+        foreach ($this->games as $game) {
+            if ($game->getType() == "") {
+                $myGames[] = $game;
+            }
+        }
+        return $myGames;
+    }
+
+    /**
+     * Get games
+     *
+     * @return \AppBundle\Entity\Art $art
+     */
+    public function getGames_Edition() {
+        $myGames = Array();
+        foreach ($this->games as $game) {
+            if ($game->getType() == "Special Edition") {
+                $myGames[] = $game;
+            }
+        }
+        return $myGames;
+    }
+
 }
