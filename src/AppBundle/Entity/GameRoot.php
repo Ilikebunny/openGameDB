@@ -3,6 +3,11 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * GameRoot
@@ -39,6 +44,13 @@ class GameRoot {
      * @ORM\OneToMany(targetEntity="Game", mappedBy="gameRoot")
      */
     protected $games;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Art", mappedBy="gameRoot")
+     * @Expose
+     * @Groups({"getGame"})
+     */
+    private $arts;
 
     /**
      * To string
@@ -177,6 +189,48 @@ class GameRoot {
             }
         }
         return $myGames;
+    }
+
+    /**
+     * Get arts
+     *
+     * @return Array
+     */
+    public function getFanarts() {
+        $myArts = Array();
+        foreach ($this->arts as $art) {
+            if ($art->getType() == "FANART")
+                $myArts[] = $art;
+        }
+        return $myArts;
+    }
+
+    /**
+     * Get arts
+     *
+     * @return Array
+     */
+    public function getBanners() {
+        $myArts = Array();
+        foreach ($this->arts as $art) {
+            if ($art->getType() == "BANNER")
+                $myArts[] = $art;
+        }
+        return $myArts;
+    }
+
+    /**
+     * Get Art
+     *
+     * @return \AppBundle\Entity\Art $art
+     */
+    public function getClearlogo() {
+        $myArt = null;
+        foreach ($this->arts as $art) {
+            if ($art->getType() == "CLEARLOGO")
+                $myArt = $art;
+        }
+        return $myArt;
     }
 
 }

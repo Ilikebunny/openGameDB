@@ -61,6 +61,12 @@ class Art {
     private $game;
 
     /**
+     * @ORM\ManyToOne(targetEntity="GameRoot", inversedBy="arts")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $gameRoot;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Platform", inversedBy="arts")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -185,4 +191,28 @@ class Art {
         return $this->platform;
     }
 
+
+    /**
+     * Set gameRoot
+     *
+     * @param \AppBundle\Entity\GameRoot $gameRoot
+     *
+     * @return Art
+     */
+    public function setGameRoot(\AppBundle\Entity\GameRoot $gameRoot = null)
+    {
+        $this->gameRoot = $gameRoot;
+
+        return $this;
+    }
+
+    /**
+     * Get gameRoot
+     *
+     * @return \AppBundle\Entity\GameRoot
+     */
+    public function getGameRoot()
+    {
+        return $this->gameRoot;
+    }
 }
