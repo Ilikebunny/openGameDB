@@ -10,43 +10,17 @@
 
 {% block body %}
 
+    {#    Banners#}
+    <div id="top" class="row">
+        <div class="col-md-12">
+            {{ include('gameroot/_banner_slide.twig') }}
+        </div>
+    </div>
+
     {#Game root section    #}
     <div id="top" class="row">
         <div class="col-md-12">
-            <h3>{{ gameRoot.title }}</h3>
-        </div>
-        <div class="col-md-12">
-            <p class="">Id : {{ gameRoot.id }}</p>
-        </div>
-    </div>
-
-
-    <hr>
-
-    {#        Games listing#}
-    <div class="row">
-        <div class="col-md-12">
-            {{ include('gameroot/_accordion.twig') }}
-        </div>
-    </div>
-
-
-
-    <hr>
-
-    {#    Game section#}
-
-    <div id="top" class="row">
-        <div class="col-md-12">
-            {{ include('game/_banner_slide.twig') }}
-        </div>
-    </div>
-
-
-    <div id="top" class="row">
-        <div class="col-md-12">
-
-            <h3>{{ game.id }} - {{ game.title }} <span class="label label-primary">{{ game.platform.name }}</span>
+            <h3>{{ gameRoot.title }}
 
                 <div class="form-group pull-right">
                     <a class="btn btn-default" href="{{ path('game') }}">
@@ -75,10 +49,14 @@
                                </form>#}
                 </div>
             </h3>
-
         </div>
+        {#        <div class="col-md-12">
+                    <p class="">Id : {{ gameRoot.id }}</p>
+                </div>#}
+    </div>
 
-        {% if game.alternateTitles | length != 0 %}
+    {% if game.alternateTitles | length != 0 %}
+        <div class="row">
             <div class="col-md-12">
                 <p>
                     <small>
@@ -89,34 +67,24 @@
                     </small>
                 </p>
             </div>
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
 
-    <hr/>
+    <hr>
 
     <div class="row">
         <div class="col-md-4">
-
+            {#Clearlogo#}
             <div class="row">
                 <div class="col-md-12">
-                    <p><strong>Boxart</strong>
-                        <a id="flipBoxart" class="btn btn-default pull-right">
-                            <i class="fa fa-repeat" aria-hidden="true"></i>
-                            Flip
-                        </a>
+                    <p><strong>Clearlogo</strong>
                     </p> 
                 </div>
                 <div class="col-md-12">
-                    {% if game.BoxartFront | length == 0 %}
-                        <img class="img-responsive boxart" src="{{ asset('images/generique.png') }}" alt="image" />
+                    {% if gameRoot.Clearlogo | length == 0 %}
+                        {#                        <img class="img-responsive boxart" src="{{ asset('images/generique.png') }}" alt="image" />#}
                     {% else %}
-                        <img class="img-responsive boxart" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
-                    {% endif %}
-
-                    {% if game.BoxartBack | length == 0 %}
-                        <img class="img-responsive boxart " src="{{ asset('images/generique.png') }}" alt="image" style="display:none"/>
-                    {% else %}
-                        <img class="img-responsive boxart" src="/images{{ asset(game.BoxartBack.linkThumb) }}" alt="image" style="display:none"/>
+                        <img class="img-responsive boxart" src="/images{{ asset(gameRoot.Clearlogo.linkFile) }}" alt="image" />
                     {% endif %}
                 </div>
             </div>
@@ -124,126 +92,50 @@
         </div>
         <div class="col-md-8">
             <div class="row">
-
-                {% if game.clearlogo %}
-                    <div class="col-md-12">
-                        <p><strong>Clearlogo</strong></p>
-                        <img class="img-responsive" src="/images{{ asset(game.clearlogo.linkFile) }}" alt="image" />
-                    </div>
-                {% endif %}
-
                 <div class="col-md-12">
-                    <p><strong>Overview</strong></p>
-                    <p>{{ game.overview }}</p>
-                </div>
-
-                <div class="col-md-6">
-                    <p><strong>Developper(s)</strong></p>
-                    <p>
-                        {% for company in game.developers %}
-                            <span class="label label-primary">{{ company.name }}</span>
-                        {% endfor %}  
-                    </p>
-
-                </div>
-
-                <div class="col-md-6">
-                    <p><strong>Publisher(s)</strong></p>
-                    <p>
-                        {% for company in game.publishers %}
-                            <span class="label label-primary">{{ company.name }}</span>
-                        {% endfor %}         
-                    </p>
-
-                </div>
-
-                <div class="col-md-6">
-                    <p><strong>Genre(s)</strong></p>
-                    <p>
-                        {% for genre in game.genres %}
-                            <span class="label label-primary">{{ genre.name }}</span>
-                        {% endfor %}  
-                    </p>
-
-                </div>
-
-                <div class="col-md-6">
-                    <p><strong>Content Rating(s)</strong></p>
-                    <p>
-                        {% for contentRating in game.contentRatings %}
-                            <span class="label label-primary">{{ contentRating.rating }}</span>
-                        {% endfor %}         
-                    </p>
-
-                </div>
-
-                <div class="col-md-6">
-                    <p><strong>Release date</strong></p>
-                    <p>
-                        {% if game.releaseDate %}{{ game.releaseDate|date('Y-m-d') }}{% endif %}
-                    </p>
-
-                </div>
-
-                <div class="col-md-6">
-                    <p><strong>Esrb</strong></p>
-                    <p>
-                        {{ game.esrb }}
-                    </p>
-
-                </div>
-                <div class="col-md-6">
-                    <p><strong>Players</strong></p>
-                    <p>
-                        {{ game.players }}
-                    </p>
-
-                </div>
-                <div class="col-md-6">
-                    <p><strong>Coop</strong></p>
-                    <p>
-                        {% if game.coop %}Yes{% else %}No{% endif %}
-                    </p>
-
+                    <p class=""><strong>Id : </strong>{{ gameRoot.id }}</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <hr/>
-
-    {% if game.GameLinksChild | length != 0 %}
-        <div class="table-responsive">
-            <table class="table">
-                <tr>
-                    <th>Link Type</th>
-                    <th>Link</th>
-                </tr>
-                {% for link in game.GameLinksChild %}
-                    <tr>
-                        <td> {{ link.type }}</td>
-                        <td>
-                            <span class="label label-primary">{{ link.gameParent.platform.name }}</span>
-                            {{ link.gameParent.title }}
-                            <a title='Show' class="btn btn-info btn-sm" href="{{ path('game_show', { 'id': link.gameParent.id }) }}">
-                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                            </a>
-                        </td> 
-                    </tr>
-                {% endfor %}
-            </table>
+    <div class="row">
+        <div class="col-md-12">
+            <p><strong>Overview</strong></p>
+            <p>{{ game.overview }}</p>
         </div>
-        <hr/>
-    {% endif %}
+        <div class="col-md-12">
+            <p><strong>Genre(s)</strong></p>
+            <p></p>
+        </div>
+        <div class="col-md-12">
+            <p><strong>Tag(s)</strong></p>
+            <p></p>
+        </div>
+    </div>
+    <hr>
+
+    {#        Games listing#}
+    <div class="row">
+        <div class="col-md-12">
+            {{ include('gameroot/_accordion.twig') }}
+        </div>
+    </div>
+
+    <hr>
+
+    {#    Game section#}
+
+    <hr/>
 
     <div class="row">
         <div id="tabs">
             <ul>
-                <li><a href="#tabs-1">Fanarts <span class="badge">{{ game.Fanarts | length }}</span></a></li>
+                <li><a href="#tabs-1">Fanarts <span class="badge">{{ gameRoot.Fanarts | length }}</span></a></li>
                 <li><a href="#tabs-2">Screenshots <span class="badge">{{ game.Screenshots | length }}</span></a></li>
             </ul>
             <div id="tabs-1">
-                {{ include('game/_fanart_slide.twig') }}
+                {{ include('gameroot/_fanart_slide.twig') }}
             </div>
             <div id="tabs-2">
                 {{ include('game/_screenshot_slide.twig') }}

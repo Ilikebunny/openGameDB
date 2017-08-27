@@ -23,43 +23,47 @@
     </div>
 
     <div class="row card_row">
-        Boxart front :
-        {% if game.BoxartFront | length == 0 %}
-            <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
-        {% else %}
-            <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
-        {% endif %}
+        <div class="col-md-6">
+            Boxart front :
+            {% if game.BoxartFront | length == 0 %}
+                <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+            {% else %}
+                <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            Boxart back :
+            {% if game.BoxartBack | length == 0 %}
+                <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+            {% else %}
+                <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+            {% endif %}
+        </div>
+        <div class="col-md-12 text-center">
+            Screenshot(s) : <span class="badge">{{ game.Screenshots | length }}</span>
+        </div>
     </div>
 
-    <div class="row card_row">
-        | Boxart back :
-        {% if game.BoxartBack | length == 0 %}
-            <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
-        {% else %}
-            <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
-        {% endif %}
-    </div>
+    {#   <div class="row card_row">
+           | Clearlogo :
+           {% if game.Clearlogo | length == 0 %}
+               <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+           {% else %}
+               <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+           {% endif %}
+       </div>
+   
+       <div class="row card_row">
+           | Fanart(s) : <span class="badge">{{ game.Fanarts | length }}</span>
+       </div>
+   
+       <div class="row card_row">
+           | Banner(s) : <span class="badge">{{ game.Banners | length }}</span>
+       </div>#}
 
-    <div class="row card_row">
-        | Clearlogo :
-        {% if game.Clearlogo | length == 0 %}
-            <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
-        {% else %}
-            <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
-        {% endif %}
-    </div>
-
-    <div class="row card_row">
-        | Fanart(s) : <span class="badge">{{ game.Fanarts | length }}</span>
-    </div>
-
-    <div class="row card_row">
-        | Banner(s) : <span class="badge">{{ game.Banners | length }}</span>
-    </div>
-
-    <div class="row card_row">
+  {#  <div class="row card_row">
         | Screenshot(s) : <span class="badge">{{ game.Screenshots | length }}</span>
-    </div>
+    </div>#}
 
     <div class="row card_row text-center">
         <a title='Show' class="btn btn-info btn-sm" href="{{ path('game_show', { 'id': game.id }) }}">

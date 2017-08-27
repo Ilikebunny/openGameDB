@@ -1,22 +1,25 @@
 
 <div class="platorm_card row">
 
+
     <div class="col-md-12 well">
 
         {# Game root#}
         <div class="row card_row">
             <div class="col-xs-12">
                 <h3 style="display:inline">{{ gameRoot.title }}</h3>
-{#                Bouton view#}
+                {#                Bouton view#}
                 <a title='Show' class="btn btn-info btn-sm" href="{{ path('gameroot_show', { 'id': gameRoot.id }) }}">
                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View
                 </a>
                 {# Game root Arts#}
                 <span class="label label-primary pull-right">
-                    | Fanart(s) : <span class="badge">{{ gameRoot.games[0].Fanarts | length }}</span>
+                    | Fanart(s) : <span class="badge">{{ gameRoot.Fanarts | length }}</span>
 
-                    | Banner(s) : <span class="badge">{{ gameRoot.games[0].Banners | length }}</span>
+                    | Banner(s) : <span class="badge">{{ gameRoot.Banners | length }}</span>
 
+                    | Clearlogo(s) : <span class="badge">{{ gameRoot.Clearlogo | length }}</span>
+                    
                     | Screenshot(s) : <span class="badge">{{ gameRoot.games[0].Screenshots | length }}</span>
                 </span>
             </div>
@@ -44,11 +47,10 @@
             </div>
         </div>
 
-        {# Games #}
-        <div class="row card_row">
-            {% for game in gameRoot.games %}
-                {{ include('game/_card_mini.twig') }}
-            {% endfor %}
+        <div class="row">
+            <div class="col-md-12">
+                {{ include('gameroot/_accordion.twig') }}
+            </div>
         </div>
 
     </div>
