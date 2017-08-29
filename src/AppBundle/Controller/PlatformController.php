@@ -369,7 +369,8 @@ class PlatformController extends Controller {
                 'nodes' => $nodes,
             );
         }
-        dump($tree);
+        if ($this->get('kernel')->getEnvironment() == 'dev')
+            dump($tree);
 
         //Render
         return $this->render('platform/_nav_generation.twig', [
