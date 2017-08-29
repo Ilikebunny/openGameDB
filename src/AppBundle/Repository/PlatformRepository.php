@@ -68,6 +68,14 @@ class PlatformRepository extends \Doctrine\ORM\EntityRepository {
                 ->leftJoin($entityAlias . '.manufacturers', 'man')
                 ->addSelect('art')
                 ->leftJoin($entityAlias . '.arts', 'art')
+                ->addSelect('typ')
+                ->leftJoin($entityAlias . '.type', 'typ')
+                ->addSelect('gen')
+                ->leftJoin($entityAlias . '.generation', 'gen')
+                //ORDER BY
+                ->addOrderBy('gen' . '.number', 'DESC')
+                ->addOrderBy('typ' . '.name', 'DESC')
+                ->addOrderBy($entityAlias . '.name', 'ASC')
         ;
 
 

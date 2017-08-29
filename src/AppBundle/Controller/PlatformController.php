@@ -93,8 +93,10 @@ class PlatformController extends Controller {
      */
     protected function paginator($queryBuilder, Request $request) {
         //sorting
-        $sortCol = $queryBuilder->getRootAlias() . '.' . $request->get('pcg_sort_col', 'id');
-        $queryBuilder->orderBy($sortCol, $request->get('pcg_sort_order', 'desc'));
+        if ($request->get('pcg_sort_col') != null) { //Default sort if not chosen
+            $sortCol = $queryBuilder->getRootAlias() . '.' . $request->get('pcg_sort_col', 'id');
+            $queryBuilder->orderBy($sortCol, $request->get('pcg_sort_order', 'desc'));
+        }
         // Paginator
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
