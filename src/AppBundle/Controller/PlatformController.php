@@ -328,10 +328,53 @@ class PlatformController extends Controller {
         //Trace
         if ($this->get('kernel')->getEnvironment() == 'dev')
             dump($generations);
-        
+
+        $tree = array();
+        foreach ($generations as $gen) {
+
+            //Type
+            $nodes_type_ref = "";
+
+            //Platforms
+            $nodes = array();
+
+            foreach ($gen->getPlatforms() as $plat) {
+
+                //If new type, add root
+                if ($plat->getType() != $nodes_type_ref) {
+                    $nodes_type_ref = $plat->getType()->getName();
+                    $nodes[] = array(
+                        'text' => $nodes_type_ref,
+                        'backColor' => "#000000",
+                        'href' => "#",
+                    );
+                }
+
+                //Url generation
+                $url = $this->generateUrl(
+                        'platform_show', array('id' => $plat->getId())
+                );
+
+                //Platform node
+                $nodes[] = array(
+                    'text' => $plat->getName(),
+                    'href' => $url,
+                );
+            }
+
+            //Generation
+            $tree[] = array(
+                'text' => "#" . $gen->getNumber() . " - " . $gen->getName(),
+                'tags' => array(count($gen->getPlatforms())),
+                'nodes' => $nodes,
+            );
+        }
+        dump($tree);
+
         //Render
         return $this->render('platform/_nav_generation.twig', [
                     'generations' => $generations,
+                    'tree' => $tree,
         ]);
     }
 

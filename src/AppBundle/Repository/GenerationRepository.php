@@ -22,8 +22,12 @@ class GenerationRepository extends \Doctrine\ORM\EntityRepository {
                 ->leftJoin($entityAlias2 . '.manufacturers', 'man')
                 ->addSelect('art')
                 ->leftJoin($entityAlias2 . '.arts', 'art')
+                ->addSelect('typ')
+                ->leftJoin($entityAlias2 . '.type', 'typ')
                 //ORDER BY
-                ->orderBy($entityAlias . '.number', 'DESC')
+                ->addOrderBy($entityAlias . '.number', 'DESC')
+                ->addOrderBy('typ'. '.name', 'DESC')
+                ->addOrderBy($entityAlias2 . '.name', 'ASC')
         ;
 
 

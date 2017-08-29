@@ -1,6 +1,42 @@
 
 <h3>Generation</h3>
-{% for generation in generations %}
+<div id="tree">
+
+
+    {#    {{ tree | json_encode() }}#}
+
+    {# {% for generation in generations %}
+         
+         <ul>
+             {{ generation.name }}
+ 
+             {% for platform in generation.platforms %}
+                 <li>{{ platform.name }}</li>
+                 {% endfor %}
+         </ul>
+     {% endfor %}#}
+
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        var tree = {{ tree | json_encode() | raw }};
+                $('#tree').treeview({
+            color: "#428bca",
+            expandIcon: "glyphicon glyphicon-plus",
+            collapseIcon: "glyphicon glyphicon-minus",
+{#            nodeIcon: "glyphicon glyphicon-user",#}
+            enableLinks: true,
+            showTags: true,
+            data: tree, // data is not optional
+            levels: 1
+    {#            backColor: 'blue'#}
+            });
+        });
+</script>
+
+
+{#{% for generation in generations %}
     <ul>
         {{ generation.name }}
 
@@ -8,4 +44,4 @@
             <li>{{ platform.name }}</li>
             {% endfor %}
     </ul>
-{% endfor %}
+{% endfor %}#}
