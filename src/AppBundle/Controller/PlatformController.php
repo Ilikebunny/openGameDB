@@ -348,6 +348,7 @@ class PlatformController extends Controller {
                     $nodes[] = array(
                         'text' => $nodes_type_ref,
                         'backColor' => "#000000",
+                        'icon' => "glyphicon glyphicon-arrow-down",
                         'href' => "#",
                     );
                 }
