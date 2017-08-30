@@ -347,7 +347,8 @@ class PlatformController extends Controller {
                     $nodes_type_ref = $plat->getType()->getName();
                     $nodes[] = array(
                         'text' => $nodes_type_ref,
-                        'backColor' => "#000000",
+                        'color' => "#ffffff",
+                        'backColor' => "#4286f4",
                         'icon' => "glyphicon glyphicon-arrow-down",
                         'href' => "#",
                     );
