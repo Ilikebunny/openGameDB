@@ -5,17 +5,28 @@
 
         {# Game root#}
         <div class="row card_row">
+            {# Title #}
             <div class="col-xs-12">
                 <h3 style="display:inline">{{ gameRoot.title }}</h3>
-                {# Game root Arts#}
-                <span class="label label-primary pull-right">
-                    | Fanart(s) : <span class="badge">{{ gameRoot.games[0].Fanarts | length }}</span>
-
-                    | Banner(s) : <span class="badge">{{ gameRoot.games[0].Banners | length }}</span>
-
-                    | Screenshot(s) : <span class="badge">{{ gameRoot.games[0].Screenshots | length }}</span>
-                </span>
             </div>
+            
+            {# Arts #}
+            <div class="col-xs-12">
+                
+                <span class="label label-primary">
+                    Fanart(s) : <span class="badge">{{ gameRoot.games[0].Fanarts | length }}</span>
+                </span>
+                
+                <span class="label label-primary">
+                    Banner(s) : <span class="badge">{{ gameRoot.games[0].Banners | length }}</span>
+                </span>
+                
+                <span class="label label-primary">
+                    Screenshot(s) : <span class="badge">{{ gameRoot.games[0].Screenshots | length }}</span>
+                </span>
+                
+            </div>
+
             <div class="col-xs-12">
                 <p>
                     <small>
