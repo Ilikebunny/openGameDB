@@ -39,28 +39,18 @@
                     {% else %}
                         <img class="img-responsive" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
                     {% endif %}
-
-                    <div class="row card_row">
-                        <p class="text-center">Id : {{ game.id }}</p>
-                    </div>
-                    <div class="row card_row text-center">
-                        <span class="label label-primary text-center">{{ game.platform.name }}</span>
-                    </div>
-                    <div class="row card_row text-center">
-                        <a title='Show' class="btn btn-info btn-sm" href="{{ path('game_show', { 'id': game.id }) }}">
-                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View
-                        </a>
-                    </div>
                 </div>
 
                 <div class="col-md-9">
                     {# Overview#}
                     <div class="row card_row">
-                        {% if gameRoot.overview | length != 0 %}
-                            {{ gameRoot.overview | truncate(400) }}
-                        {% else %}
-                            {{ gameRoot.games[0].overview | truncate(400) }}
-                        {% endif %}
+                        <div class="col-xs-12">
+                            {% if gameRoot.overview | length != 0 %}
+                                {{ gameRoot.overview | truncate(400) }}
+                            {% else %}
+                                {{ gameRoot.games[0].overview | truncate(400) }}
+                            {% endif %}
+                        </div>
                     </div>
                     {# Arts #}
                     <div class="row card_row">
@@ -92,6 +82,28 @@
 
                             | Screenshot(s) : <span class="badge">{{ gameRoot.games[0].Screenshots | length }}</span>
 
+                        </div>
+                    </div>
+
+                    <div class="row card_row">
+                        <div class="col-xs-12">
+                            <strong>Id (game) : </strong>{{ gameRoot.id }} 
+                            <strong>Id (version) : </strong>{{ gameRoot.games[0].id }} 
+                        </div>
+                    </div>
+                    <div class="row card_row">
+                        <div class="col-xs-12">
+                            <strong>Platform : </strong><span class="label label-primary text-center">{{ game.platform.name }}</span>
+                        </div>
+                    </div>
+                    <div class="row card_row">
+                        <div class="col-xs-12">
+                            <a title='Show' class="btn btn-info btn-sm" href="{{ path('game_show', { 'id': game.id }) }}">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View Game
+                            </a>
+                            <a title='Show' class="btn btn-info btn-sm" href="{{ path('game_show', { 'id': game.id }) }}">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View Version
+                            </a>
                         </div>
                     </div>
                 </div>
