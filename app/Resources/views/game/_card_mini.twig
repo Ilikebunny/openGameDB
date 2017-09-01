@@ -22,6 +22,20 @@
         {% endif %}
     </div>
 
+    <div class="row card_row text-center">
+        <strong>Dev : </strong>
+        {% for company in game.developers %}
+            <span class="label label-primary">{{ company.name }}</span>
+        {% endfor %}  
+    </div>
+
+    <div class="row card_row text-center">
+        <strong>Pub : </strong>
+        {% for company in game.publishers %}
+            <span class="label label-primary">{{ company.name }}</span>
+        {% endfor %}       
+    </div>
+
     <div class="row card_row">
         <div class="col-md-6">
             Boxart front :
@@ -61,9 +75,9 @@
            | Banner(s) : <span class="badge">{{ game.Banners | length }}</span>
        </div>#}
 
-  {#  <div class="row card_row">
-        | Screenshot(s) : <span class="badge">{{ game.Screenshots | length }}</span>
-    </div>#}
+    {#  <div class="row card_row">
+          | Screenshot(s) : <span class="badge">{{ game.Screenshots | length }}</span>
+      </div>#}
 
     <div class="row card_row text-center">
         <a title='Show' class="btn btn-info btn-sm" href="{{ path('game_show', { 'id': game.id }) }}">
