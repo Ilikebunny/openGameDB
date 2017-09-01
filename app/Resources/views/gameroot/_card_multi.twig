@@ -19,7 +19,7 @@
                     | Banner(s) : <span class="badge">{{ gameRoot.Banners | length }}</span>
 
                     | Clearlogo(s) : <span class="badge">{{ gameRoot.Clearlogo | length }}</span>
-                    
+
                     | Screenshot(s) : <span class="badge">{{ gameRoot.games[0].Screenshots | length }}</span>
                 </span>
             </div>
@@ -36,7 +36,7 @@
                 </p>
             </div>
         </div>
-        {# Overview#}
+        {# Overview #}
         <div class="row card_row">
             <div class="col-xs-12">
                 {% if gameRoot.overview | length != 0 %}
@@ -44,6 +44,16 @@
                 {% else %}
                     {{ gameRoot.games[0].overview | truncate(400) }}
                 {% endif %}
+            </div>
+        </div>
+
+        {# Genre #}
+        <div class="row card_row">
+            <div class="col-xs-12">
+                <strong>Genre(s) : </strong>
+                {% for genre in gameRoot.genres %}
+                    | {{ genre.name }} |
+                {% endfor %}
             </div>
         </div>
 

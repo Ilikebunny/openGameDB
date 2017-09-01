@@ -45,6 +45,13 @@ class Genre {
     private $games;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="GameRoot", mappedBy="genres")
+     */
+    private $gameroots;
+
+    /**
      * To string
      */
     public function __toString() {
@@ -120,4 +127,38 @@ class Genre {
         return $this->games;
     }
 
+
+    /**
+     * Add gameroot
+     *
+     * @param \AppBundle\Entity\GameRoot $gameroot
+     *
+     * @return Genre
+     */
+    public function addGameroot(\AppBundle\Entity\GameRoot $gameroot)
+    {
+        $this->gameroots[] = $gameroot;
+
+        return $this;
+    }
+
+    /**
+     * Remove gameroot
+     *
+     * @param \AppBundle\Entity\GameRoot $gameroot
+     */
+    public function removeGameroot(\AppBundle\Entity\GameRoot $gameroot)
+    {
+        $this->gameroots->removeElement($gameroot);
+    }
+
+    /**
+     * Get gameroots
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGameroots()
+    {
+        return $this->gameroots;
+    }
 }

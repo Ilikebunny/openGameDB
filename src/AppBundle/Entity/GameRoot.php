@@ -53,6 +53,23 @@ class GameRoot {
     private $arts;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="gameroots")
+     * @ORM\JoinTable(name="game_root_genre",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="game_root_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="genre_id", referencedColumnName="id")
+     *   }
+     * )
+     * @Expose
+     * @Groups({"getGame"})
+     */
+    private $genres;
+
+    /**
      * To string
      */
     public function __toString() {
@@ -162,6 +179,37 @@ class GameRoot {
     }
 
     /**
+     * Add genre
+     *
+     * @param \AppBundle\Entity\Genre $genre
+     *
+     * @return Game
+     */
+    public function addGenre(\AppBundle\Entity\Genre $genre) {
+        $this->genres[] = $genre;
+
+        return $this;
+    }
+
+    /**
+     * Remove genre
+     *
+     * @param \AppBundle\Entity\Genre $genre
+     */
+    public function removeGenre(\AppBundle\Entity\Genre $genre) {
+        $this->genres->removeElement($genre);
+    }
+
+    /**
+     * Get genres
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGenres() {
+        return $this->genres;
+    }
+
+    /**
      * Get games
      *
      * @return \AppBundle\Entity\Art $art
@@ -233,4 +281,38 @@ class GameRoot {
         return $myArt;
     }
 
+
+    /**
+     * Add art
+     *
+     * @param \AppBundle\Entity\Art $art
+     *
+     * @return GameRoot
+     */
+    public function addArt(\AppBundle\Entity\Art $art)
+    {
+        $this->arts[] = $art;
+
+        return $this;
+    }
+
+    /**
+     * Remove art
+     *
+     * @param \AppBundle\Entity\Art $art
+     */
+    public function removeArt(\AppBundle\Entity\Art $art)
+    {
+        $this->arts->removeElement($art);
+    }
+
+    /**
+     * Get arts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArts()
+    {
+        return $this->arts;
+    }
 }

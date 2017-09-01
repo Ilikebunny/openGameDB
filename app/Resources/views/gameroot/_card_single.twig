@@ -9,22 +9,22 @@
             <div class="col-xs-12">
                 <h3 style="display:inline">{{ gameRoot.title }}</h3>
             </div>
-            
+
             {# Arts #}
             <div class="col-xs-12">
-                
+
                 <span class="label label-primary">
                     Fanart(s) : <span class="badge">{{ gameRoot.games[0].Fanarts | length }}</span>
                 </span>
-                
+
                 <span class="label label-primary">
                     Banner(s) : <span class="badge">{{ gameRoot.games[0].Banners | length }}</span>
                 </span>
-                
+
                 <span class="label label-primary">
                     Screenshot(s) : <span class="badge">{{ gameRoot.games[0].Screenshots | length }}</span>
                 </span>
-                
+
             </div>
 
             <div class="col-xs-12">
@@ -105,6 +105,15 @@
                     <div class="row card_row">
                         <div class="col-xs-12">
                             <strong>Platform : </strong><span class="label label-primary text-center">{{ game.platform.name }}</span>
+                        </div>
+                    </div>
+                    {# Genre #}
+                    <div class="row card_row">
+                        <div class="col-xs-12">
+                            <strong>Genre(s) : </strong>
+                            {% for genre in gameRoot.genres %}
+                                | {{ genre.name }} |
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="row card_row">
