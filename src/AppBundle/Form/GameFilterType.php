@@ -30,10 +30,10 @@ class GameFilterType extends AbstractType {
 //                    'class' => 'AppBundle\Entity\Company',
 //                    'choice_label' => 'name',
 //            )) 
-//            ->add('genres', Filters\EntityFilterType::class, array(
-//                    'class' => 'AppBundle\Entity\Genre',
-//                    'choice_label' => 'name',
-//            )) 
+            ->add('genres', Filters\EntityFilterType::class, array(
+                    'class' => 'AppBundle\Entity\Genre',
+                    'choice_label' => 'name',
+            )) 
                 ->add('contentRatings', Filters\EntityFilterType::class, array(
                     'class' => 'AppBundle\Entity\ContentRating',
                     'choice_label' => 'rating',

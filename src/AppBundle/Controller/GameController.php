@@ -40,6 +40,9 @@ class GameController extends Controller {
         list($filterForm, $queryBuilder) = $this->filter($queryBuilder, $request);
         list($games, $pagerHtml) = $this->paginator($queryBuilder, $request);
 
+        if ($this->get('kernel')->getEnvironment() == 'dev')
+            dump($games);
+
         return $this->render('game/index.html.twig', array(
                     'games' => $games,
                     'pagerHtml' => $pagerHtml,

@@ -38,6 +38,13 @@
         </div>
         <div class="row card_row">
             <div class="col-xs-12">
+                {% for genre in game.genres %}
+                    | {{ genre.name }} |
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row card_row">
+            <div class="col-xs-12">
                 Boxart front :
                 {% if game.BoxartFront | length == 0 %}
                     <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
