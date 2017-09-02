@@ -32,6 +32,7 @@ class UploadListener {
         $entityType = $request->get('entityType');
         $uploadType = $request->get('type');
 
+        //Todo : create multiple filter and choose it according to ArtType
         $thumb_filter_name = 'my_thumb';
         
         //replace uploads with web (symbolics links problem)
