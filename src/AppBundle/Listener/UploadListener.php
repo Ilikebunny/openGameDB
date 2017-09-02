@@ -32,21 +32,24 @@ class UploadListener {
         $entityType = $request->get('entityType');
         $uploadType = $request->get('type');
 
+        $thumb_filter_name = 'my_thumb';
+        
         //replace uploads with web (symbolics links problem)
-        $destination = "uploads/" . $entityType . "/" . $idEntity . "/" . $uploadType . "/";
-        $destinationThumb = "thumb/my_thumb/" . $entityType . "/" . $idEntity . "/" . $uploadType . "/";
+        $destination = "images/" . $entityType . "/" . $idEntity . "/" . $uploadType . "/";
+        $destination_db = $entityType . "/" . $idEntity . "/" . $uploadType . "/" . $file->getFilename();
+        $destinationThumb = "thumb/".$thumb_filter_name."/images/" . $entityType . "/" . $idEntity . "/" . $uploadType . "/";
 
         if ($idEntity != "") {
             $file->move($destination, $file);
         }
 
-        dump($file);
-        dump($destination . $file->getFilename());
-        dump("entityType : ".$entityType);
+//        dump($file);
+//        dump($destination . $file->getFilename());
+//        dump("entityType : ".$entityType);
 
         //create thumb (todo : move in doctrine listener)
         $imagemanagerResponse = $this->container->get('liip_imagine.controller');
-        $imagemanagerResponse->filterAction(new Request(), $destination . $file->getFilename(), 'my_thumb');
+        $imagemanagerResponse->filterAction(new Request(), $destination . $file->getFilename(), $thumb_filter_name);
 
         //persist entity
         $manager = $this->container->get('doctrine')->getEntityManager('default');
@@ -58,7 +61,7 @@ class UploadListener {
         }
 
         $myArt->setType($uploadType);
-        $myArt->setLinkFile($destination . $file->getFilename());
+        $myArt->setLinkFile($destination_db);
         $myArt->setLinkThumb($destinationThumb . $file->getFilename());
 
         $manager->persist($myArt);

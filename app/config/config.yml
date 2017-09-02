@@ -167,12 +167,17 @@ oneup_uploader:
             root_folder: true
             
 liip_imagine :
+    loaders:
+        default:
+            filesystem:
+                locator: filesystem_insecure
+
     cache: upload
     resolvers:
        upload:
           web_path:
             web_root: "%kernel.root_dir%/../web"
-            cache_prefix: "thumb"
+            cache_prefix: "images/thumb"
 
     filter_sets :
         
