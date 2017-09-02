@@ -1,5 +1,68 @@
 {% extends 'layout/base.html.twig' %}
 
 {% block body %}
-    <p> Welcome </p>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Welcome to the OpenGameDataBase !</h3>
+        </div>
+        <div class="panel-body">
+            <h4>The project</h4>
+            <p>
+                The goal of this project is to create an open database of all existing videogames.
+                All data will be accessible via our API.
+            </p>
+            <p>Based on the Symfony Framework.</p>
+            <hr>
+            
+            <h4>TheGamesDB</h4>
+            <p>
+                This project was heavily inspired by the great TheGamesDB.net<br>
+                Every issues and features requested were studied to create OpenGameDB.
+            </p>
+            <hr>
+
+            <h4>Statut</h4>
+            <p>
+                Actually, this is not even an alpha version but it is in active developpement.
+                The database is regulary reloaded.
+            </p>
+            <hr>
+
+            <h4>Contact us</h4>
+            <p>
+                Coming soon : email, twitter & forum
+            </p>
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Current state <span class="badge">02 / September / 2017</span></h3>
+        </div>
+        <div class="panel-body">
+            <h4>Database migration</h4>
+            <p>TheGamesDB's database was scrapped and modified with a lot of custom scripts.</p>
+            <hr>
+            <h4>Game version</h4>
+            <p> The OpenGameDB can "group" games by distinguishing "Game" and "GameVersion". </p>
+            <p>Exemple :</p>
+            <p>Halo (Xbox) and Halo(PC) are grouped under "Halo"</p>
+            <hr>
+            <h4>Special edition</h4>
+            <p>Special edition (limited, collector, etc...) are now a special type of "GameVersion"</p>
+            <p>Exemple :</p>
+            <p>"Halo 5 : Guardians Limited Edition" is grouped under "Halo 5 : Guardians"</p>
+        </div>
+    </div>
+
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">Next step !</h3>
+        </div>
+        <div class="panel-body">
+            <h4>Communication & communauty</h4>
+            <p>Provide tools necessary to communicate with people interrested in this project and begin building our communauty.</p>
+        </div>
+    </div>
+
 {% endblock %}
