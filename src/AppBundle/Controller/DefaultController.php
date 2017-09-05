@@ -13,21 +13,9 @@ class DefaultController extends Controller {
      */
     public function indexAction(Request $request) {
 
-        $finder = $this->container->get('fos_elastica.finder.opengamedb');
-
-        // Option 1. Returns all users who have example.net in any of their mapped fields
-        $results = $finder->find('Warhammer');
-
-        $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('AppBundle:Game')->getGameComplete(1);
-        $game = $queryBuilder->getQuery()->getResult();
-
+        
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-                    'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..') . DIRECTORY_SEPARATOR,
-                    'search' => $results,
-                    'test' => $game,
-        ]);
+        return $this->render('default/index.html.twig');
     }
 
 }
