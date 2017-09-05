@@ -5,10 +5,16 @@ parameters:
 
 services:
     
+#    Managers
     AppBundle.importcsv:
         class: AppBundle\Manager\ImportCSV
         arguments: ["@service_container"]
         
+    AppBundle.vanillajsconnect:
+        class: AppBundle\Manager\VanillaJsConnect
+        arguments: ["@service_container"]
+        
+#   Full calendar
     app_bundle.service.listener:
         class: AppBundle\Listener\LoadDataListener
         tags:

@@ -21,3 +21,8 @@ parameters:
 
     elastic_host : localhost
     elastic_port : 9200
+
+    #Vanilla forum
+    forum_url_sso: ~
+    forum_clientId: ~
+    forum_secret: ~
