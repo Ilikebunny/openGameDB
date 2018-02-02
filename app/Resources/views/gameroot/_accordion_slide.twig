@@ -1,0 +1,45 @@
+
+<div id="myCarousel{{ gameRoot.id }}" class="carousel slide" data-ride="carousel" data-interval="false">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        {% set number = 1 %}
+        {% for game in games%}
+
+            {% if number == 1 %}
+                <li data-target="#myCarousel{{ gameRoot.id }}" data-slide-to="{{ number }}" class="active"></li>
+                {% else %}
+                <li data-target="#myCarousel{{ gameRoot.id }}" data-slide-to="{{ number }}"></li>
+                {% endif %}
+
+            {% set number = number + 1 %}
+        {% endfor %}    
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        {% set number = 1 %}
+        {% for game in games%}
+
+            {% if number == 1 %}
+                <div class="item active">
+                {% else %}
+                    <div class="item">
+                    {% endif %}
+
+                    {{ include('game/_card_row.twig') }}
+                </div>
+                {% set number = number + 1 %}
+            {% endfor %}   
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel{{ gameRoot.id }}" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel{{ gameRoot.id }}" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
