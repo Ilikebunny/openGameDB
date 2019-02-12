@@ -58,9 +58,9 @@
                 <div class="col-md-12">
                     <p><strong>Boxart</strong></p>
                     {% if platform.Boxart | length == 0 %}
-                        <img class="img-responsive" src="{{ asset('images/generique.png') }}" alt="image" />
+                        <img class="img-fluid" src="{{ asset('images/generique.png') }}" alt="image" />
                     {% else %}
-                        <img class="img-responsive" src="/images{{ asset(platform.Boxart.linkThumb) }}" alt="image" />
+                        <img class="img-fluid" src="/images{{ asset(platform.Boxart.linkThumb) }}" alt="image" />
                     {% endif %}
                 </div>
             </div>
@@ -159,9 +159,9 @@
                 </div>
                 <div class="col-md-12">
                     {% if platform.ConsoleArt | length == 0 %}
-                        <img class="img-responsive" src="{{ asset('images/generique.png') }}" alt="image" />
+                        <img class="img-fluid" src="{{ asset('images/generique.png') }}" alt="image" />
                     {% else %}
-                        <img class="img-responsive" src="/images{{ asset(platform.ConsoleArt.linkThumb) }}" alt="image" />
+                        <img class="img-fluid" src="/images{{ asset(platform.ConsoleArt.linkThumb) }}" alt="image" />
                     {% endif %}
                 </div>
             </div>
@@ -173,9 +173,9 @@
                 </div>
                 <div class="col-md-12">
                     {% if platform.ControllerArt | length == 0 %}
-                        <img class="img-responsive" src="{{ asset('images/generique.png') }}" alt="image" />
+                        <img class="img-fluid" src="{{ asset('images/generique.png') }}" alt="image" />
                     {% else %}
-                        <img class="img-responsive" src="/images{{ asset(platform.ControllerArt.linkThumb) }}" alt="image" />
+                        <img class="img-fluid" src="/images{{ asset(platform.ControllerArt.linkThumb) }}" alt="image" />
                     {% endif %}
                 </div>
             </div>

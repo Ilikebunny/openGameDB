@@ -101,15 +101,15 @@
                 </div>
                 <div class="col-md-12">
                     {% if game.BoxartFront | length == 0 %}
-                        <img class="img-responsive boxart" src="{{ asset('images/generique.png') }}" alt="image" />
+                        <img class="img-fluid boxart" src="{{ asset('images/generique.png') }}" alt="image" />
                     {% else %}
-                        <img class="img-responsive boxart" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
+                        <img class="img-fluid boxart" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
                     {% endif %}
 
                     {% if game.BoxartBack | length == 0 %}
-                        <img class="img-responsive boxart " src="{{ asset('images/generique.png') }}" alt="image" style="display:none"/>
+                        <img class="img-fluid boxart " src="{{ asset('images/generique.png') }}" alt="image" style="display:none"/>
                     {% else %}
-                        <img class="img-responsive boxart" src="/images{{ asset(game.BoxartBack.linkThumb) }}" alt="image" style="display:none"/>
+                        <img class="img-fluid boxart" src="/images{{ asset(game.BoxartBack.linkThumb) }}" alt="image" style="display:none"/>
                     {% endif %}
                 </div>
             </div>
@@ -121,7 +121,7 @@
                 {% if game.clearlogo %}
                     <div class="col-md-12">
                         <p><strong>Clearlogo</strong></p>
-                        <img class="img-responsive" src="/images{{ asset(game.clearlogo.linkFile) }}" alt="image" />
+                        <img class="img-fluid" src="/images{{ asset(game.clearlogo.linkFile) }}" alt="image" />
                     </div>
                 {% endif %}
 

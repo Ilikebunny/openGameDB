@@ -5,7 +5,7 @@
             <ul class="slides">
                 {% for art in game.screenshots %}
                     <li>
-                        <img class="img-responsive" src="/images{{ asset(art.linkFile) }}" alt="image" />
+                        <img class="img-fluid" src="/images{{ asset(art.linkFile) }}" alt="image" />
                     </li>
                 {% endfor %}                
             </ul>
@@ -16,7 +16,7 @@
             <ul class="slides">
                 {% for art in game.screenshots %}
                     <li>
-                        <img class="img-responsive" src="/images{{ asset(art.linkFile) }}" alt="image" />
+                        <img class="img-fluid" src="/images{{ asset(art.linkFile) }}" alt="image" />
                     </li>
                 {% endfor %}                
             </ul>

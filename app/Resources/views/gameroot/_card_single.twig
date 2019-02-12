@@ -46,9 +46,9 @@
             {% for game in gameRoot.games %}
                 <div class="col-md-3">
                     {% if game.BoxartFront | length == 0 %}
-                        <img class="img-responsive" src="{{ asset('images/generique.png') }}" alt="image" />
+                        <img class="img-fluid" src="{{ asset('images/generique.png') }}" alt="image" />
                     {% else %}
-                        <img class="img-responsive" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
+                        <img class="img-fluid" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
                     {% endif %}
                 </div>
 

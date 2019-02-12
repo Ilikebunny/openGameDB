@@ -2,9 +2,9 @@
 
     <div class="card_img-wrapper">
         {% if game.BoxartFront | length == 0 %}
-            <img class="img-responsive center-block" src="{{ asset('images/generique.png') }}" alt="image" />
+            <img class="img-fluid center-block" src="{{ asset('images/generique.png') }}" alt="image" />
         {% else %}
-            <img class="img-responsive center-block" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
+            <img class="img-fluid center-block" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
         {% endif %}
     </div>
 

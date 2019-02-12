@@ -11,14 +11,14 @@
 {% block body %}
 
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
             {{ include('platform/_menu_top.twig') }}
             {{ include('platform/_card.twig') }}
 
         </div>
-        <div class="col-md-3">
+        <{#div class="col-md-3">
             {{ render(controller('AppBundle:Platform:nav_generation')) }}
-        </div>
+        </div>#}
     </div> 
 
     <div class="row">

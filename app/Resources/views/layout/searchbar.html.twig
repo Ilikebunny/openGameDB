@@ -6,7 +6,8 @@
 
 {% block body %}
 
-    {{ form_start(form_search) }}
+    {#    {{ form_start(form_search) }}#}
+    {{ form_start(form_search, { 'attr' : { 'class': 'form-inline' } }) }} 
 
     {{ form_widget(form_search.searchstring) }}
 

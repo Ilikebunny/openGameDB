@@ -1,45 +1,68 @@
-<nav class="navbar navbar-default " role="navigation" id="topnavbar">
+
+{#<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>#}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation" id="topnavbar">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-left" href="{{ path('homepage') }}">
-{#                <i class="fa fa-home"></i> #}
-                <img class="banniere_img img-responsive center-block" src="{{ asset('images/site/ogdb.png') }}" alt="OGDB" />
-            </a>
-            
-        </div>
+        <a class="navbar-brand" href="{{ path('homepage') }}">
+            <img class="banniere_img img-fluid center-block" src="{{ asset('images/site/ogdb.png') }}" alt="OGDB" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
+            {#        <div class="navbar-form ml-auto">#}
             {{ knp_menu_render('AppBundle:Builder:mainNavBarMenu', {'currentClass': 'active'}) }}
+            {#        </div>#}
 
             {# SearchBar #}
-            <div class="navbar-form navbar-left">
+            <div class="navbar-form ml-auto">
                 {{ render(controller('AppBundle:Search:search_form')) }}
             </div>
 
-            <ul class="nav navbar-nav navbar-right">
-{#                Forum#}
-                <li><a href="{{forum_url_sso}}">Forum</a></li>
-{#                User#}
-                <li class="dropdown">
+            <ul class="nav navbar-nav mr-auto">
+                {#                Forum#}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{forum_url_sso}}">Forum</a>
+                </li>
+                {#                User#}
+                <li class="nav-item dropdown">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <!-- Logged -->
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-user"></i> {{app.user.username}} <span class="caret"></span>
                         </a>
                         {{ knp_menu_render('AppBundle:Builder:userLoggedMenu', {'currentClass': 'active'}) }}
 
                     {% else %}
                         <!-- Not Logged -->
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             Account <span class="caret"></span>
                         </a>
 
@@ -50,5 +73,5 @@
             </ul>
 
         </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+    </div><!-- /.navbar-collapse -->
 </nav>

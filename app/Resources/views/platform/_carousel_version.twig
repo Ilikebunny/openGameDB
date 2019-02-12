@@ -1,0 +1,57 @@
+
+{#Calculate names#}
+{% set carouselName = "carouselPlatformVersion" ~ platform.id %} 
+{% set carouselNamePrev = "carouselPlatformVersionPrev" ~ platform.id %} 
+{% set carouselNameNext = "carouselPlatformVersionNext" ~ platform.id %} 
+
+{#Separator#}
+<div class="border-top border-success h-0 mb-2"></div>
+
+{#Selector#}
+<div class="d-flex flex-wrap justify-content-center align-content-center">
+    <p id="{{ carouselNamePrev }}" class="btn btn-outline-secondary prev my-auto mr-1" href="" title="go back"><i class="fa fa-lg fa-chevron-left"></i></p>
+    <p class="my-auto">Releases <span class="badge badge-pill badge-secondary">{{ platform.releases | length }}</span></p>
+    <p id="{{ carouselNameNext }}" class="btn btn-outline-secondary next my-auto ml-1" href="" title="more"><i class="fa fa-lg fa-chevron-right"></i></p>
+</div>
+
+{#Link selector to carousel#}
+<script>
+    $("#{{ carouselNameNext }}").click(function () {
+        $('#{{ carouselName }}').carousel('next');
+    });
+
+    $("#{{ carouselNamePrev }}").click(function () {
+        $('#{{ carouselName }}').carousel('prev');
+    });
+</script>
+
+<div id="{{ carouselName }}" class="carousel" data-interval="false">
+    <div class="carousel-inner">
+
+        {#No releases#}
+        {% if platform.releases | length == 0 %}
+            <div class="carousel-item active">
+                <div class="d-flex flex-wrap justify-content-center align-content-center">
+                    <div class="p-2"><small class="text-muted">No specific version</small></div>
+                    <div class="p-2">Unknown</div>
+                    <div class="p-2"><span class="badge badge-pill badge-danger">NC</span></div>
+                </div>
+            </div>
+        {% endif %}
+
+        {#Releases#}
+        {% for release in platform.releases %}
+            <div class="carousel-item{% if loop.first %} active{% endif %}">
+                <div class="d-flex flex-wrap justify-content-center align-content-center">
+                    <div class="p-2"><small class="text-muted">{{ release.name }}</small></div>
+                    <div class="p-2">{{ release.regionCountry.name }}</div>
+                    <div class="p-2"><span class="badge badge-pill badge-secondary">{{ release.releaseDate  | date('Y-m-d') }}</span></div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{#Separator#}
+<div class="border-top border-success h-0"></div>

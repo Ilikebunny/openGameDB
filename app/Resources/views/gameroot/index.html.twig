@@ -8,6 +8,8 @@
 
     {{ include('gameroot/_menu_top.twig') }}
 
+    {{ include('gameroot/_card_grid.html.twig') }}
+    
     {% for gameRoot in gameRoots %}
         {#        {% set games = gameRoot.games %}#}
         {% if gameRoot.games | length == 1 %}

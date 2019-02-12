@@ -3,8 +3,8 @@
     {{ include('layout/head.html.twig') }}
     <body>
 
+        {{ include('layout/header.html.twig') }}
         <div class="container-fluid">
-            {{ include('layout/header.html.twig') }}
         </div>
 
         <div class="container">
@@ -20,7 +20,7 @@
                 {{ wo_render_breadcrumbs() }}
                 {% block menu_content %}
                 {% endblock %}
-                <div class="panel-body col-md-12">
+                <div class="card-block col-md-12">
                     {{ include('layout/_flash_message_block.html.twig') }}
                     {% block body %}
                     {% endblock %}

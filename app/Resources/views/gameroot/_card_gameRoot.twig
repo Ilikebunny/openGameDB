@@ -1,0 +1,63 @@
+<div class="card mb-4">
+
+    <div class="card-header">
+        <h5 class="text-center">{{ gameRoot.title }}</h5>
+        <div class="d-flex flex-wrap justify-content-center">
+            <p class="p-2"><small class="text-muted">IDGAME : {{ gameRoot.id }}</small></p>
+            <p class="p-2">
+                <a title='Show' class="btn btn-primary btn-sm" href="{{ path('gameroot_show', { 'id': gameRoot.id }) }}">
+                    <i class="fa fa-eye"></i> View
+                </a>
+            </p>
+        </div>
+    </div>
+
+    {{ include('gameroot/_carousel_gameVersion.twig') }}
+
+    <div class="card-body">
+        {% if gameRoot.genres | length == 0 %}
+            <div class="d-flex flex-wrap justify-content-center border border-danger">
+                <div class="p-2"><small class="text-muted">Unknown</small></div>
+            </div>
+        {% else %}
+            <div class="d-flex flex-wrap justify-content-center border border-primary">
+                {% for genre in gameRoot.genres %}
+                    <div class="p-2"><small class="text-muted">{{ genre.name }}</small></div>
+                    {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+
+    <div class="card-footer">
+        <div class="d-flex flex-wrap justify-content-center border border-primary">
+            <div class="p-2">
+                Fanarts :
+                {% if gameRoot.Fanarts | length == 0 %}
+                    <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+                {% else %}
+                    <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+                {% endif %}
+            </div>
+            <div class="p-2">
+                Banners :
+                {% if gameRoot.Banners  | length == 0 %}
+                    <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+                {% else %}
+                    <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+                {% endif %}
+            </div>
+            <div class="p-2">
+                Clearlogo :
+                {% if gameRoot.Clearlogo| length == 0 %}
+                    <img class="" src="{{ asset('images/cross_16.png') }}" alt="image" />
+                {% else %}
+                    <img class="" src="{{ asset('images/tick_16.png') }}" alt="image" />
+                {% endif %}
+            </div>
+        </div>
+
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+
+</div>    

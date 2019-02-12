@@ -1,42 +1,48 @@
 {% extends 'layout/base.html.twig' %}
 
 {% block body %}
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Welcome to the OpenGameDataBase !</h3>
+
+    <div class="card mb-2">
+        <div class="card-header bg-secondary">
+            <h3>Welcome to the Open Game Data Base !</h3>
         </div>
-        <div class="panel-body">
-            <h4>The project</h4>
-            <p>
+        <div class="card-body">
+            <h4 class="card-title">The project</h4>
+            <p class="card-text">
                 The goal of this project is to create an open database of all existing videogames.
                 All data will be accessible via our API.
             </p>
-            <p>Based on the Symfony Framework.</p>
-            <hr>
+            <p class="card-text">Based on the Symfony Framework.</p>
+        </div>
+        <hr>
+        <div class="card-body">
+            <h4 class="card-title">TheGamesDB</h4>
+            <p class="card-text">This project was heavily inspired by the great TheGamesDB.net</p>
+            <p class="card-text">Every issues and features requested were studied to create OpenGameDB's roadmap.</p>
+        </div>
+        <hr>
 
-            <h4>TheGamesDB</h4>
-            <p>This project was heavily inspired by the great TheGamesDB.net</p>
-            <p>Every issues and features requested were studied to create OpenGameDB's roadmap.</p>
-            <hr>
-
-            <h4>Statut</h4>
-            <p>
+        <div class="card-body">
+            <h4 class="card-title">Statut</h4>
+            <p class="card-text">
                 Actually, this is not even an alpha version but it is in active developpement.
                 The database is regulary reloaded.
             </p>
-            <hr>
+        </div>
+        <hr>
 
-            <h4>Contact us</h4>
-            <p>Email : <a href="mailto:admin@opengamedb.org" target="_top">admin@opengamedb.org</a></p>
-            <p>Coming soon : twitter & forum</p>
+        <div class="card-body">
+            <h4 class="card-title">Contact us</h4>
+            <p class="card-text">Email : <a href="mailto:admin@opengamedb.org" target="_top">admin@opengamedb.org</a></p>
+            <p class="card-text">Coming soon : twitter & forum</p>
         </div>
     </div>
 
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Current state <span class="badge">02 / September / 2017</span></h3>
+    <div class="card mb-2">
+        <div class="card-header bg-info">
+            <h3 class="card-title">Current state <span class="badge">02 / September / 2017</span></h3>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
             <h4>Database migration</h4>
             <p>TheGamesDB's database was scrapped and modified with a lot of custom scripts.</p>
             <hr>
@@ -52,11 +58,11 @@
         </div>
     </div>
 
-    <div class="panel panel-success">
-        <div class="panel-heading">
-            <h3 class="panel-title">Next step !</h3>
+    <div class="card mb-2">
+        <div class="card-header bg-success">
+            <h3 class="card-title">Next step !</h3>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
             <h4>Communication & community</h4>
             <p>Provide tools necessary to communicate with people interrested in this project and begin building our community.</p>
             <p>Roadmap : what we are planning to</p>

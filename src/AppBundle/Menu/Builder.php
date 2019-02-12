@@ -14,15 +14,26 @@ class Builder implements ContainerAwareInterface {
 
         $menu = $factory->createItem('root', array(
             'childrenAttributes' => array(
-                'class' => 'nav navbar-nav',
+                'class' => 'navbar-nav ml-auto',
             ),
         ));
 
-        $menu->addChild('Games', array('route' => 'gameroot'));
-        $menu->addChild('Platforms', array('route' => 'platform'));
-        $menu->addChild('Stats', array('route' => 'stats'));
-        $menu->addChild('API', array('route' => 'nelmio_api_doc_index'));
-        $menu->addChild('Add new game', array('route' => 'homepage', 'class' => 'label label-default vertical-align'));
+        $menu->addChild('Games', array('route' => 'gameroot'))
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link');
+        $menu->addChild('Platforms', array('route' => 'platform'))
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link');
+        $menu->addChild('Stats', array('route' => 'stats'))
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link');
+        $menu->addChild('API', array('route' => 'nelmio_api_doc_index'))
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link');
+//        $menu->addChild('Add new game', array('route' => 'homepage', 'class' => 'label label-default vertical-align'));
+        $menu->addChild('Add new game', array('route' => 'homepage'))
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link');
 
         return $menu;
     }
@@ -35,14 +46,30 @@ class Builder implements ContainerAwareInterface {
             ),
         ));
 
-        $menu->addChild('Browse Games', array('route' => 'gameroot'));
-        $menu->addChild('Browse Versions', array('route' => 'game'));
-        $menu->addChild('Add', array('route' => 'homepage'));
-        $menu->addChild('Top Rated', array('route' => 'homepage'));
-        $menu->addChild('Recently added', array('route' => 'homepage'));
-        $menu->addChild('Recently updated', array('route' => 'homepage'));
-        $menu->addChild('Upcoming', array('route' => 'homepage'));
-        $menu->addChild('Release calendar', array('route' => 'game_calendar'));
+        $menu->addChild('Browse Games', array('route' => 'gameroot'))
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link');
+        $menu->addChild('Browse Versions', array('route' => 'game'))
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link');
+        $menu->addChild('Add', array('route' => 'homepage'))
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link');
+        $menu->addChild('Top Rated', array('route' => 'homepage'))
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link');
+        $menu->addChild('Recently added', array('route' => 'homepage'))
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link');
+        $menu->addChild('Recently updated', array('route' => 'homepage'))
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link');
+        $menu->addChild('Upcoming', array('route' => 'homepage'))
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link');
+        $menu->addChild('Release calendar', array('route' => 'game_calendar'))
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link');
 
         return $menu;
     }
@@ -55,9 +82,15 @@ class Builder implements ContainerAwareInterface {
             ),
         ));
 
-        $menu->addChild('Browse', array('route' => 'platform'));
-        $menu->addChild('Recently added', array('route' => 'homepage'));
-        $menu->addChild('Recently updated', array('route' => 'homepage'));
+        $menu->addChild('Browse', array('route' => 'platform'))
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link');
+        $menu->addChild('Recently added', array('route' => 'homepage'))
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link');
+        $menu->addChild('Recently updated', array('route' => 'homepage'))
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link');
 
         return $menu;
     }
@@ -87,22 +120,25 @@ class Builder implements ContainerAwareInterface {
         ));
 
         $menu->addChild('layout.register', array(
-            'route' => 'fos_user_registration_register',
-        ))->setExtra('translation_domain', 'FOSUserBundle');
+                    'route' => 'fos_user_registration_register',
+                ))->setExtra('translation_domain', 'FOSUserBundle')
+                ->setLinkAttribute('class', 'nav-link');
 
         //Divider
         $menu->addChild('', array('attributes' => array(
                 'role' => 'separator',
-                'class' => 'divider',
+                'class' => 'dropdown-divider',
         )));
 
         $menu->addChild('layout.login', array(
-            'route' => 'fos_user_security_login',
-        ))->setExtra('translation_domain', 'FOSUserBundle');
+                    'route' => 'fos_user_security_login',
+                ))->setExtra('translation_domain', 'FOSUserBundle')
+                ->setLinkAttribute('class', 'nav-link');
 
         $menu->addChild('resetting.request.submit', array(
-            'route' => 'fos_user_resetting_request',
-        ))->setExtra('translation_domain', 'FOSUserBundle');
+                    'route' => 'fos_user_resetting_request',
+                ))->setExtra('translation_domain', 'FOSUserBundle')
+                ->setLinkAttribute('class', 'nav-link');
 
         return $menu;
     }
@@ -116,23 +152,26 @@ class Builder implements ContainerAwareInterface {
         ));
 
         $menu->addChild('Editer compte', array(
-            'route' => 'fos_user_profile_edit',
-        ))->setExtra('translation_domain', 'FOSUserBundle');
+                    'route' => 'fos_user_profile_edit',
+                ))->setExtra('translation_domain', 'FOSUserBundle')
+                ->setLinkAttribute('class', 'nav-link');
 
         $menu->addChild('change_password.submit', array(
-            'route' => 'fos_user_change_password',
-        ))->setExtra('translation_domain', 'FOSUserBundle');
+                    'route' => 'fos_user_change_password',
+                ))->setExtra('translation_domain', 'FOSUserBundle')
+                ->setLinkAttribute('class', 'nav-link');
 
         //Divider
         $menu->addChild('', array('attributes' => array(
                 'role' => 'separator',
-                'class' => 'divider',
+                'class' => 'dropdown-divider',
         )));
 
 
         $menu->addChild('layout.logout', array(
-            'route' => 'fos_user_security_logout',
-        ))->setExtra('translation_domain', 'FOSUserBundle');
+                    'route' => 'fos_user_security_logout',
+                ))->setExtra('translation_domain', 'FOSUserBundle')
+                ->setLinkAttribute('class', 'nav-link');
 
         return $menu;
     }

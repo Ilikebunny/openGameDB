@@ -1,0 +1,85 @@
+
+{#Calculate names#}
+{% set carouselName = "carouselGameVersion" ~ gameRoot.id %} 
+{% set carouselNamePrev = "carouselGameVersionPrev" ~ gameRoot.id %} 
+{% set carouselNameNext = "carouselGameVersionNext" ~ gameRoot.id %} 
+
+{#Separator#}
+<div class="border-top border-success h-0 mb-2"></div>
+
+{#Selector#}
+<div class="d-flex flex-wrap justify-content-center align-content-center">
+    <p id="{{ carouselNamePrev }}" class="btn btn-outline-secondary prev my-auto mr-1" href="" title="go back"><i class="fa fa-lg fa-chevron-left"></i></p>
+    <button class="btn btn-link my-auto" data-toggle="collapse" data-target="#{{"carouselGameVersion" ~ gameRoot.id }}" aria-expanded="true" aria-controls="collapseOne">
+        Version(s) <span class="badge badge-pill badge-secondary">{{ gameRoot.games | length }}</span>
+    </button>
+    {#    <p class="my-auto">Version(s) <span class="badge badge-pill badge-secondary">{{ gameRoot.games | length }}</span></p>#}
+    <p id="{{ carouselNameNext }}" class="btn btn-outline-secondary next my-auto ml-1" href="" title="more"><i class="fa fa-lg fa-chevron-right"></i></p>
+</div>
+
+{#Link selector to carousel#}
+<script>
+    $("#{{ carouselNameNext }}").click(function () {
+        $('#{{ carouselName }}').carousel('next');
+    });
+
+    $("#{{ carouselNamePrev }}").click(function () {
+        $('#{{ carouselName }}').carousel('prev');
+    });
+</script>
+
+<div id="{{ carouselName }}" class="carousel" data-interval="false">
+    <div class="carousel-inner">
+
+        {#Versions#}
+        {% for game in gameRoot.games %}
+            <div class="carousel-item{% if loop.first %} active{% endif %}">
+
+                {% if game.BoxartFront | length == 0 %}
+                    <img class="card-img-top img-fluid mx-auto mb-2 d-block mt-2" src="{{ asset('images/generique.png') }}" alt="image" />
+                {% else %}
+                    <img class="card-img-top img-fluid mx-auto mb-2 d-block mt-2" src="/images{{ asset(game.BoxartFront.linkThumb) }}" alt="image" />
+                {% endif %}
+
+                <div class="d-flex flex-wrap justify-content-center align-content-center">
+                    <div class="p-2"><small class="text-muted">{{ game.title }}</small></div>
+                </div>
+
+                <p class="card-text text-center">
+                    {{ game.platform }}
+                </p>
+
+                <p class="card-text text-center">
+                    <span class="badge badge-secondary text-center">REGION</span>
+                    {% if game.releaseDate is null %}
+                        <span class="badge badge-danger text-center">N/C</span>
+                    {% else %}
+                        <span class="badge badge-primary text-center">{{ game.releaseDate | date('Y-m-d') }}</span>
+                    {% endif %}
+                </p>
+
+                <p class="card-text text-center">
+                    <small class="text-muted">Publisher</small>
+                </p>
+
+                <p class="card-text text-center">
+                    <small class="text-muted">Developper</small>
+                </p>
+
+                <div class="d-flex flex-wrap justify-content-center">
+                    <p class="p-2"><small class="text-muted">IDVERSION : {{ game.id }}</small></p>
+                    <p class="p-2">
+                        <a title='Show' class="btn btn-primary btn-sm" href="{{ path('game_show', { 'id': game.id }) }}">
+                            <i class="fa fa-eye"></i> View
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{#Separator#}
+<div class="border-top border-success h-0"></div>
